@@ -1,0 +1,173 @@
+---
+const services = [
+  "Software Development",
+  "Artificial Intelligence",
+  "Web Development",
+  "Mobile App Development",
+  "Virtual Assistants",
+  "Finance & Accounting",
+  "Digital Marketing",
+  "Graphic & Web Design",
+  "Content Writing",
+  "IT Support",
+  "Other"
+];
+---
+
+<div id="form-success" style="display:none;" class="items-center gap-4 p-5 mb-6 rounded-2xl border border-green-500/30 bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400">
+  <svg class="w-8 h-8 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <div>
+    <p class="font-heading font-bold text-lg">Message sent successfully!</p>
+    <p class="text-sm opacity-80">We'll get back to you within 24 hours.</p>
+  </div>
+</div>
+
+<form class="ve-card p-8 md:p-10 space-y-6" id="contact-form" novalidate>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Name -->
+    <div>
+      <label for="name" class="block text-sm font-medium text-[var(--text-primary)] mb-2">Full Name *</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        required 
+        class="w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-colors placeholder:text-[var(--text-muted)]/50 text-[var(--text-primary)]"
+        placeholder="John Doe"
+      />
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="email" class="block text-sm font-medium text-[var(--text-primary)] mb-2">Work Email *</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        required 
+        class="w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-colors placeholder:text-[var(--text-muted)]/50 text-[var(--text-primary)]"
+        placeholder="john@company.com"
+      />
+    </div>
+
+    <!-- Company -->
+    <div>
+      <label for="company" class="block text-sm font-medium text-[var(--text-primary)] mb-2">Company</label>
+      <input 
+        type="text" 
+        id="company" 
+        name="company" 
+        class="w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-colors placeholder:text-[var(--text-muted)]/50 text-[var(--text-primary)]"
+        placeholder="Acme Corp"
+      />
+    </div>
+
+    <!-- Phone -->
+    <div>
+      <label for="phone" class="block text-sm font-medium text-[var(--text-primary)] mb-2">Phone Number</label>
+      <input 
+        type="tel" 
+        id="phone" 
+        name="phone" 
+        class="w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-colors placeholder:text-[var(--text-muted)]/50 text-[var(--text-primary)]"
+        placeholder="+1 (555) 000-0000"
+      />
+    </div>
+  </div>
+
+  <!-- Service Interested -->
+  <div>
+    <label for="service" class="block text-sm font-medium text-[var(--text-primary)] mb-2">Service Interested In *</label>
+    <div class="relative">
+      <select 
+        id="service" 
+        name="service" 
+        required 
+        class="w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-colors appearance-none text-[var(--text-primary)]"
+      >
+        <option value="" disabled selected class="text-[var(--text-muted)]">Select a service...</option>
+        {services.map(service => (
+          <option value={service} class="bg-[var(--bg-primary)]">{service}</option>
+        ))}
+      </select>
+      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[var(--text-muted)]">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message -->
+  <div>
+    <label for="message" class="block text-sm font-medium text-[var(--text-primary)] mb-2">Message / Requirements *</label>
+    <textarea 
+      id="message" 
+      name="message" 
+      rows="4" 
+      required 
+      class="w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-colors placeholder:text-[var(--text-muted)]/50 resize-none text-[var(--text-primary)]"
+      placeholder="Tell us about your project, preferred tech stack, and ideal team size..."
+    ></textarea>
+  </div>
+
+  <!-- Submit -->
+  <button 
+    type="submit" 
+    class="w-full px-8 py-4 rounded-full bg-[var(--color-accent)] text-white font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-all duration-300 flex items-center justify-center gap-2 group"
+  >
+    Send Message
+    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+  </button>
+  
+  <p class="text-xs text-center text-[var(--text-muted)] mt-4">
+    We typically respond within 24 hours. Your information is kept strictly confidential.
+  </p>
+</form>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const successBanner = document.getElementById('form-success') as HTMLElement;
+
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Basic validation
+      const required = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('[required]');
+      let valid = true;
+      required.forEach(field => {
+        if (!field.value.trim()) valid = false;
+      });
+      if (!valid) return;
+
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (!btn) return;
+
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<svg class="animate-spin h-5 w-5 mr-3 inline" viewBox="0 0 24 24" fill="none"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        if (successBanner) {
+          successBanner.style.display = 'flex';
+          successBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        btn.innerHTML = '✓ Message Sent!';
+        btn.style.background = '#22c55e';
+        btn.style.color = '#fff';
+        form.reset();
+
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.disabled = false;
+          if (successBanner) successBanner.style.display = 'none';
+        }, 4000);
+      }, 1500);
+    });
+  });
+</script>

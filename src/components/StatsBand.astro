@@ -1,0 +1,25 @@
+---
+const stats = [
+  { value: '5,000+', label: 'Talent Pool' },
+  { value: '15+', label: 'Countries Served' },
+  { value: '10+', label: 'Years Experience' },
+  { value: '94%', label: 'Client Retention' },
+];
+---
+
+<section class="py-16 bg-[var(--bg-primary)] relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      {stats.map(stat => (
+        <div class="glass-card p-8 text-center group hover:border-[var(--color-accent)]/50 transition-all duration-300 hover:-translate-y-1">
+          <div class="text-4xl md:text-5xl font-mono font-bold text-[var(--color-accent)] mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">
+            {stat.value}
+          </div>
+          <div class="text-[var(--text-muted)] font-medium text-sm uppercase tracking-wider">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

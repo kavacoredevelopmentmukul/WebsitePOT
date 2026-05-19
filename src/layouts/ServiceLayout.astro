@@ -1,0 +1,33 @@
+---
+// ServiceLayout.astro — shared layout for service detail pages
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  serviceTitle: string;
+}
+
+const { title, description, serviceTitle } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-0">
+    <ol class="flex items-center gap-2 text-sm text-[var(--text-muted)]">
+      <li><a href="/" class="hover:text-[var(--color-accent)] transition-colors">Home</a></li>
+      <li><span class="mx-1 opacity-40">/</span></li>
+      <li><a href="/services" class="hover:text-[var(--color-accent)] transition-colors">Services</a></li>
+      <li><span class="mx-1 opacity-40">/</span></li>
+      <li class="text-[var(--color-accent)] font-medium">{serviceTitle}</li>
+    </ol>
+  </nav>
+
+  <slot />
+  
+  <Footer />
+</BaseLayout>

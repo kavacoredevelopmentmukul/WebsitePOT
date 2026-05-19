@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title, 
+  description = "Help global companies build remote tech teams without geographic limits.",
+  image = "/og-image.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url);
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title} | Pacific Ocean Tech</title>
+    <meta name="title" content={`${title} | Pacific Ocean Tech`} />
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | Pacific Ocean Tech`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={`${title} | Pacific Ocean Tech`} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- JSON-LD: Organization Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pacific Ocean Tech",
+      "url": "https://pacificoceantech.com",
+      "logo": "https://pacificoceantech.com/favicon.svg",
+      "description": "Premium remote staffing — helping global businesses hire dedicated AI engineers, developers, IT specialists, and creative talent from India.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Chandigarh",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+15551234567",
+        "contactType": "sales",
+        "email": "hello@pacificoceantech.com"
+      },
+      "sameAs": [
+        "https://linkedin.com/company/pacificoceantech",
+        "https://twitter.com/pacificoceantech"
+      ]
+    })} />
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+      window.localStorage.setItem("theme", theme || "dark");
+    </script>
+  </head>
+  <body class="antialiased min-h-screen flex flex-col relative bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+      <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[var(--color-accent-glow)]/20 blur-[120px] rounded-full mix-blend-screen dark:opacity-30 opacity-10"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[var(--color-elevated)]/40 blur-[120px] rounded-full mix-blend-screen dark:opacity-50 opacity-20"></div>
+    </div>
+    <slot />
+  </body>
+</html>

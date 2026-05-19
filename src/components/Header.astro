@@ -1,0 +1,141 @@
+---
+import ThemeToggle from './ThemeToggle.tsx';
+import { servicePillars } from '../data/services';
+import { Phone, Mail, ChevronDown } from 'lucide-astro';
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname === '/' ? '' : pathname.slice(1);
+
+const navLinks = [
+  { name: 'Home', url: '/' },
+  { name: 'About Us', url: '/about' },
+  { name: 'Testimonials', url: '/testimonials' },
+  { name: 'Team', url: '/team' },
+  { name: 'Blog', url: '/blog' },
+  { name: 'Contact Us', url: '/contact' },
+];
+---
+
+<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-[var(--bg-primary)]/90 border-b border-black/5 dark:border-white/5 transition-colors duration-300 shadow-sm">
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0 flex items-center">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-[var(--color-accent)] flex items-center justify-center transform group-hover:-translate-y-1 transition-transform duration-300">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-tight text-[var(--text-primary)]">Pacific Ocean Tech</span>
+        </a>
+      </div>
+
+      <!-- Desktop Nav & CTAs -->
+      <nav class="hidden lg:flex items-center justify-end flex-1 ml-8 space-x-1 xl:space-x-4">
+        
+        <a href="/" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Home</a>
+        <a href="/about" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">About Us</a>
+
+        <!-- Services Mega Menu -->
+        <div class="group inline-block relative">
+          <a href="/services" class="flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">
+            Services <ChevronDown class="w-4 h-4 transition-transform group-hover:rotate-180" />
+          </a>
+          
+          <!-- Mega Menu Dropdown -->
+          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-screen max-w-5xl">
+            <div class="ve-card p-8 grid grid-cols-3 gap-8">
+              {servicePillars.map(pillar => (
+                <div>
+                  <h3 class="font-heading font-bold text-lg mb-4 text-[var(--color-accent-secondary)] border-b border-black/5 dark:border-white/5 pb-2">{pillar.title}</h3>
+                  <ul class="space-y-2">
+                    {pillar.categories.slice(0, 6).map(cat => (
+                      <li>
+                        <a href={`/services/${cat.id}`} class="text-sm text-[var(--text-muted)] hover:text-[var(--color-accent)] transition-colors flex items-center gap-2">
+                          <cat.icon class="w-4 h-4" /> {cat.title}
+                        </a>
+                      </li>
+                    ))}
+                    {pillar.categories.length > 6 && (
+                      <li>
+                        <a href="/services" class="text-sm font-medium text-[var(--color-accent)] hover:underline mt-2 inline-block">
+                          View all {pillar.categories.length} categories &rarr;
+                        </a>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <a href="/testimonials" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Testimonials</a>
+        <a href="/blog" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Blog</a>
+        <a href="/contact" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Contact Us</a>
+
+        <div class="flex items-center gap-3 pl-4 border-l border-[var(--text-muted)]/20 ml-4">
+          <ThemeToggle client:load />
+          
+          <a href="/contact" class="px-5 py-2 rounded-full bg-[var(--color-accent)] text-white font-medium text-sm hover:bg-[var(--color-accent-glow)] transition-colors shadow-sm">
+            Get Started
+          </a>
+          
+          <a href="tel:+15551234567" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--text-muted)]/30 text-[var(--text-primary)] font-medium text-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors bg-[var(--bg-primary)]">
+            <Phone class="w-4 h-4" /> Call Us
+          </a>
+          
+          <a href="mailto:hello@pacificoceantech.com" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--text-muted)]/30 text-[var(--text-primary)] font-medium text-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors bg-[var(--bg-primary)]">
+            <Mail class="w-4 h-4" /> Email Us
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <div class="flex items-center lg:hidden gap-4">
+        <ThemeToggle client:load />
+        <button type="button" class="mobile-menu-button p-2 rounded-md text-[var(--text-primary)] hover:bg-[var(--bg-surface)] focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="block h-6 w-6 menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="lg:hidden hidden mobile-menu bg-[var(--bg-primary)] border-b border-black/5 dark:border-white/5 absolute w-full max-h-[80vh] overflow-y-auto" id="mobile-menu">
+    <div class="px-4 pt-2 pb-6 space-y-1 shadow-xl">
+      <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Home</a>
+      <a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">About Us</a>
+      <a href="/services" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Services</a>
+      <a href="/testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Testimonials</a>
+      <a href="/team" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Team</a>
+      <a href="/blog" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Blog</a>
+      <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Contact Us</a>
+      
+      <div class="mt-6 pt-6 border-t border-black/5 dark:border-white/5 space-y-3">
+        <a href="/contact" class="block w-full text-center px-5 py-3 rounded-xl bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-glow)] transition-all">
+          Get Started
+        </a>
+        <div class="flex gap-3">
+          <a href="tel:+15551234567" class="flex-1 flex justify-center items-center gap-2 px-4 py-3 rounded-xl border border-[var(--text-muted)]/30 text-[var(--text-primary)] font-medium hover:bg-[var(--bg-surface)] transition-colors">
+            <Phone class="w-4 h-4" /> Call Us
+          </a>
+          <a href="mailto:hello@pacificoceantech.com" class="flex-1 flex justify-center items-center gap-2 px-4 py-3 rounded-xl border border-[var(--text-muted)]/30 text-[var(--text-primary)] font-medium hover:bg-[var(--bg-surface)] transition-colors">
+            <Mail class="w-4 h-4" /> Email Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector('.mobile-menu-button');
+  const menu = document.querySelector('.mobile-menu');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

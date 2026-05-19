@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import DifferentiatorsCarousel from '../components/DifferentiatorsCarousel.tsx';
+import ServiceCard from '../components/ServiceCard.astro';
+import CaseStudies from '../components/CaseStudies.tsx';
+import TestimonialCarousel from '../components/TestimonialCarousel.tsx';
+import { allServices } from '../data/services';
+import { ArrowRight } from 'lucide-astro';
+
+// We'll take the first 5 services to create an asymmetric grid
+// 1 featured (large) + 4 standard (small)
+const featuredService = allServices[0];
+const standardServices = allServices.slice(1, 5);
+---
+
+<BaseLayout 
+  title="Home" 
+  description="Pacific Ocean Tech - Hire Virtual Employees For Any Role. A remote hiring ecosystem shaped over 18 years."
+>
+  <Header />
+  
+  <main>
+    <Hero />
+    
+    <DifferentiatorsCarousel client:load />
+    
+    <!-- Services That You Need -->
+    <section class="py-24 relative" id="services">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-4xl md:text-5xl font-heading font-bold text-[var(--text-primary)]">Services That You Need</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ServiceCard 
+            title={featuredService.title}
+            description={featuredService.description}
+            slug={featuredService.id}
+            subcategories={featuredService.subcategories}
+            isFeatured={true}
+          />
+          {standardServices.map(service => (
+            <ServiceCard 
+              title={service.title}
+              description={service.description}
+              slug={service.id}
+              subcategories={service.subcategories}
+              isFeatured={false}
+            />
+          ))}
+        </div>
+        
+        <div class="mt-16 text-center">
+          <a href="/services" class="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 font-medium text-[var(--text-primary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors text-lg">
+            Explore All 150+ Services
+            <ArrowRight class="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CaseStudies client:load />
+
+    <section class="py-24 bg-[var(--bg-surface)]">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-4xl md:text-5xl font-heading font-bold text-[var(--text-primary)]">What Clients Say</h2>
+        </div>
+        <TestimonialCarousel client:load />
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="py-32 bg-[var(--bg-primary)]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-5xl md:text-6xl font-heading font-bold mb-10 text-[var(--text-primary)] leading-tight">
+          Not sure what you need yet? Let's figure it out—together.
+        </h2>
+        <a href="/contact" class="inline-flex px-10 py-5 rounded-full bg-[var(--color-accent)] text-white font-bold text-xl hover:bg-[var(--color-accent-glow)] transition-colors shadow-lg shadow-[var(--color-accent)]/20">
+          Get Started
+        </a>
+      </div>
+    </section>
+
+  </main>
+  
+  <Footer />
+</BaseLayout>

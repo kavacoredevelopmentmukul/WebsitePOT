@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FAQ from '../../components/FAQ.tsx';
+import { servicePillars, allServices } from '../../data/services';
+import { ArrowRight, Check } from 'lucide-astro';
+
+export function getStaticPaths() {
+  return allServices.map(service => ({
+    params: { slug: service.id },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+// Find which pillar this service belongs to
+const parentPillar = servicePillars.find(p => p.categories.some(c => c.id === service.id));
+
+// Generic process steps that apply to all services
+const processSteps = [
+  { title: "Share Your Requirements", description: "Tell us about your project, the skills you need, and your timeline." },
+  { title: "We Source Top Talent", description: "Our AI-powered screening matches you with pre-vetted candidates in 48 hours." },
+  { title: "Interview & Select", description: "Review profiles, conduct interviews, and choose the perfect fit for your team." },
+  { title: "Onboard & Scale", description: "Your dedicated team member starts working with full infrastructure support from day one." },
+];
+
+// Generic FAQs
+const faqs = [
+  { question: `How quickly can I hire a ${service.title} specialist?`, answer: `We can present pre-vetted ${service.title} candidates within 48 hours of receiving your requirements. Most clients have their team member onboarded within 1-2 weeks.` },
+  { question: `What timezone do your ${service.title} professionals work in?`, answer: `Our professionals can work in your timezone. We support all major timezones including US, UK, EU, and APAC business hours.` },
+  { question: `How do you ensure quality for ${service.title} services?`, answer: `Every candidate goes through our rigorous 5-step vetting process including technical assessments, communication evaluations, and background checks. Only the top 1% make it through.` },
+  { question: `Can I scale my ${service.title} team up or down?`, answer: `Absolutely. You can scale your team size at any time with just 2 weeks notice. There are no long-term commitments required.` },
+];
+---
+
+<BaseLayout 
+  title={`${service.title} Services`} 
+  description={service.description}
+>
+  <Header />
+  
+  <main>
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 bg-[var(--bg-surface)]">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center gap-2 text-sm text-[var(--text-muted)] mb-10">
+          <a href="/" class="hover:text-[var(--color-accent)] transition-colors">Home</a>
+          <span>/</span>
+          <a href="/services" class="hover:text-[var(--color-accent)] transition-colors">Services</a>
+          {parentPillar && (
+            <>
+              <span>/</span>
+              <span class="text-[var(--text-muted)]/70">{parentPillar.title}</span>
+            </>
+          )}
+          <span>/</span>
+          <span class="text-[var(--text-primary)] font-medium">{service.title}</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div class="w-16 h-16 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] mb-8">
+              <service.icon class="w-8 h-8" />
+            </div>
+            <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-6 text-[var(--text-primary)]">{service.title}</h1>
+            <p class="text-xl text-[var(--text-muted)] mb-10 leading-relaxed">
+              {service.description}
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="/contact" class="px-8 py-4 rounded-full bg-[var(--color-accent)] text-white font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-colors inline-flex items-center justify-center">
+                Hire {service.title} Experts
+              </a>
+              <a href="/services" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 text-[var(--text-primary)] font-bold text-lg hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors inline-flex items-center justify-center">
+                View All Services
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="ve-card overflow-hidden">
+              <img src="/images/service_illustration.png" alt={service.title} class="w-full aspect-[4/3] object-contain bg-[var(--bg-surface)] p-8" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subcategories / Roles -->
+    <section class="py-24">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-[var(--text-primary)] mb-4">
+          {service.title} Roles We Fill
+        </h2>
+        <p class="text-lg text-[var(--text-muted)] mb-12 max-w-2xl">
+          Find the exact specialist you need. Each role is backed by our rigorous vetting process.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {service.subcategories.map(sub => (
+            <div class="ve-card p-8 flex items-center gap-4">
+              <div class="w-10 h-10 shrink-0 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)]">
+                <Check class="w-5 h-5" />
+              </div>
+              <span class="text-lg font-medium text-[var(--text-primary)]">{sub.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How We Work -->
+    <section class="py-24 bg-[var(--bg-surface)]">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">How We Work</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {processSteps.map((step, index) => (
+            <div class="relative">
+              <div class="w-14 h-14 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center font-bold text-xl mb-6">
+                {index + 1}
+              </div>
+              {index < processSteps.length - 1 && (
+                <div class="hidden lg:block absolute top-7 left-14 w-[calc(100%-3.5rem)] h-[2px] bg-[var(--color-accent)]/20"></div>
+              )}
+              <h3 class="text-lg font-heading font-bold mb-2 text-[var(--text-primary)]">{step.title}</h3>
+              <p class="text-[var(--text-muted)] text-sm leading-relaxed">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">Frequently Asked Questions</h2>
+        <FAQ client:visible items={faqs} />
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="py-32 bg-[#111827]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6 text-white">Ready to build your {service.title.toLowerCase()} team?</h2>
+        <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">We can have a dedicated team ready for you in just 48 hours.</p>
+        <a href="/contact" class="inline-flex px-10 py-4 rounded-full bg-[var(--color-accent)] text-white font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-colors">
+          Get Started Now
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>

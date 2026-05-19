@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { allTestimonials } from '../data/testimonials';
+import { Star } from 'lucide-astro';
+
+const industries = [...new Set(allTestimonials.map(t => t.industry))];
+---
+
+<BaseLayout 
+  title="Client Testimonials" 
+  description="Read what our clients have to say about building remote tech teams with Pacific Ocean Tech."
+>
+  <Header />
+  
+  <main class="pt-24 pb-16">
+    <!-- Hero -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-6 text-[var(--text-primary)]">Client Success Stories</h1>
+      <p class="text-xl text-[var(--text-muted)] max-w-3xl mx-auto">
+        Don't just take our word for it. See how companies across industries are scaling their engineering output with our talent.
+      </p>
+    </section>
+
+    <!-- Filters -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div id="filter-buttons" class="flex flex-wrap items-center justify-center gap-3">
+        <button data-filter="all" class="filter-btn active-filter px-5 py-2 rounded-full font-medium text-sm transition-all duration-200">
+          All Industries
+        </button>
+        {industries.map(industry => (
+          <button data-filter={industry} class="filter-btn px-5 py-2 rounded-full border border-gray-200 dark:border-gray-700 bg-[var(--bg-primary)] hover:border-[var(--color-accent)] text-[var(--text-muted)] hover:text-[var(--text-primary)] font-medium text-sm transition-all duration-200">
+            {industry}
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- Masonry Grid -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+        {allTestimonials.map(testimonial => (
+          <div class="testimonial-card break-inside-avoid ve-card p-8 group" data-industry={testimonial.industry}>
+            <div class="flex justify-between items-start mb-6">
+              <div class="flex gap-1 text-yellow-400">
+                {[...Array(testimonial.rating)].map(() => (
+                  <Star class="w-4 h-4 fill-current" />
+                ))}
+              </div>
+              <span class="text-xs font-medium text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] px-2.5 py-1 rounded-full bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20">
+                {testimonial.industry}
+              </span>
+            </div>
+            
+            <p class="text-[var(--text-primary)] text-lg mb-8 leading-relaxed">
+              "{testimonial.content}"
+            </p>
+            
+            <div class="flex items-center gap-4 mt-auto border-t border-gray-100 dark:border-gray-800 pt-6">
+              <div class="w-12 h-12 rounded-full bg-[var(--bg-surface)] flex items-center justify-center font-bold text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] text-xl shrink-0">
+                {testimonial.author.charAt(0)}
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-sm text-[var(--text-primary)]">{testimonial.author}</h4>
+                <p class="text-xs text-[var(--text-muted)]">{testimonial.role}, {testimonial.company}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Video Testimonials Placeholder -->
+    <section class="py-24 bg-[var(--bg-surface)]">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">Video Testimonials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[1, 2, 3].map(i => (
+            <div class="aspect-video ve-card relative group cursor-pointer overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10"></div>
+              <div class="absolute inset-0 flex items-center justify-center z-20">
+                <div class="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white pl-1 transform group-hover:scale-110 transition-transform">
+                  <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-4 left-4 right-4 z-20">
+                <h3 class="text-white font-bold mb-1">Scaling Engineering Output</h3>
+                <p class="text-white/70 text-sm">CTO, Acme Corp</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Logo Strip -->
+    <section class="py-16">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-sm font-medium text-[var(--text-muted)] mb-8 uppercase tracking-wider">Trusted by innovative teams worldwide</p>
+        <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+          {['InnovateAI', 'CloudScale', 'FutureWeb', 'FinTech Solutions', 'HealthTech Plus', 'DataSync'].map((company) => (
+            <div class="text-2xl font-heading font-bold text-[var(--text-primary)] opacity-50 hover:opacity-100 transition-opacity">
+              {company}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+<style>
+  .active-filter {
+    background-color: var(--color-accent);
+    color: white;
+    border: 1px solid transparent;
+  }
+</style>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.testimonial-card');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      // Update active button
+      filterButtons.forEach(b => b.classList.remove('active-filter'));
+      btn.classList.add('active-filter');
+
+      // Show/hide cards
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.industry === filter) {
+          card.style.display = '';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+        }
+      });
+    });
+  });
+</script>
+
+</BaseLayout>

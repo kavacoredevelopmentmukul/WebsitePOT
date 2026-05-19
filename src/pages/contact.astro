@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQ from '../components/FAQ.tsx';
+import { Mail, Phone, MessageCircle, MapPin, Map } from 'lucide-astro';
+
+const faqs = [
+  { question: "How long does it take to start a project?", answer: "Once you sign the agreement, we typically have your shortlisted candidates ready for interviews within 48 hours. Most teams can begin onboarding within 1 week." },
+  { question: "What are your payment terms?", answer: "We operate on a transparent, flat monthly retainer per dedicated engineer. There are no hidden fees, recruitment fees, or hardware costs. Payments are processed monthly." },
+  { question: "Can we hire multiple roles at once?", answer: "Yes. Many of our clients hire entire cross-functional pods simultaneously, such as a mix of Backend, Frontend, and QA engineers." },
+  { question: "What happens if an engineer isn't a good fit?", answer: "We offer a 30-day risk-free replacement guarantee. If the resource is not meeting your expectations, we will replace them immediately at no extra cost." },
+  { question: "Do you sign NDAs?", answer: "Absolutely. We sign strict Non-Disclosure Agreements and intellectual property assignment contracts before any work begins, ensuring your code and data remain 100% yours." }
+];
+---
+
+<BaseLayout 
+  title="Contact Us" 
+  description="Get in touch with Pacific Ocean Tech to start building your remote engineering team."
+>
+  <Header />
+  
+  <main class="pt-24 pb-16">
+    <!-- Hero & Form Section -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-24 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+        
+        <!-- Contact Info -->
+        <div class="lg:col-span-2 flex flex-col justify-center">
+          <h1 class="text-4xl md:text-5xl font-heading font-extrabold mb-6 text-[var(--text-primary)]">Let's build your dream team.</h1>
+          <p class="text-lg text-[var(--text-muted)] mb-10">
+            Whether you need a single AI specialist or a full engineering pod, we are ready to help you scale rapidly.
+          </p>
+          
+          <div class="space-y-8">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] shrink-0">
+                <Mail size={24} />
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-lg mb-1 text-[var(--text-primary)]">Email Us</h3>
+                <p class="text-[var(--text-muted)] text-sm mb-1">For general inquiries and sales:</p>
+                <a href="mailto:hello@pacificoceantech.com" class="text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] hover:underline font-medium">hello@pacificoceantech.com</a>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] shrink-0">
+                <Phone size={24} />
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-lg mb-1 text-[var(--text-primary)]">Call Us</h3>
+                <p class="text-[var(--text-muted)] text-sm mb-1">Mon-Fri from 9am to 6pm PST:</p>
+                <a href="tel:+15551234567" class="text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] hover:underline font-medium">+1 (555) 123-4567</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#25D366]/10 flex items-center justify-center text-[#25D366] shrink-0">
+                <MessageCircle size={24} />
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-lg mb-1 text-[var(--text-primary)]">WhatsApp</h3>
+                <p class="text-[var(--text-muted)] text-sm mb-1">For quick chat and support:</p>
+                <a href="https://wa.me/15551234567" target="_blank" rel="noopener noreferrer" class="text-[#25D366] hover:underline font-medium">Message us on WhatsApp</a>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] shrink-0">
+                <MapPin size={24} />
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-lg mb-1 text-[var(--text-primary)]">Global Headquarters</h3>
+                <p class="text-[var(--text-muted)] text-sm leading-relaxed">
+                  Tech Park Sector 17,<br />
+                  Chandigarh, 160017<br />
+                  India
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Form -->
+        <div class="lg:col-span-3">
+          <ContactForm />
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Map Placeholder -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div class="w-full h-96 ve-card overflow-hidden relative">
+        <div class="absolute inset-0 bg-[var(--bg-surface)]">
+          <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        </div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <Map size={48} class="text-[var(--text-muted)]/30 mb-4" />
+          <p class="text-[var(--text-muted)] font-mono text-sm">Google Maps Integration Placeholder</p>
+          <a href="#" class="mt-4 px-6 py-2 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] border border-[var(--color-accent)]/20 hover:bg-[var(--color-accent)]/20 transition-colors text-sm font-medium">
+            View on Map
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-[var(--bg-surface)]">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6 text-[var(--text-primary)]">Partnership FAQs</h2>
+          <p class="text-lg text-[var(--text-muted)]">Common questions about working with Pacific Ocean Tech.</p>
+        </div>
+        <FAQ client:visible items={faqs} />
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>

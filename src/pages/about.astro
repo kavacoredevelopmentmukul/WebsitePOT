@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Code, Globe, Star, Eye, Zap, Users, Lightbulb, ShieldCheck } from 'lucide-astro';
+
+const timeline = [
+  { year: "2016", title: "Founded in Chandigarh", desc: "Started as a small web development agency with a team of 5 engineers." },
+  { year: "2018", title: "Global Expansion", desc: "Opened our first international sales office in San Francisco to better serve US clients." },
+  { year: "2020", title: "The Remote Shift", desc: "Transitioned to a fully remote model for our talent, expanding our sourcing pan-India." },
+  { year: "2023", title: "AI Division Launch", desc: "Established a dedicated AI/ML engineering hub to meet the surging demand for GenAI." },
+  { year: "2025", title: "5,000+ Engineers", desc: "Crossed the milestone of 5,000 active deployed engineers worldwide." },
+];
+
+const values = [
+  { Icon: Star, title: "Excellence", desc: "We hire only the top 1% of talent and enforce rigorous engineering standards." },
+  { Icon: Eye, title: "Transparency", desc: "No hidden fees, no black-box processes. Complete visibility into your team." },
+  { Icon: Zap, title: "Speed", desc: "Time is the ultimate competitive advantage. We move fast without breaking things." },
+  { Icon: Users, title: "Partnership", desc: "We don't want to be a vendor. We want to be an extension of your company." },
+  { Icon: Lightbulb, title: "Innovation", desc: "Always adopting the latest technologies, from Next.js to enterprise RAG pipelines." },
+  { Icon: ShieldCheck, title: "Integrity", desc: "We protect your IP, respect your data, and always deliver on our promises." },
+];
+---
+
+<BaseLayout 
+  title="About Us" 
+  description="Learn about Pacific Ocean Tech's mission to connect global companies with elite Indian engineering talent."
+>
+  <Header />
+  
+  <main>
+    <!-- Hero -->
+    <section class="relative pt-32 pb-24 bg-[var(--bg-surface)]">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-6 text-[var(--text-primary)]">Democratizing Access to Elite Engineering</h1>
+        <p class="text-xl text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">
+          We believe that a company's potential should not be limited by their zip code. Our mission is to bridge the gap between global innovators and India's top 1% tech talent.
+        </p>
+      </div>
+    </section>
+
+    <!-- Story & Vision -->
+    <section class="py-24">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6 text-[var(--text-primary)]">Our Story</h2>
+            <div class="space-y-4 text-[var(--text-muted)] leading-relaxed text-lg">
+              <p>
+                In 2016, our founders noticed a glaring inefficiency in the global tech market. Tech hubs in the US and Europe were starved for talent, driving salaries to unsustainable levels. Meanwhile, India was producing millions of brilliant engineers who lacked access to challenging, global-scale product work.
+              </p>
+              <p>
+                The traditional outsourcing model was broken. It treated engineers as disposable resources on short-term projects, resulting in poor code quality and high turnover.
+              </p>
+              <p>
+                Pacific Ocean Tech was built to flip this model. We created a system based on <strong class="text-[var(--text-primary)]">dedicated, full-time staff augmentation</strong>. We don't build projects; we build teams. Today, we are proud to be the trusted talent partner for over 200 companies globally.
+              </p>
+            </div>
+            
+            <div class="mt-10 p-8 ve-card border-l-4 border-l-[var(--color-accent)]">
+              <p class="text-lg italic text-[var(--text-primary)] font-heading mb-4">
+                "Our vision is a world where building a world-class engineering team takes days, not months, regardless of where your headquarters is located."
+              </p>
+              <p class="text-sm font-bold text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)]">— Arjun Mehta, CEO</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="aspect-square rounded-3xl overflow-hidden bg-[var(--bg-surface)]">
+               <div class="w-full h-full bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg-primary)] border border-black/5 dark:border-white/5 flex items-center justify-center">
+                 <Code size={48} class="text-[var(--text-muted)]/10" />
+               </div>
+            </div>
+            <div class="aspect-square rounded-3xl overflow-hidden bg-[var(--bg-surface)] mt-8">
+               <div class="w-full h-full bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--bg-primary)] border border-[var(--color-accent)]/20 flex items-center justify-center">
+                 <Globe size={48} class="text-[var(--color-accent)]/20" />
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-24 bg-[var(--bg-surface)]">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">Our Core Values</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {values.map(value => (
+            <div class="ve-card p-8">
+              <div class="w-14 h-14 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] mb-6">
+                <value.Icon size={28} />
+              </div>
+              <h3 class="text-xl font-heading font-bold mb-3 text-[var(--text-primary)]">{value.title}</h3>
+              <p class="text-[var(--text-muted)] text-sm leading-relaxed">{value.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-24">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">Our Journey</h2>
+        <div class="max-w-3xl mx-auto">
+          {timeline.map((item, index) => (
+            <div class="relative pl-8 sm:pl-32 py-6 group">
+              <!-- Timeline line -->
+              <div class="absolute left-4 sm:left-[7.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-gray-200 via-[var(--color-accent)]/30 to-gray-200 dark:from-gray-800 dark:to-gray-800 group-first:top-10 group-last:bottom-10"></div>
+              
+              <!-- Timeline dot -->
+              <div class="absolute left-[calc(1rem-4px)] sm:left-[calc(7.5rem-4px)] top-8 w-3 h-3 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--bg-primary)]"></div>
+              
+              <!-- Year (Desktop) -->
+              <div class="hidden sm:block absolute left-0 top-6 w-24 text-right font-mono font-bold text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)]">
+                {item.year}
+              </div>
+              
+              <div class="ve-card p-6 ml-4">
+                <!-- Year (Mobile) -->
+                <div class="sm:hidden font-mono font-bold text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] mb-2">
+                  {item.year}
+                </div>
+                <h3 class="text-xl font-heading font-bold mb-2 text-[var(--text-primary)]">{item.title}</h3>
+                <p class="text-[var(--text-muted)] text-sm">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>

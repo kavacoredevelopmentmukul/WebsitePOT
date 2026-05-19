@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  subcategories: { name: string }[];
+  isFeatured?: boolean;
+}
+
+const { title, description, slug, subcategories, isFeatured = false } = Astro.props;
+---
+
+<div class={`ve-card group flex flex-col h-full overflow-hidden ${isFeatured ? 'md:flex-row md:col-span-2' : ''}`}>
+  <!-- Image Area -->
+  <div class={`bg-[var(--bg-surface)] flex items-center justify-center p-6 relative overflow-hidden ${isFeatured ? 'md:w-5/12 border-b md:border-b-0 md:border-r border-[var(--text-muted)]/10' : 'h-48 border-b border-[var(--text-muted)]/10'}`}>
+    <div class="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/5 to-transparent"></div>
+    <!-- Using placeholder illustration for all cards as specified in the plan -->
+    <img src="/images/service_illustration.png" alt={title} class="w-full h-full object-contain relative z-10 transition-transform duration-500 group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal" />
+  </div>
+
+  <!-- Content Area -->
+  <div class={`flex flex-col flex-1 p-8 md:p-10 ${isFeatured ? 'md:w-7/12' : ''}`}>
+    <h3 class="text-2xl font-heading font-bold mb-4 text-[var(--text-primary)] group-hover:text-[var(--color-accent-secondary)] transition-colors">
+      {title}
+    </h3>
+    
+    <p class="text-[var(--text-muted)] text-base mb-6 leading-relaxed flex-grow">
+      {description}
+    </p>
+
+    <!-- Tech/Subcategory Tags -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      {subcategories.slice(0, isFeatured ? 5 : 3).map(sub => (
+        <span class="px-3 py-1 rounded-full text-xs font-medium border border-[var(--text-muted)]/20 text-[var(--text-muted)] bg-[var(--bg-surface)]">
+          {sub.name}
+        </span>
+      ))}
+      {subcategories.length > (isFeatured ? 5 : 3) && (
+        <span class="px-3 py-1 rounded-full text-xs font-medium border border-[var(--text-muted)]/20 text-[var(--text-muted)] bg-[var(--bg-surface)]">
+          +{subcategories.length - (isFeatured ? 5 : 3)} more
+        </span>
+      )}
+    </div>
+    
+    <a href={`/services/${slug}`} class="inline-flex items-center text-base font-bold text-[#0A1628] hover:text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-glow)] transition-colors w-fit group/link">
+      Learn more
+      <svg class="w-5 h-5 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    </a>
+  </div>
+</div>

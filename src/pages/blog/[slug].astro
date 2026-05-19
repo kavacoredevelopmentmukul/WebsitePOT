@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<BaseLayout 
+  title={post.data.title} 
+  description={post.data.excerpt}
+  image={post.data.image}
+>
+  <Header />
+  
+  <main class="pt-24 pb-16">
+    <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Article Header -->
+      <header class="max-w-4xl mx-auto text-center mb-16">
+        <div class="flex items-center justify-center gap-4 mb-8 text-sm">
+          <span class="px-3 py-1 rounded-full bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 font-medium text-[var(--color-accent)]">
+            {post.data.category}
+          </span>
+          <span class="text-[var(--text-muted)]">
+            {new Date(post.data.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          </span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold mb-8 leading-tight">
+          {post.data.title}
+        </h1>
+        
+        <div class="flex items-center justify-center gap-4 border-t border-b border-white/5 py-6">
+          <div class="w-12 h-12 rounded-full bg-[var(--bg-elevated)] flex items-center justify-center font-bold text-[var(--color-accent)] border border-[var(--color-accent)]/30">
+            {post.data.author.charAt(0)}
+          </div>
+          <div class="text-left">
+            <p class="font-bold text-[var(--text-primary)]">{post.data.author}</p>
+            <p class="text-xs text-[var(--text-muted)]">Pacific Ocean Tech</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      {post.data.image && (
+        <div class="max-w-5xl mx-auto mb-16 aspect-video rounded-2xl overflow-hidden border border-white/5 relative">
+          <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)]/50 to-transparent"></div>
+        </div>
+      )}
+
+      <!-- Layout with Sidebar TOC -->
+      <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 relative">
+        
+        <!-- Table of Contents Sidebar -->
+        <aside class="hidden lg:block w-64 shrink-0">
+          <div class="sticky top-32 p-6 glass-card border-none bg-[var(--bg-surface)]/50">
+            <h3 class="font-heading font-bold text-[var(--text-primary)] mb-4 text-sm uppercase tracking-wider">On this page</h3>
+            <ul class="space-y-3 text-sm">
+              {headings.map(heading => (
+                <li class={`line-clamp-2 hover:text-[var(--color-accent)] transition-colors ${heading.depth === 2 ? 'text-[var(--text-primary)] font-medium' : 'text-[var(--text-muted)] pl-4'}`}>
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-grow max-w-3xl prose prose-invert prose-lg prose-headings:font-heading prose-headings:font-bold prose-h1:text-4xl prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-p:text-[var(--text-muted)] prose-p:leading-relaxed prose-a:text-[var(--color-accent)] hover:prose-a:text-[var(--color-accent-glow)] prose-strong:text-[var(--text-primary)] prose-li:text-[var(--text-muted)] w-full">
+          <Content />
+        </div>
+      </div>
+      
+    </article>
+
+    <!-- Post CTA -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
+      <div class="glass-card p-10 md:p-14 text-center border-[var(--color-accent)]/20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)]/5 to-[var(--color-accent-secondary)]/5 pointer-events-none"></div>
+        <h2 class="text-3xl font-heading font-bold mb-4 relative z-10">Build your remote team today</h2>
+        <p class="text-[var(--text-muted)] mb-8 relative z-10 max-w-xl mx-auto">Skip the months of recruitment and access top 1% global engineering talent in under 48 hours.</p>
+        <a href="/contact" class="inline-flex items-center px-8 py-4 rounded-xl bg-[var(--color-accent)] text-[#0A1628] font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-all duration-300 relative z-10">
+          Book a Free Consultation
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style is:global>
+  /* Fix scroll margin for anchor links due to sticky header */
+  html {
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    scroll-margin-top: 100px;
+  }
+</style>

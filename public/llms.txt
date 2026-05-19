@@ -1,0 +1,27 @@
+# Pacific Ocean Tech - AI Crawler Information
+
+Title: Pacific Ocean Tech
+Description: Premium remote staffing and outsourcing company that helps global businesses hire dedicated AI engineers, developers, IT specialists, and creative talent from India.
+Website: https://pacificoceantech.com
+
+## Services
+1. Artificial Intelligence: ML engineers, LLM/RAG specialists, AI agents, computer vision, MLOps.
+2. Frontend Development: React, Vue, Astro, Next.js, mobile-responsive UI.
+3. Backend Development: Node.js, Python, Go, microservices, APIs, databases.
+4. IT Support & Managed Services: DevOps, cloud (AWS/GCP/Azure), 24/7 monitoring, infrastructure.
+5. Digital Marketing: SEO, performance ads, content strategy, analytics.
+6. Dedicated Developers: Full-time remote staff augmentation, dedicated team members.
+7. Graphics & Web Design: UI/UX design, brand identity, illustration, motion graphics.
+
+## Key Stats
+- 5,000+ Vetted Tech Talent
+- 15+ Countries Served
+- 10+ Years Experience
+- 94% Client Retention
+- 60% Average Cost Savings
+- 48h Average Placement
+
+## Contact Information
+Email: hello@pacificoceantech.com
+Phone: +1 (555) 123-4567
+Headquarters: Chandigarh, India
