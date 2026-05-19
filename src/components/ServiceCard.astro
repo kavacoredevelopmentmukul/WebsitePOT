@@ -12,10 +12,10 @@ const { title, description, slug, subcategories, isFeatured = false } = Astro.pr
 
 <div class={`ve-card group flex flex-col h-full overflow-hidden ${isFeatured ? 'md:flex-row md:col-span-2' : ''}`}>
   <!-- Image Area -->
-  <div class={`bg-[var(--bg-surface)] flex items-center justify-center p-6 relative overflow-hidden ${isFeatured ? 'md:w-5/12 border-b md:border-b-0 md:border-r border-[var(--text-muted)]/10' : 'h-48 border-b border-[var(--text-muted)]/10'}`}>
+  <div class={`bg-[var(--bg-surface)] flex items-center justify-center p-6 relative overflow-hidden ${isFeatured ? 'md:w-5/12 border-b md:border-b-0 md:border-r border-[var(--text-muted)]/10' : 'h-48'}`}>
     <div class="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/5 to-transparent"></div>
     <!-- Using placeholder illustration for all cards as specified in the plan -->
-    <img src="/images/service_illustration.png" alt={title} class="w-full h-full object-contain relative z-10 transition-transform duration-500 group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal" />
+    <img src="/WebsitePOT/images/service_illustration.png" alt={title} class="w-full h-full object-contain relative z-10 transition-transform duration-500 group-hover:scale-105 mix-blend-multiply dark:mix-blend-screen" />
   </div>
 
   <!-- Content Area -->
@@ -42,9 +42,9 @@ const { title, description, slug, subcategories, isFeatured = false } = Astro.pr
       )}
     </div>
     
-    <a href={`/services/${slug}`} class="inline-flex items-center text-base font-bold text-[#0A1628] hover:text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-glow)] transition-colors w-fit group/link">
+    <a href={`/WebsitePOT/services/${slug}`} class="inline-flex items-center text-base font-bold text-[#0A1628] hover:text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-glow)] transition-colors group/link">
       Learn more
-      <svg class="w-5 h-5 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      <svg class="w-5 h-5 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
     </a>
   </div>
 </div>
