@@ -7,12 +7,12 @@ const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname === '/' ? '' : pathname.slice(1);
 
 const navLinks = [
-  { name: 'Home', url: '/' },
-  { name: 'About Us', url: '/about' },
-  { name: 'Testimonials', url: '/testimonials' },
-  { name: 'Team', url: '/team' },
-  { name: 'Blog', url: '/blog' },
-  { name: 'Contact Us', url: '/contact' },
+  { name: 'Home', url: '/WebsitePOT/' },
+  { name: 'About Us', url: '/WebsitePOT/about' },
+  { name: 'Testimonials', url: '/WebsitePOT/testimonials' },
+  { name: 'Team', url: '/WebsitePOT/team' },
+  { name: 'Blog', url: '/WebsitePOT/blog' },
+  { name: 'Contact Us', url: '/WebsitePOT/contact' },
 ];
 ---
 
@@ -50,7 +50,7 @@ const navLinks = [
                   <ul class="space-y-2">
                     {pillar.categories.slice(0, 6).map(cat => (
                       <li>
-                        <a href={`/services/${cat.id}`} class="text-sm text-[var(--text-muted)] hover:text-[var(--color-accent)] transition-colors flex items-center gap-2">
+                        <a href={`/WebsitePOT/services/${cat.id}`} class="text-sm text-[var(--text-muted)] hover:text-[var(--color-accent)] transition-colors flex items-center gap-2">
                           <cat.icon class="w-4 h-4" /> {cat.title}
                         </a>
                       </li>
@@ -80,11 +80,11 @@ const navLinks = [
             Get Started
           </a>
           
-          <a href="tel:+15551234567" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--text-muted)]/30 text-[var(--text-primary)] font-medium text-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors bg-[var(--bg-primary)]">
+          <a href="tel:+15551234567" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--text-muted)]/30 text-[var(--text-primary)] font-medium text-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">
             <Phone class="w-4 h-4" /> Call Us
           </a>
           
-          <a href="mailto:hello@pacificoceantech.com" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--text-muted)]/30 text-[var(--text-primary)] font-medium text-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors bg-[var(--bg-primary)]">
+          <a href="mailto:hello@pacificoceantech.com" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--text-muted)]/30 text-[var(--text-primary)] font-medium text-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">
             <Mail class="w-4 h-4" /> Email Us
           </a>
         </div>
