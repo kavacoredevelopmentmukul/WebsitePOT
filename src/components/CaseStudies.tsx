@@ -87,7 +87,7 @@ export default function CaseStudies() {
                   {activeCaseStudy.description}
                 </p>
                 
-                <a href="/case-studies" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 font-medium text-[var(--text-primary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors w-fit group">
+                <a href="/WebsitePOT/case-studies" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 font-medium text-[var(--text-primary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors w-fit group">
                   Read The Full Story
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -97,7 +97,7 @@ export default function CaseStudies() {
         </div>
         
         <div className="text-center mt-12">
-          <a href="/case-studies" className="text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] font-medium hover:underline inline-flex items-center gap-1">
+          <a href="/WebsitePOT/case-studies" className="text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] font-medium hover:underline inline-flex items-center gap-1">
             See All Case Studies <ArrowRight className="w-4 h-4" />
           </a>
         </div>

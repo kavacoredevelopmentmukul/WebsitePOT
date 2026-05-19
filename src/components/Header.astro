@@ -21,7 +21,7 @@ const navLinks = [
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <div class="flex-shrink-0 flex items-center">
-        <a href="/" class="flex items-center gap-2 group">
+        <a href="/WebsitePOT/" class="flex items-center gap-2 group">
           <div class="w-10 h-10 rounded-xl bg-[var(--color-accent)] flex items-center justify-center transform group-hover:-translate-y-1 transition-transform duration-300">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
           </div>
@@ -32,12 +32,12 @@ const navLinks = [
       <!-- Desktop Nav & CTAs -->
       <nav class="hidden lg:flex items-center justify-end flex-1 ml-8 space-x-1 xl:space-x-4">
         
-        <a href="/" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Home</a>
-        <a href="/about" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">About Us</a>
+        <a href="/WebsitePOT/" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Home</a>
+        <a href="/WebsitePOT/about" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">About Us</a>
 
         <!-- Services Mega Menu -->
         <div class="group inline-block relative">
-          <a href="/services" class="flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">
+          <a href="/WebsitePOT/services" class="flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">
             Services <ChevronDown class="w-4 h-4 transition-transform group-hover:rotate-180" />
           </a>
           
@@ -57,7 +57,7 @@ const navLinks = [
                     ))}
                     {pillar.categories.length > 6 && (
                       <li>
-                        <a href="/services" class="text-sm font-medium text-[var(--color-accent)] hover:underline mt-2 inline-block">
+                        <a href="/WebsitePOT/services" class="text-sm font-medium text-[var(--color-accent)] hover:underline mt-2 inline-block">
                           View all {pillar.categories.length} categories &rarr;
                         </a>
                       </li>
@@ -69,14 +69,14 @@ const navLinks = [
           </div>
         </div>
 
-        <a href="/testimonials" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Testimonials</a>
-        <a href="/blog" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Blog</a>
-        <a href="/contact" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Contact Us</a>
+        <a href="/WebsitePOT/testimonials" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Testimonials</a>
+        <a href="/WebsitePOT/blog" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Blog</a>
+        <a href="/WebsitePOT/contact" class="px-3 py-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)] text-[var(--text-primary)]">Contact Us</a>
 
         <div class="flex items-center gap-3 pl-4 border-l border-[var(--text-muted)]/20 ml-4">
           <ThemeToggle client:load />
           
-          <a href="/contact" class="px-5 py-2 rounded-full bg-[var(--color-accent)] text-white font-medium text-sm hover:bg-[var(--color-accent-glow)] transition-colors shadow-sm">
+          <a href="/WebsitePOT/contact" class="px-5 py-2 rounded-full bg-[var(--color-accent)] text-white font-medium text-sm hover:bg-[var(--color-accent-glow)] transition-colors shadow-sm">
             Get Started
           </a>
           
@@ -106,16 +106,16 @@ const navLinks = [
   <!-- Mobile Menu -->
   <div class="lg:hidden hidden mobile-menu bg-[var(--bg-primary)] border-b border-black/5 dark:border-white/5 absolute w-full max-h-[80vh] overflow-y-auto" id="mobile-menu">
     <div class="px-4 pt-2 pb-6 space-y-1 shadow-xl">
-      <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Home</a>
-      <a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">About Us</a>
-      <a href="/services" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Services</a>
-      <a href="/testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Testimonials</a>
-      <a href="/team" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Team</a>
-      <a href="/blog" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Blog</a>
-      <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Contact Us</a>
+      <a href="/WebsitePOT/" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Home</a>
+      <a href="/WebsitePOT/about" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">About Us</a>
+      <a href="/WebsitePOT/services" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Services</a>
+      <a href="/WebsitePOT/testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Testimonials</a>
+      <a href="/WebsitePOT/team" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Team</a>
+      <a href="/WebsitePOT/blog" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Blog</a>
+      <a href="/WebsitePOT/contact" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--bg-surface)]">Contact Us</a>
       
       <div class="mt-6 pt-6 border-t border-black/5 dark:border-white/5 space-y-3">
-        <a href="/contact" class="block w-full text-center px-5 py-3 rounded-xl bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-glow)] transition-all">
+        <a href="/WebsitePOT/contact" class="block w-full text-center px-5 py-3 rounded-xl bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-glow)] transition-all">
           Get Started
         </a>
         <div class="flex gap-3">
