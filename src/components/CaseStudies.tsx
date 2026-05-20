@@ -1,7 +1,8 @@
 import { caseStudies } from '../data/case-studies';
 import { ArrowRight, Check } from 'lucide-react';
 
-const BASE = import.meta.env.BASE_URL;
+// Ensure BASE always has a trailing slash regardless of Astro version/mode.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 const featured = caseStudies.find((c) => c.featured) ?? caseStudies[0];
 const secondaries = caseStudies.filter((c) => c.id !== featured.id).slice(0, 3);
 

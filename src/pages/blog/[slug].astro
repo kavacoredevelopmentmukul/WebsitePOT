@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection, render } from 'astro:content';
+import { path } from '../../utils/paths';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -89,7 +90,7 @@ const { Content, headings } = await render(post);
       <div class="ve-card p-10 md:p-14 text-center border-[var(--color-accent)]/20 bg-[var(--bg-surface)]">
         <h2 class="text-3xl font-heading font-bold mb-4">Build your remote team today</h2>
         <p class="text-[var(--text-muted)] mb-8 max-w-xl mx-auto">Skip the months of recruitment and access top 1% global engineering talent in under 48 hours.</p>
-        <a href="/WebsitePOT/contact" class="inline-flex items-center px-8 py-4 rounded-md bg-[var(--color-accent)] text-[#0A1628] font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-all duration-300">
+        <a href={path('contact')} class="inline-flex items-center px-8 py-4 rounded-md bg-[var(--color-accent)] text-[#0A1628] font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-all duration-300">
           Book a Free Consultation
         </a>
       </div>

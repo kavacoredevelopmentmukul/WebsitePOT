@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import FloatingContact from '../components/FloatingContact.astro';
 import { organizationSchema } from '../utils/seo';
+import { path } from '../utils/paths';
 
 interface Props {
   title: string;
@@ -30,7 +31,7 @@ const allSchemas = [organizationSchema(), ...schemas];
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={path('favicon.svg')} />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
 
@@ -52,7 +53,7 @@ const allSchemas = [organizationSchema(), ...schemas];
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.url)} />
 
-    <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />
+    <link rel="sitemap" href={path('sitemap-index.xml')} />
 
     {allSchemas.map((schema) => (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
