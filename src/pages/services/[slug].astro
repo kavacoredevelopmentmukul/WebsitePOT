@@ -4,127 +4,194 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import FAQ from '../../components/FAQ.tsx';
 import { servicePillars, allServices } from '../../data/services';
-import { ArrowRight, Check } from 'lucide-astro';
+import { SERVICE_SLUGS } from '../../data/service-slugs';
+import { serviceDetails } from '../../data/service-details';
+import { path } from '../../utils/paths';
+import { breadcrumbSchema, serviceSchema, faqSchema, webPageSchema } from '../../utils/seo';
+import { Check } from 'lucide-astro';
 
 export function getStaticPaths() {
-  return allServices.map(service => ({
-    params: { slug: service.id },
-    props: { service },
-  }));
+  return SERVICE_SLUGS.map((slug) => {
+    const service = allServices.find((s) => s.id === slug);
+    const detail = serviceDetails[slug];
+    if (!service || !detail) {
+      throw new Error(`Missing service or detail for slug: ${slug}`);
+    }
+    return { params: { slug }, props: { service, detail } };
+  });
 }
 
-const { service } = Astro.props;
+const { service, detail } = Astro.props;
+const parentPillar = servicePillars.find((p) => p.categories.some((c) => c.id === service.id));
+const shortDescription = detail.tagline.split('. ').slice(0, 2).join('. ') + (detail.tagline.includes('.') ? '.' : '');
 
-// Find which pillar this service belongs to
-const parentPillar = servicePillars.find(p => p.categories.some(c => c.id === service.id));
-
-// Generic process steps that apply to all services
-const processSteps = [
-  { title: "Share Your Requirements", description: "Tell us about your project, the skills you need, and your timeline." },
-  { title: "We Source Top Talent", description: "Our AI-powered screening matches you with pre-vetted candidates in 48 hours." },
-  { title: "Interview & Select", description: "Review profiles, conduct interviews, and choose the perfect fit for your team." },
-  { title: "Onboard & Scale", description: "Your dedicated team member starts working with full infrastructure support from day one." },
-];
-
-// Generic FAQs
-const faqs = [
-  { question: `How quickly can I hire a ${service.title} specialist?`, answer: `We can present pre-vetted ${service.title} candidates within 48 hours of receiving your requirements. Most clients have their team member onboarded within 1-2 weeks.` },
-  { question: `What timezone do your ${service.title} professionals work in?`, answer: `Our professionals can work in your timezone. We support all major timezones including US, UK, EU, and APAC business hours.` },
-  { question: `How do you ensure quality for ${service.title} services?`, answer: `Every candidate goes through our rigorous 5-step vetting process including technical assessments, communication evaluations, and background checks. Only the top 1% make it through.` },
-  { question: `Can I scale my ${service.title} team up or down?`, answer: `Absolutely. You can scale your team size at any time with just 2 weeks notice. There are no long-term commitments required.` },
+const schemas = [
+  webPageSchema(`${service.title} Services`, detail.tagline, `services/${service.id}`),
+  serviceSchema(service.title, detail.tagline, `services/${service.id}`),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: 'services' },
+    { name: service.title, path: `services/${service.id}` },
+  ]),
+  faqSchema(detail.faqs),
 ];
 ---
 
-<BaseLayout 
-  title={`${service.title} Services`} 
-  description={service.description}
+<BaseLayout
+  title={`Hire ${detail.roleName}s`}
+  description={detail.tagline}
+  schemas={schemas}
 >
   <Header />
-  
-  <main>
+
+  <main id="main-content">
     <!-- Hero -->
-    <section class="relative pt-32 pb-20 bg-[var(--bg-surface)]">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Breadcrumbs -->
-        <nav class="flex items-center gap-2 text-sm text-[var(--text-muted)] mb-10">
-          <a href="/WebsitePOT/" class="hover:text-[var(--color-accent)] transition-colors">Home</a>
+    <section class="pot-section bg-[var(--bg-surface)] pt-28 pb-16 md:pb-20">
+      <div class="pot-container">
+        <nav class="flex flex-wrap items-center gap-2 text-sm text-[var(--text-muted)] mb-8" aria-label="Breadcrumb">
+          <a href={path('/')} class="hover:text-[var(--pot-coral)] transition-colors">Home</a>
           <span>/</span>
-          <a href="/WebsitePOT/services" class="hover:text-[var(--color-accent)] transition-colors">Services</a>
+          <a href={path('services')} class="hover:text-[var(--pot-coral)] transition-colors">Services</a>
           {parentPillar && (
             <>
               <span>/</span>
-              <span class="text-[var(--text-muted)]/70">{parentPillar.title}</span>
+              <span class="text-[var(--text-muted)]">{parentPillar.title}</span>
             </>
           )}
           <span>/</span>
           <span class="text-[var(--text-primary)] font-medium">{service.title}</span>
         </nav>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <div class="w-16 h-16 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] mb-8">
-              <service.icon class="w-8 h-8" />
-            </div>
-            <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-6 text-[var(--text-primary)]">{service.title}</h1>
-            <p class="text-xl text-[var(--text-muted)] mb-10 leading-relaxed">
-              {service.description}
+            <p class="pot-eyebrow mb-4">{service.title}</p>
+            <h1 class="pot-display mb-5 text-[var(--text-primary)]">{service.title}</h1>
+            <p class="text-lg md:text-xl text-[var(--text-muted)] mb-6 leading-relaxed max-w-xl">
+              {shortDescription}
+            </p>
+            <p class="text-2xl md:text-3xl font-semibold text-[var(--navy)] dark:text-white mb-8">
+              Hire {detail.roleName} from <span class="text-[#E8593C]">${detail.hourlyFrom}/hour</span>
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-              <a href="/WebsitePOT/contact" class="px-8 py-4 rounded-full bg-[var(--color-accent)] text-white font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-colors inline-flex items-center justify-center">
-                Hire {service.title} Experts
+              <a
+                href={path('contact')}
+                class="pot-btn-primary"
+              >
+                Hire a {detail.roleName} Today
               </a>
-              <a href="/WebsitePOT/services" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 text-[var(--text-primary)] font-bold text-lg hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors inline-flex items-center justify-center">
+              <a href={path('services')} class="pot-btn-outline">
                 View All Services
               </a>
             </div>
           </div>
-          <div class="relative">
-            <div class="ve-card overflow-hidden">
-              <img src="/images/service_illustration.png" alt={service.title} class="w-full aspect-[4/3] object-contain bg-[var(--bg-surface)] p-8" />
-            </div>
+          <div class="overflow-hidden rounded-md border border-black/5 dark:border-white/10">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="w-full aspect-[4/3] object-cover"
+              loading="eager"
+            />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Subcategories / Roles -->
-    <section class="py-24">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-[var(--text-primary)] mb-4">
-          {service.title} Roles We Fill
-        </h2>
-        <p class="text-lg text-[var(--text-muted)] mb-12 max-w-2xl">
-          Find the exact specialist you need. Each role is backed by our rigorous vetting process.
-        </p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {service.subcategories.map(sub => (
-            <div class="ve-card p-8 flex items-center gap-4">
-              <div class="w-10 h-10 shrink-0 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)]">
-                <Check class="w-5 h-5" />
-              </div>
-              <span class="text-lg font-medium text-[var(--text-primary)]">{sub.name}</span>
-            </div>
+    <!-- Key skills -->
+    <section class="pot-section bg-[var(--bg-primary)]">
+      <div class="pot-container">
+        <div class="max-w-3xl mb-10">
+          <p class="pot-eyebrow mb-3">Capabilities</p>
+          <h2 class="pot-heading-2 text-[var(--text-primary)]">Key skills covered</h2>
+          <p class="text-[var(--text-muted)] mt-3 leading-relaxed">
+            Every {detail.roleName.toLowerCase()} is vetted on the tools and workflows your team uses daily.
+          </p>
+        </div>
+        <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {detail.skills.map((skill) => (
+            <li class="flex items-center gap-2 rounded-md border border-black/5 dark:border-white/10 bg-[var(--bg-surface)] px-4 py-3 text-sm font-medium text-[var(--text-primary)]">
+              <Check class="w-4 h-4 shrink-0 text-[#E8593C]" />
+              {skill}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pull quote -->
+    <section class="pot-pull-quote">
+      <div class="pot-container">
+        <blockquote class="pot-pull-quote-text">
+          "{detail.pullQuote}"
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Responsibilities -->
+    <section class="pot-section bg-[var(--bg-surface)]">
+      <div class="pot-container">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-4">
+            <p class="pot-eyebrow mb-3">Scope</p>
+            <h2 class="pot-heading-2 text-[var(--text-primary)]">
+              What your {detail.roleName} will do
+            </h2>
+          </div>
+          <ul class="lg:col-span-8 space-y-4">
+            {detail.responsibilities.map((item) => (
+              <li class="flex gap-4 rounded-md border border-black/5 dark:border-white/10 bg-[var(--bg-primary)] p-5">
+                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-[var(--navy)] text-xs font-bold text-white">✓</span>
+                <span class="text-[var(--text-muted)] leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4-step process -->
+    <section class="pot-section bg-[var(--bg-primary)]" id="how-it-works">
+      <div class="pot-container">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <p class="pot-eyebrow mb-3">Process</p>
+          <h2 class="pot-heading-2 text-[var(--text-primary)]">4-step hiring process</h2>
+        </div>
+        <div class="pot-pillar-ledger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {detail.processSteps.map((step, index) => (
+            <article class="pot-ledger-card">
+              <span class="pot-ledger-num">{index + 1}</span>
+              <h3 class="text-lg font-semibold text-[var(--text-primary)] mb-2">{step.title}</h3>
+              <p class="text-sm text-[var(--text-muted)] leading-relaxed">{step.description}</p>
+            </article>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- How We Work -->
-    <section class="py-24 bg-[var(--bg-surface)]">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">How We Work</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {processSteps.map((step, index) => (
-            <div class="relative">
-              <div class="w-14 h-14 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center font-bold text-xl mb-6">
-                {index + 1}
-              </div>
-              {index < processSteps.length - 1 && (
-                <div class="hidden lg:block absolute top-7 left-14 w-[calc(100%-3.5rem)] h-[2px] bg-[var(--color-accent)]/20"></div>
-              )}
-              <h3 class="text-lg font-heading font-bold mb-2 text-[var(--text-primary)]">{step.title}</h3>
-              <p class="text-[var(--text-muted)] text-sm leading-relaxed">{step.description}</p>
+    <!-- Pricing -->
+    <section class="pot-section bg-[var(--bg-surface)]">
+      <div class="pot-container">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <p class="pot-eyebrow mb-3">Engagement</p>
+          <h2 class="pot-heading-2 text-[var(--text-primary)]">Pricing</h2>
+          <p class="text-[var(--text-muted)] mt-3">Transparent rates. No recruitment fees. Scale up or down with two weeks notice.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {[detail.pricing.partTime, detail.pricing.fullTime].map((tier) => (
+            <div class="rounded-md border-2 border-[var(--navy)]/15 bg-[var(--bg-primary)] p-8 md:p-10 flex flex-col">
+              <h3 class="text-xl font-semibold text-[var(--navy)] dark:text-white mb-1">{tier.label}</h3>
+              <p class="text-3xl font-bold text-[#E8593C] mb-1">{tier.price}</p>
+              <p class="text-sm text-[var(--text-muted)] mb-6">{tier.subtitle}</p>
+              <ul class="space-y-3 flex-grow">
+                {tier.features.map((feature) => (
+                  <li class="flex items-start gap-2 text-sm text-[var(--text-muted)]">
+                    <Check class="w-4 h-4 shrink-0 text-[#E8593C] mt-0.5" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a href={path('contact')} class="pot-btn-primary mt-8 text-center">
+                Get a quote
+              </a>
             </div>
           ))}
         </div>
@@ -132,24 +199,31 @@ const faqs = [
     </section>
 
     <!-- FAQ -->
-    <section class="py-24">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">Frequently Asked Questions</h2>
-        <FAQ client:visible items={faqs} />
+    <section class="pot-section bg-[var(--bg-primary)]">
+      <div class="pot-container">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <p class="pot-eyebrow mb-3">FAQ</p>
+          <h2 class="pot-heading-2 text-[var(--text-primary)]">Common questions</h2>
+        </div>
+        <FAQ client:visible items={detail.faqs} />
       </div>
     </section>
 
-    <!-- Bottom CTA -->
-    <section class="py-32 bg-[#111827]">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6 text-white">Ready to build your {service.title.toLowerCase()} team?</h2>
-        <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">We can have a dedicated team ready for you in just 48 hours.</p>
-        <a href="/WebsitePOT/contact" class="inline-flex px-10 py-4 rounded-full bg-[var(--color-accent)] text-white font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-colors">
-          Get Started Now
+    <!-- CTA -->
+    <section class="pot-cta-navy text-center">
+      <div class="pot-container text-center">
+        <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">
+          Hire a {detail.roleName} Today
+        </h2>
+        <p class="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
+          Tell us what you need. Pre-vetted {detail.roleName.toLowerCase()}s can be on your team within 1–2 weeks.
+        </p>
+        <a href={path('contact')} class="inline-flex px-8 py-4 rounded-md bg-[#E8593C] text-white font-semibold text-lg hover:bg-[#cf4b31] transition-colors">
+          Hire a {detail.roleName} Today
         </a>
       </div>
     </section>
   </main>
-  
+
   <Footer />
 </BaseLayout>

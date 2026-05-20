@@ -1,0 +1,39 @@
+---
+import { comparisonRows } from '../data/comparison-rates';
+---
+
+<section class="pot-section bg-[var(--paper)] dark:bg-[var(--bg-primary)]" id="compare" aria-labelledby="compare-heading">
+  <div class="pot-container">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow mb-3">Why POT</p>
+      <h2 id="compare-heading" class="h-section text-[var(--ink)] dark:text-[var(--text-primary)] mb-3">POT vs Local Hire vs Freelancer</h2>
+      <p class="lede">See how dedicated remote professionals compare on cost, quality, and long-term fit.</p>
+    </div>
+
+    <div class="card overflow-hidden p-0">
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[640px] text-left text-sm border-collapse" role="table">
+          <caption class="sr-only">Comparison of Pacific Ocean Tech versus local hiring and freelancers</caption>
+          <thead>
+            <tr class="bg-[var(--navy)]">
+              <th scope="col" class="px-6 py-4 font-medium text-[var(--cream)] w-[18%] mono-label">Factor</th>
+              <th scope="col" class="px-6 py-4 font-medium text-[var(--cream)] w-[28%]">Pacific Ocean Tech</th>
+              <th scope="col" class="px-6 py-4 font-medium text-[var(--cream)] opacity-80 w-[27%]">Local Hire</th>
+              <th scope="col" class="px-6 py-4 font-medium text-[var(--cream)] opacity-80 w-[27%]">Freelancer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonRows.map((row, i) => (
+              <tr class={i % 2 === 0 ? 'bg-[var(--white)] dark:bg-[var(--bg-surface)]' : 'bg-[var(--paper)] dark:bg-[var(--bg-primary)]'}>
+                <th scope="row" class="px-6 py-4 font-medium text-[var(--ink)] dark:text-[var(--text-primary)] border-t border-[var(--hairline)]">{row.factor}</th>
+                <td class="px-6 py-4 body-md text-[var(--ink)] dark:text-[var(--text-primary)] font-medium bg-[rgba(27,58,92,0.06)] border-t border-[var(--hairline)]">{row.pot}</td>
+                <td class="px-6 py-4 body-sm border-t border-[var(--hairline)]">{row.local}</td>
+                <td class="px-6 py-4 body-sm border-t border-[var(--hairline)]">{row.freelancer}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

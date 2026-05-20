@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { team } from '../data/team';
-import { User } from 'lucide-astro';
+import { path } from '../utils/paths';
 ---
 
 <BaseLayout 
@@ -12,11 +12,12 @@ import { User } from 'lucide-astro';
 >
   <Header />
   
-  <main class="pt-24 pb-16">
+  <main id="main-content" class="pt-24 pb-16">
     <!-- Hero -->
-    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center mb-24">
-      <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-6 text-[var(--text-primary)]">The Minds Behind the Code</h1>
-      <p class="text-xl text-[var(--text-muted)] max-w-3xl mx-auto">
+    <section class="pot-container text-center mb-24">
+      <p class="eyebrow mb-3">Our team</p>
+      <h1 class="h-section text-[var(--text-primary)] mb-4">The Minds Behind the Code</h1>
+      <p class="lede max-w-3xl mx-auto">
         Our leadership team is composed of seasoned engineering veterans and operations experts dedicated to building the future of remote work.
       </p>
     </section>
@@ -27,10 +28,8 @@ import { User } from 'lucide-astro';
         {team.map(member => (
           <div class="ve-card overflow-hidden group">
             <div class="aspect-[4/3] bg-[var(--bg-surface)] relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg-primary)] flex items-center justify-center">
-                 <User size={64} class="text-[var(--text-muted)]/10" />
-              </div>
-              <div class="absolute top-4 right-4 px-3 py-1 bg-[var(--bg-primary)]/80 backdrop-blur-md rounded-full text-xs font-medium text-[var(--text-muted)] border border-gray-200 dark:border-gray-700">
+              <img src={member.image} alt={member.name} class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute top-4 right-4 px-3 py-1 bg-[var(--navy)] rounded-md text-xs font-medium text-white border border-white/20">
                 {member.department}
               </div>
             </div>
@@ -60,7 +59,7 @@ import { User } from 'lucide-astro';
           <h2 class="text-3xl font-heading font-bold mb-4 text-[var(--text-primary)]">Join our talent network</h2>
           <p class="text-[var(--text-muted)] text-lg">Are you a top 1% engineer looking to work with fast-growing global startups? We are always hiring.</p>
         </div>
-        <a href="/WebsitePOT/careers" class="px-8 py-4 rounded-full bg-[var(--color-accent)] text-white font-bold hover:bg-[var(--color-accent-glow)] transition-colors shrink-0">
+        <a href={path('careers')} class="px-8 py-4 rounded-full bg-[var(--color-accent)] text-white font-bold hover:bg-[var(--color-accent-glow)] transition-colors shrink-0">
           View Open Roles
         </a>
       </div>

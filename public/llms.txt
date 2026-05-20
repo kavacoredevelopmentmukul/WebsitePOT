@@ -2,7 +2,7 @@
 
 Title: Pacific Ocean Tech
 Description: Premium remote staffing and outsourcing company that helps global businesses hire dedicated AI engineers, developers, IT specialists, and creative talent from India.
-Website: https://pacificoceantech.com
+Website: https://kavacoredevelopmentmukul.github.io/WebsitePOT/
 
 ## Services
 1. Artificial Intelligence: ML engineers, LLM/RAG specialists, AI agents, computer vision, MLOps.

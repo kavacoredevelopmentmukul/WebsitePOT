@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 interface Testimonial {
   id: number;
@@ -20,7 +20,7 @@ const testimonials: Testimonial[] = [
     role: "CTO",
     company: "InnovateAI",
     rating: 5,
-    image: "https://i.pravatar.cc/150?u=sarah"
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
     role: "VP of Engineering",
     company: "CloudScale Systems",
     rating: 5,
-    image: "https://i.pravatar.cc/150?u=michael"
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     role: "Founder",
     company: "FinTech Solutions",
     rating: 5,
-    image: "https://i.pravatar.cc/150?u=elena"
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
   }
 ];
 
@@ -47,71 +47,76 @@ export default function TestimonialCarousel() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      nextSlide();
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 8000);
     return () => clearInterval(timer);
-  }, [currentIndex]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  };
+  }, []);
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1);
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
 
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const t = testimonials[currentIndex];
+
   return (
-    <div className="relative w-full max-w-5xl mx-auto py-12">
-      <div className="relative h-[400px] md:h-[300px]">
+    <div className="relative w-full max-w-4xl mx-auto">
+      <div className="card p-10 md:p-14 min-h-[320px] flex flex-col justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-16"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.35 }}
+            className="text-center"
           >
-            <Quote className="w-12 h-12 text-[var(--color-accent)]/20 mb-6" />
-            
-            <p className="text-xl md:text-3xl font-heading font-medium text-[var(--text-primary)] mb-10 leading-relaxed">
-              "{testimonials[currentIndex].content}"
+            <div className="flex justify-center gap-1 mb-6 text-[var(--coral)]" aria-label={`${t.rating} out of 5 stars`}>
+              {[...Array(t.rating)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 fill-current" aria-hidden="true" />
+              ))}
+            </div>
+
+            <p className="font-[family-name:var(--font-display)] text-xl md:text-2xl text-[var(--ink)] dark:text-[var(--text-primary)] mb-8 leading-relaxed italic font-normal max-w-2xl mx-auto">
+              &ldquo;{t.content}&rdquo;
             </p>
-            
+
             <div className="flex flex-col items-center gap-3">
-              <div className="flex gap-1 mb-1 text-yellow-400">
-                {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <img 
-                src={testimonials[currentIndex].image} 
-                alt={testimonials[currentIndex].author}
-                className="w-14 h-14 rounded-full object-cover border-2 border-[var(--color-accent)]"
+              <img
+                src={t.image}
+                alt={t.author}
+                className="w-14 h-14 rounded-full object-cover border-2 border-[var(--hairline)]"
               />
               <div>
-                <h4 className="font-heading font-bold text-lg text-[var(--text-primary)]">{testimonials[currentIndex].author}</h4>
-                <p className="text-sm text-[var(--text-muted)]">{testimonials[currentIndex].role}, <span className="text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)]">{testimonials[currentIndex].company}</span></p>
+                <h4 className="font-medium text-[var(--ink)] dark:text-[var(--text-primary)]">{t.author}</h4>
+                <p className="body-sm">
+                  {t.role}, <span className="text-[var(--navy)] dark:text-[var(--coral)]">{t.company}</span>
+                </p>
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="flex justify-center gap-4 mt-8 absolute top-1/2 -translate-y-1/2 w-full left-0 right-0 pointer-events-none px-4">
-        <button 
+      <div className="flex justify-center gap-3 mt-8">
+        <button
+          type="button"
           onClick={prevSlide}
-          className="w-12 h-12 rounded-full bg-white dark:bg-[#111827] shadow-lg flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--color-accent)] hover:text-white transition-all pointer-events-auto border border-gray-100 dark:border-gray-800 absolute left-0 md:-left-8"
+          className="w-11 h-11 rounded-full border border-[var(--hairline-strong)] bg-[var(--white)] dark:bg-[var(--bg-surface)] flex items-center justify-center hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors"
           aria-label="Previous testimonial"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5" aria-hidden="true" />
         </button>
-        <button 
+        <button
+          type="button"
           onClick={nextSlide}
-          className="w-12 h-12 rounded-full bg-white dark:bg-[#111827] shadow-lg flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--color-accent)] hover:text-white transition-all pointer-events-auto border border-gray-100 dark:border-gray-800 absolute right-0 md:-right-8"
+          className="w-11 h-11 rounded-full border border-[var(--hairline-strong)] bg-[var(--white)] dark:bg-[var(--bg-surface)] flex items-center justify-center hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors"
           aria-label="Next testimonial"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5" aria-hidden="true" />
         </button>
       </div>
     </div>

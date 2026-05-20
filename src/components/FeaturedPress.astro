@@ -1,0 +1,29 @@
+---
+const outlets = [
+  { name: 'TechCrunch' },
+  { name: 'Forbes' },
+  { name: 'Bloomberg' },
+  { name: 'The Australian' },
+  { name: 'NZ Herald' },
+];
+---
+
+<section class="pot-section-sm bg-[var(--paper)] dark:bg-[var(--bg-primary)] border-t border-[var(--hairline)]" aria-labelledby="press-heading">
+  <div class="pot-container">
+    <p id="press-heading" class="text-center eyebrow mb-8">Featured in</p>
+    <ul class="flex flex-wrap items-center justify-center gap-4 md:gap-8" role="list">
+      {outlets.map((outlet) => (
+        <li>
+          <div
+            class="flex items-center justify-center min-w-[7.5rem] h-11 px-6 rounded-full border border-[var(--hairline)] bg-[var(--white)] text-[var(--muted)] mono-label"
+            role="img"
+            aria-label={`${outlet.name} logo placeholder`}
+          >
+            {outlet.name}
+          </div>
+        </li>
+      ))}
+    </ul>
+    <p class="text-center body-sm mt-6 max-w-md mx-auto">Publication logos shown as placeholders — replace with approved brand assets.</p>
+  </div>
+</section>

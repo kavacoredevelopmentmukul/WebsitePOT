@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const differentiators = [
   {
     title: "Niche Skills",
-    description: "Whether it's rare tech, compliance-critical roles, or domain expertise—VE finds niche talent faster than local markets ever could.",
+    description: "Whether it's rare tech, compliance-critical roles, or domain expertise—POT finds niche talent faster than local markets ever could.",
     watermark: "Specialized Talent"
   },
   {
@@ -38,67 +38,64 @@ export default function DifferentiatorsCarousel() {
   };
 
   return (
-    <section className="py-24 bg-[var(--bg-surface)] overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="pot-section bg-[var(--white)] dark:bg-[var(--bg-surface)] overflow-hidden" aria-labelledby="diff-heading">
+      <div className="pot-container">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-[var(--text-primary)] max-w-2xl">
-            What Makes Pacific Ocean Tech the Better Choice
-          </h2>
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-3">Why us</p>
+            <h2 id="diff-heading" className="h-section text-[var(--ink)] dark:text-[var(--text-primary)]">
+              What Makes Pacific Ocean Tech the Better Choice
+            </h2>
+          </div>
           <div className="flex gap-2">
-            <button 
+            <button
+              type="button"
               onClick={() => scroll('left')}
-              className="w-12 h-12 rounded-full border border-[var(--text-muted)]/20 flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--color-accent)] hover:border-[var(--color-accent)] hover:text-white transition-all"
+              className="w-11 h-11 rounded-full border border-[var(--hairline-strong)] flex items-center justify-center hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors"
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" aria-hidden="true" />
             </button>
-            <button 
+            <button
+              type="button"
               onClick={() => scroll('right')}
-              className="w-12 h-12 rounded-full border border-[var(--text-muted)]/20 flex items-center justify-center text-[var(--text-primary)] hover:bg-[var(--color-accent)] hover:border-[var(--color-accent)] hover:text-white transition-all"
+              className="w-11 h-11 rounded-full border border-[var(--hairline-strong)] flex items-center justify-center hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors"
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
         </div>
 
-        <div 
+        <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar"
+          className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory hide-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {differentiators.map((diff, index) => (
-            <div 
-              key={index} 
-              className="min-w-[85vw] md:min-w-[600px] flex-shrink-0 snap-start bg-[#111827] rounded-[32px] p-10 md:p-14 relative overflow-hidden group"
+            <div
+              key={index}
+              className="min-w-[85vw] md:min-w-[420px] flex-shrink-0 snap-start rounded-[18px] bg-[var(--navy)] p-8 md:p-10 relative overflow-hidden"
             >
-              {/* Subtle gradient background effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
               <div className="relative z-10">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                <p className="eyebrow eyebrow-cream mb-4">{String(index + 1).padStart(2, '0')}</p>
+                <h3 className="font-[family-name:var(--font-display)] text-2xl text-[var(--cream)] mb-4 font-medium">
                   {diff.title}
                 </h3>
-                <p className="text-lg text-gray-300 max-w-md leading-relaxed">
+                <p className="body-md text-[rgba(244,239,230,0.75)] max-w-md leading-relaxed">
                   {diff.description}
                 </p>
               </div>
-
-              {/* Large Watermark Text */}
-              <div className="absolute -bottom-6 md:-bottom-10 left-10 right-0 z-0">
-                <span className="text-[60px] md:text-[100px] font-bold text-white/5 whitespace-nowrap leading-none tracking-tight">
-                  {diff.watermark}
-                </span>
-              </div>
+              <span className="absolute -bottom-4 right-4 font-[family-name:var(--font-display)] text-[4rem] md:text-[5rem] font-medium text-white/[0.06] whitespace-nowrap leading-none pointer-events-none select-none">
+                {diff.watermark}
+              </span>
             </div>
           ))}
         </div>
       </div>
-      
+
       <style dangerouslySetInnerHTML={{__html: `
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
       `}} />
     </section>
   );

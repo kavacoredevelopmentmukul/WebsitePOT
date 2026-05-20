@@ -1,107 +1,95 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { caseStudies } from '../data/case-studies';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
+
+const BASE = import.meta.env.BASE_URL;
+const featured = caseStudies.find((c) => c.featured) ?? caseStudies[0];
+const secondaries = caseStudies.filter((c) => c.id !== featured.id).slice(0, 3);
 
 export default function CaseStudies() {
-  const [activeTab, setActiveTab] = useState<'Start-Up' | 'Mid-Size' | 'Enterprise'>('Start-Up');
-  
-  const activeCaseStudy = caseStudies.find(cs => cs.category === activeTab) || caseStudies[0];
-
   return (
-    <section className="py-24 bg-[var(--bg-primary)]">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header and Tabs */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
-          <div className="max-w-3xl">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-[var(--text-primary)] mb-6">
-              Case Studies That Show Growth
+    <section className="pot-section bg-[var(--paper)] dark:bg-[var(--bg-primary)]" aria-labelledby="case-studies-heading">
+      <div className="pot-container">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-3">Case studies</p>
+            <h2 id="case-studies-heading" className="h-section text-[var(--ink)] dark:text-[var(--text-primary)] mb-3">
+              Growth our clients measure
             </h2>
-            <p className="text-xl text-[var(--text-muted)]">
-              See how companies across different stages scale their engineering output with our talent.
-            </p>
+            <p className="lede">Featured outcome plus recent wins across e-commerce, fintech, and healthcare.</p>
           </div>
-          
-          <div className="flex bg-[var(--bg-surface)] p-1.5 rounded-full border border-[var(--text-muted)]/10">
-            {['Start-Up', 'Mid-Size', 'Enterprise'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab as any)}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 relative ${
-                  activeTab === tab 
-                    ? 'text-white' 
-                    : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
-                }`}
-              >
-                {activeTab === tab && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-[#111827] dark:bg-[var(--color-accent)] rounded-full -z-10"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{tab}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="ve-card overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="flex flex-col lg:flex-row"
-            >
-              {/* Image Side */}
-              <div className="w-full lg:w-1/2 bg-[var(--bg-surface)] relative min-h-[300px] lg:min-h-[500px]">
-                {/* Fallback pattern if image is missing, though we'll assume it exists */}
-                <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-                <img 
-                  src={activeCaseStudy.image} 
-                  alt={activeCaseStudy.client} 
-                  className="absolute inset-0 w-full h-full object-cover mix-blend-multiply dark:mix-blend-normal opacity-80"
-                  onError={(e) => {
-                    // Fallback to placeholder if image not found
-                    (e.target as HTMLImageElement).src = '/images/service_illustration.png';
-                  }}
-                />
-              </div>
-              
-              {/* Text Side */}
-              <div className="w-full lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--text-muted)]/20 bg-[var(--bg-surface)] text-[var(--text-muted)] text-xs font-medium mb-8 w-fit">
-                  {activeCaseStudy.service}
-                </div>
-                
-                <h3 className="text-3xl md:text-4xl font-heading font-bold text-[var(--text-primary)] mb-6 leading-tight">
-                  {activeCaseStudy.title}
-                </h3>
-                
-                <p className="text-lg text-[var(--text-muted)] mb-10 leading-relaxed">
-                  {activeCaseStudy.description}
-                </p>
-                
-                <a href="/WebsitePOT/case-studies" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 font-medium text-[var(--text-primary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors w-fit group">
-                  Read The Full Story
-                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-        
-        <div className="text-center mt-12">
-          <a href="/WebsitePOT/case-studies" className="text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] font-medium hover:underline inline-flex items-center gap-1">
-            See All Case Studies <ArrowRight className="w-4 h-4" />
+          <a
+            href={`${BASE}case-studies`}
+            className="mono-label text-[var(--navy)] hover:text-[var(--coral)] transition-colors inline-flex items-center gap-2 shrink-0"
+            aria-label="View all case studies"
+          >
+            View all <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </a>
         </div>
 
+        {/* Featured — horizontal editorial card */}
+        {featured && (
+          <article className="card overflow-hidden flex flex-col lg:flex-row mb-8">
+            <div className="lg:w-[48%] min-h-[240px] bg-[var(--cream)]">
+              <img
+                src={featured.image}
+                alt={`${featured.client} case study — ${featured.industry}`}
+                className="w-full h-full object-cover min-h-[240px]"
+                loading="lazy"
+              />
+            </div>
+            <div className="lg:w-[52%] p-8 md:p-10 flex flex-col justify-center">
+              <p className="eyebrow text-[var(--coral)] mb-2">{featured.industry}</p>
+              <h3 className="h-section text-[1.5rem] text-[var(--ink)] dark:text-[var(--text-primary)] mb-4 leading-snug">
+                {featured.title}
+              </h3>
+              <p className="body-md mb-6">{featured.challenge}</p>
+              <ul className="space-y-2 mb-6">
+                {featured.results.slice(0, 3).map((r) => (
+                  <li key={r} className="flex items-start gap-2 body-sm">
+                    <Check className="w-4 h-4 shrink-0 text-[var(--coral)] mt-0.5" aria-hidden="true" />
+                    {r}
+                  </li>
+                ))}
+              </ul>
+              <a href={`${BASE}case-studies`} className="mono-label text-[var(--navy)] hover:text-[var(--coral)]">
+                Read full story →
+              </a>
+            </div>
+          </article>
+        )}
+
+        {/* Three secondaries */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {secondaries.map((study) => (
+            <article key={study.id} className="card overflow-hidden flex flex-col h-full">
+              <div className="h-44 bg-[var(--cream)]">
+                <img
+                  src={study.image}
+                  alt={`${study.client} — ${study.industry}`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-grow">
+                <p className="eyebrow text-[var(--coral)] mb-2">{study.industry}</p>
+                <h3 className="font-[family-name:var(--font-display)] text-lg font-medium text-[var(--ink)] dark:text-[var(--text-primary)] mb-3 leading-snug">
+                  {study.title}
+                </h3>
+                <ul className="space-y-2 flex-grow mb-4">
+                  {study.results.slice(0, 2).map((r) => (
+                    <li key={r} className="flex items-start gap-2 body-sm">
+                      <Check className="w-4 h-4 shrink-0 text-[var(--coral)] mt-0.5" aria-hidden="true" />
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+                <a href={`${BASE}case-studies`} className="mono-label text-[var(--navy)] hover:text-[var(--coral)]">
+                  Details →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

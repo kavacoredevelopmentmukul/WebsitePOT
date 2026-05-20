@@ -1,0 +1,29 @@
+.pot-surface {\n  width: 1440px;\n  background: var(--paper);\n  color: var(--ink);\n  font-family: var(--sans);\n  font-size: 16px;\n  line-height: 1.5;\n}
+
+.eyebrow {\n  font-family: var(--mono);\n  font-size: 11px;\n  font-weight: 500;\n  letter-spacing: 0.14em;\n  text-transform: uppercase;\n  color: var(--muted);\n}
+
+.eyebrow-navy { color: var(--navy); }
+
+.eyebrow-cream { color: rgba(244, 239, 230, 0.7); }
+
+.display-xl {\n  font-family: var(--display);\n  font-weight: 500;\n  font-size: 92px;\n  line-height: 0.98;\n  letter-spacing: -0.025em;\n}
+
+.display-lg {\n  font-family: var(--display);\n  font-weight: 500;\n  font-size: 72px;\n  line-height: 1.02;\n  letter-spacing: -0.022em;\n}
+
+.display-md {\n  font-family: var(--display);\n  font-weight: 500;\n  font-size: 52px;\n  line-height: 1.05;\n  letter-spacing: -0.02em;\n}
+
+.display-sm {\n  font-family: var(--display);\n  font-weight: 500;\n  font-size: 38px;\n  line-height: 1.1;\n  letter-spacing: -0.015em;\n}
+
+.italic-accent {\n  font-family: var(--display);\n  font-style: italic;\n  font-weight: 400;\n}
+
+.h-section {\n  font-family: var(--display);\n  font-weight: 500;\n  font-size: 32px;\n  line-height: 1.15;\n  letter-spacing: -0.01em;\n  margin: 0;\n}
+
+.lede {\n  font-family: var(--sans);\n  font-size: 19px;\n  line-height: 1.55;\n  color: var(--muted);\n  font-weight: 400;\n}
+
+.body-md { font-size: 15px; line-height: 1.6; color: var(--muted); }
+
+.body-sm { font-size: 13.5px; line-height: 1.55; color: var(--muted); }
+
+.mono-label {\n  font-family: var(--mono);\n  font-size: 12px;\n  font-weight: 500;\n  letter-spacing: 0.02em;\n}
+
+.btn {\n  display: inline-flex;\n  align-items: center;\n  gap: 10px;\n  padding: 14px 22px;\n  font-family: var(--sans);\n  font-size: 14.5px;\n  font-weight: 500;\n  letter-spacing: -0.005em;\n  border-radius: 999px;\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: all .15s;\n  text-decoration: none;\n  white-space: nowrap;\n}

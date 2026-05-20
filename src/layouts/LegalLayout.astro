@@ -1,0 +1,33 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { breadcrumbSchema, webPageSchema } from '../utils/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  lastUpdated?: string;
+}
+
+const { title, description, slug, lastUpdated = 'May 20, 2026' } = Astro.props;
+const schemas = [
+  webPageSchema(title, description, slug),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: title, path: slug },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} schemas={schemas}>
+  <Header />
+  <main id="main-content" class="pot-section pt-28 pb-20">
+    <article class="pot-container max-w-3xl prose prose-neutral dark:prose-invert">
+      <p class="text-sm text-[var(--text-muted)] not-prose mb-8">Last updated: {lastUpdated}</p>
+      <slot />
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

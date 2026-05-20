@@ -3,60 +3,99 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import StatsBand from '../components/StatsBand.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import CostCalculator from '../components/CostCalculator.tsx';
+import ServicePillarLedger from '../components/ServicePillarLedger.astro';
+import EditorialPullQuote from '../components/EditorialPullQuote.astro';
+import ApproachSection from '../components/ApproachSection.astro';
 import DifferentiatorsCarousel from '../components/DifferentiatorsCarousel.tsx';
 import ServiceCard from '../components/ServiceCard.astro';
 import CaseStudies from '../components/CaseStudies.tsx';
 import TestimonialCarousel from '../components/TestimonialCarousel.tsx';
+import FeaturedPress from '../components/FeaturedPress.astro';
 import { allServices } from '../data/services';
+import { path } from '../utils/paths';
+import { webPageSchema } from '../utils/seo';
 import { ArrowRight } from 'lucide-astro';
 
-// We'll take the first 5 services to create an asymmetric grid
-// 1 featured (large) + 4 standard (small)
 const featuredService = allServices[0];
 const standardServices = allServices.slice(1, 5);
+
+const schemas = [
+  webPageSchema(
+    'Hire Dedicated Remote Professionals',
+    'Pre-vetted Pacific region talent in IT, marketing, finance, design, and 50+ domains. Up to 70% less cost than local hire.',
+    '/'
+  ),
+];
 ---
 
-<BaseLayout 
-  title="Home" 
-  description="Pacific Ocean Tech - Hire Virtual Employees For Any Role. A remote hiring ecosystem shaped over 18 years."
+<BaseLayout
+  title="Hire Dedicated Remote Professionals"
+  description="Pre-vetted talent in IT, marketing, finance, design, and 50+ domains across the Pacific region. Up to 70% less cost than local hire."
+  schemas={schemas}
 >
   <Header />
-  
-  <main>
+
+  <main id="main-content">
     <Hero />
-    
-    <DifferentiatorsCarousel client:load />
-    
-    <!-- Services That You Need -->
-    <section class="py-24 relative" id="services">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl md:text-5xl font-heading font-bold text-[var(--text-primary)]">Services That You Need</h2>
+    <StatsBand />
+
+    <section class="pot-section bg-[var(--white)] dark:bg-[var(--bg-surface)]" id="savings-calculator" aria-labelledby="calc-heading">
+      <div class="pot-container">
+        <div class="max-w-2xl mb-12">
+          <p class="eyebrow mb-3">Savings calculator</p>
+          <h2 id="calc-heading" class="h-section text-[var(--ink)] dark:text-[var(--text-primary)] mb-3">See how much you could save</h2>
+          <p class="lede">Compare local hire costs vs. Pacific Ocean Tech dedicated rates.</p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ServiceCard 
+        <CostCalculator client:load />
+      </div>
+    </section>
+
+    <ComparisonTable />
+
+    <ServicePillarLedger />
+
+    <EditorialPullQuote />
+
+    <ApproachSection />
+
+    <DifferentiatorsCarousel client:load />
+
+    <section class="pot-section bg-[var(--paper)] dark:bg-[var(--bg-primary)]" id="services" aria-labelledby="services-heading">
+      <div class="pot-container">
+        <div class="max-w-2xl mb-14">
+          <p class="eyebrow mb-3">Services</p>
+          <h2 id="services-heading" class="h-section text-[var(--ink)] dark:text-[var(--text-primary)] mb-3">Services That You Need</h2>
+          <p class="lede">Dedicated professionals across technology, operations, and creative—vetted and ready in days.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ServiceCard
             title={featuredService.title}
             description={featuredService.description}
             slug={featuredService.id}
+            image={featuredService.image}
             subcategories={featuredService.subcategories}
             isFeatured={true}
           />
-          {standardServices.map(service => (
-            <ServiceCard 
+          {standardServices.map((service) => (
+            <ServiceCard
               title={service.title}
               description={service.description}
               slug={service.id}
+              image={service.image}
               subcategories={service.subcategories}
               isFeatured={false}
             />
           ))}
         </div>
-        
-        <div class="mt-16 text-center">
-          <a href="/WebsitePOT/services" class="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 font-medium text-[var(--text-primary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">
+
+        <div class="mt-14 text-center">
+          <a href={path('services')} class="btn btn-ghost">
             Explore All 150+ Services
-            <ArrowRight class="w-5 h-5" />
+            <ArrowRight class="w-4 h-4" aria-hidden="true" />
           </a>
         </div>
       </div>
@@ -64,28 +103,28 @@ const standardServices = allServices.slice(1, 5);
 
     <CaseStudies client:load />
 
-    <section class="py-24 bg-[var(--bg-surface)]">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl md:text-5xl font-heading font-bold text-[var(--text-primary)]">What Clients Say</h2>
+    <section class="pot-section bg-[var(--white)] dark:bg-[var(--bg-surface)]" aria-labelledby="testimonials-heading">
+      <div class="pot-container">
+        <div class="max-w-2xl mx-auto text-center mb-12">
+          <p class="eyebrow mb-3">Testimonials</p>
+          <h2 id="testimonials-heading" class="h-section text-[var(--ink)] dark:text-[var(--text-primary)]">What Clients Say</h2>
         </div>
         <TestimonialCarousel client:load />
       </div>
     </section>
 
-    <!-- Closing CTA -->
-    <section class="py-32 bg-[var(--bg-primary)]">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-5xl md:text-6xl font-heading font-bold mb-10 text-[var(--text-primary)] leading-tight">
+    <FeaturedPress />
+
+    <section class="pot-cta-navy text-center">
+      <div class="pot-container max-w-3xl mx-auto">
+        <p class="eyebrow eyebrow-cream mb-4">Get started</p>
+        <h2 class="h-section text-[var(--cream)] mb-6">
           Not sure what you need yet? Let's figure it out—together.
         </h2>
-        <a href="/WebsitePOT/contact" class="inline-flex px-10 py-5 rounded-full bg-[var(--color-accent)] text-white font-bold text-xl hover:bg-[var(--color-accent-glow)] transition-colors shadow-lg">
-          Get Started
-        </a>
+        <a href={path('contact')} class="btn btn-primary">Get Started</a>
       </div>
     </section>
-
   </main>
-  
+
   <Footer />
 </BaseLayout>

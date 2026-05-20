@@ -1,0 +1,26 @@
+---
+import { servicePillars } from '../data/services';
+---
+
+<section class="pot-section bg-[var(--paper)]" aria-labelledby="pillars-heading">
+  <div class="pot-container">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow mb-3">What we deliver</p>
+      <h2 id="pillars-heading" class="h-section text-[var(--ink)] dark:text-[var(--text-primary)] mb-4">
+        Three pillars of dedicated talent
+      </h2>
+      <p class="lede">Technology, business operations, and creative services—each staffed with vetted professionals in your time zone.</p>
+    </div>
+
+    <div class="pot-pillar-ledger">
+      {servicePillars.map((pillar, index) => (
+        <div class="pot-pillar-cell">
+          <p class="eyebrow">{String(index + 1).padStart(2, '0')}</p>
+          <h3>{pillar.title}</h3>
+          <p class="body-md mb-4">{pillar.description}</p>
+          <p class="body-sm">{pillar.categories.length} service categories</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

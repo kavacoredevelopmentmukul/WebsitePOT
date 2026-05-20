@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { caseStudies } from '../data/case-studies';
+import { path } from '../utils/paths';
+import { breadcrumbSchema, webPageSchema } from '../utils/seo';
+import { Check } from 'lucide-astro';
+
+const schemas = [
+  webPageSchema('Case Studies', 'Client success stories from Pacific Ocean Tech across e-commerce, fintech, healthcare, SaaS, and more.', 'case-studies'),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Case Studies', path: 'case-studies' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Case Studies"
+  description="See how Pacific Ocean Tech clients achieved measurable growth with dedicated remote teams—revenue, uptime, denials, and time saved."
+  schemas={schemas}
+>
+  <Header />
+
+  <main id="main-content">
+    <section class="pot-section bg-[var(--bg-surface)] pt-28">
+      <div class="pot-container text-center max-w-3xl mx-auto">
+        <p class="pot-eyebrow mb-3">Proof</p>
+        <h1 class="pot-display text-[var(--text-primary)] mb-4">Case Studies</h1>
+        <p class="text-lg text-[var(--text-muted)] leading-relaxed">
+          Real outcomes from dedicated teams—industry context, challenges, solutions, and results with specific numbers.
+        </p>
+      </div>
+    </section>
+
+    <section class="pot-section bg-[var(--bg-primary)]">
+      <div class="pot-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {caseStudies.map((study) => (
+            <article class="ve-card overflow-hidden flex flex-col h-full">
+              <div class="h-48 overflow-hidden bg-[var(--bg-surface)]">
+                <img src={study.image} alt={`${study.client} case study — ${study.industry}`} class="w-full h-full object-cover" loading="lazy" />
+              </div>
+              <div class="p-8 flex flex-col flex-grow">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="text-xs font-semibold uppercase tracking-wider text-[#E8593C]">{study.industry}</span>
+                  <span class="text-xs text-[var(--text-muted)]">· {study.service}</span>
+                </div>
+                <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">{study.title}</h2>
+
+                <div class="space-y-4 text-sm flex-grow">
+                  <div>
+                    <h3 class="font-semibold text-[var(--text-primary)] mb-1">Challenge</h3>
+                    <p class="text-[var(--text-muted)] leading-relaxed">{study.challenge}</p>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-[var(--text-primary)] mb-1">Solution</h3>
+                    <p class="text-[var(--text-muted)] leading-relaxed">{study.solution}</p>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-[var(--text-primary)] mb-2">Results</h3>
+                    <ul class="space-y-2">
+                      {study.results.map((r) => (
+                        <li class="flex items-start gap-2 text-[var(--text-muted)]">
+                          <Check class="w-4 h-4 shrink-0 text-[#E8593C] mt-0.5" aria-hidden="true" />
+                          {r}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="text-center mt-16">
+          <a href={path('contact')} class="pot-btn-primary">Start your success story</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

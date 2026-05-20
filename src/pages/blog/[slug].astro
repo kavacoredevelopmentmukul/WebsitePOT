@@ -55,8 +55,7 @@ const { Content, headings } = await render(post);
       <!-- Featured Image -->
       {post.data.image && (
         <div class="max-w-5xl mx-auto mb-16 aspect-video rounded-2xl overflow-hidden border border-white/5 relative">
-          <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)]/50 to-transparent"></div>
+          <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover" loading="lazy" />
         </div>
       )}
 
@@ -65,7 +64,7 @@ const { Content, headings } = await render(post);
         
         <!-- Table of Contents Sidebar -->
         <aside class="hidden lg:block w-64 shrink-0">
-          <div class="sticky top-32 p-6 glass-card border-none bg-[var(--bg-surface)]/50">
+          <div class="sticky top-32 p-6 ve-card bg-[var(--bg-surface)]">
             <h3 class="font-heading font-bold text-[var(--text-primary)] mb-4 text-sm uppercase tracking-wider">On this page</h3>
             <ul class="space-y-3 text-sm">
               {headings.map(heading => (
@@ -87,11 +86,10 @@ const { Content, headings } = await render(post);
 
     <!-- Post CTA -->
     <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
-      <div class="glass-card p-10 md:p-14 text-center border-[var(--color-accent)]/20 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)]/5 to-[var(--color-accent-secondary)]/5 pointer-events-none"></div>
-        <h2 class="text-3xl font-heading font-bold mb-4 relative z-10">Build your remote team today</h2>
-        <p class="text-[var(--text-muted)] mb-8 relative z-10 max-w-xl mx-auto">Skip the months of recruitment and access top 1% global engineering talent in under 48 hours.</p>
-        <a href="/WebsitePOT/contact" class="inline-flex items-center px-8 py-4 rounded-xl bg-[var(--color-accent)] text-[#0A1628] font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-all duration-300 relative z-10">
+      <div class="ve-card p-10 md:p-14 text-center border-[var(--color-accent)]/20 bg-[var(--bg-surface)]">
+        <h2 class="text-3xl font-heading font-bold mb-4">Build your remote team today</h2>
+        <p class="text-[var(--text-muted)] mb-8 max-w-xl mx-auto">Skip the months of recruitment and access top 1% global engineering talent in under 48 hours.</p>
+        <a href="/WebsitePOT/contact" class="inline-flex items-center px-8 py-4 rounded-md bg-[var(--color-accent)] text-[#0A1628] font-bold text-lg hover:bg-[var(--color-accent-glow)] transition-all duration-300">
           Book a Free Consultation
         </a>
       </div>

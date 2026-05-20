@@ -1,88 +1,117 @@
 ---
-import { Twitter, Facebook, Linkedin, Youtube, Instagram } from 'lucide-astro';
+import Logo from './Logo.astro';
+import { Twitter, Facebook, Linkedin, Youtube, Instagram, Mail, Phone, MapPin } from 'lucide-astro';
+import { allServices } from '../data/services';
+import { path } from '../utils/paths';
+
 const currentYear = new Date().getFullYear();
+
+const companyLinks = [
+  { label: 'About Us', href: path('about') },
+  { label: 'Our Team', href: path('team') },
+  { label: 'Contact Us', href: path('contact') },
+  { label: 'Testimonials', href: path('testimonials') },
+  { label: 'Case Studies', href: path('case-studies') },
+  { label: 'Careers', href: path('careers') },
+];
+
+const resourceLinks = [
+  { label: 'Blog & Insights', href: path('blog') },
+  { label: 'How POT Works', href: path('/#how-it-works') },
+  { label: 'Privacy Policy', href: path('privacy-policy') },
+  { label: 'Terms of Service', href: path('terms-of-service') },
+  { label: 'Cookie Policy', href: path('cookie-policy') },
+  { label: 'Refund Policy', href: path('refund') },
+  { label: 'Data Security', href: path('security') },
+  { label: 'LLMs.txt', href: path('llms.txt') },
+];
 ---
 
-<footer class="bg-[#111827] text-white pt-20 pb-10">
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-      
+<footer class="bg-[var(--navy-deep)] text-[var(--cream)] pt-20 pb-10">
+  <div class="pot-container">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+      <!-- Services -->
+      <div>
+        <h3 class="eyebrow eyebrow-cream mb-6">Services</h3>
+        <ul class="space-y-3 text-sm text-[rgba(244,239,230,0.7)] max-h-80 overflow-y-auto pr-2 body-sm">
+          <li><a href={path('services')} class="hover:text-[var(--coral)] transition-colors font-medium text-[var(--cream)]">All Services</a></li>
+          {allServices.map(service => (
+            <li>
+              <a href={path(`services/${service.id}`)} class="hover:text-[var(--coral)] transition-colors">{service.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <!-- Company -->
       <div>
-        <h3 class="font-heading font-bold mb-6 text-lg tracking-wide text-white">Company</h3>
-        <ul class="space-y-4 text-sm text-gray-400">
-          <li><a href="/WebsitePOT/about" class="hover:text-[var(--color-accent)] transition-colors">About Us</a></li>
-          <li><a href="/WebsitePOT/contact" class="hover:text-[var(--color-accent)] transition-colors">Contact Us</a></li>
-          <li><a href="/WebsitePOT/team" class="hover:text-[var(--color-accent)] transition-colors">Team</a></li>
-          <li><a href="/WebsitePOT/blog" class="hover:text-[var(--color-accent)] transition-colors">Blog</a></li>
+        <h3 class="eyebrow eyebrow-cream mb-6">Company</h3>
+        <ul class="space-y-3 body-sm text-[rgba(244,239,230,0.7)]">
+          {companyLinks.map(link => (
+            <li><a href={link.href} class="hover:text-[var(--coral)] transition-colors">{link.label}</a></li>
+          ))}
         </ul>
       </div>
 
-      <!-- Why POT -->
+      <!-- Resources -->
       <div>
-        <h3 class="font-heading font-bold mb-6 text-lg tracking-wide text-white">Why POT</h3>
-        <ul class="space-y-4 text-sm text-gray-400">
-          <li><a href="/WebsitePOT/testimonials" class="hover:text-[var(--color-accent)] transition-colors">Testimonials</a></li>
-          <li><a href="/WebsitePOT/services" class="hover:text-[var(--color-accent)] transition-colors">Our Services</a></li>
-          <li><a href="/WebsitePOT/case-studies" class="hover:text-[var(--color-accent)] transition-colors">Case Studies</a></li>
-          <li><a href="#" class="hover:text-[var(--color-accent)] transition-colors">How Does POT Work</a></li>
+        <h3 class="eyebrow eyebrow-cream mb-6">Resources</h3>
+        <ul class="space-y-3 body-sm text-[rgba(244,239,230,0.7)]">
+          {resourceLinks.map(link => (
+            <li><a href={link.href} class="hover:text-[var(--coral)] transition-colors">{link.label}</a></li>
+          ))}
         </ul>
       </div>
 
-      <!-- Policy -->
+      <!-- Contact -->
       <div>
-        <h3 class="font-heading font-bold mb-6 text-lg tracking-wide text-white">Policy</h3>
-        <ul class="space-y-4 text-sm text-gray-400">
-          <li><a href="#" class="hover:text-[var(--color-accent)] transition-colors">Refund Policy</a></li>
-          <li><a href="#" class="hover:text-[var(--color-accent)] transition-colors">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-[var(--color-accent)] transition-colors">Terms & Conditions</a></li>
-          <li><a href="#" class="hover:text-[var(--color-accent)] transition-colors">Data Security</a></li>
+        <h3 class="eyebrow eyebrow-cream mb-6">Contact</h3>
+        <ul class="space-y-4 body-sm text-[rgba(244,239,230,0.7)]">
+          <li class="flex items-start gap-3">
+            <Mail class="w-4 h-4 shrink-0 mt-0.5 text-[#E8593C]" />
+            <a href="mailto:hello@pacificoceantech.com" class="hover:text-[#E8593C] transition-colors">hello@pacificoceantech.com</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <Phone class="w-4 h-4 shrink-0 mt-0.5 text-[#E8593C]" />
+            <a href="tel:+15551234567" class="hover:text-[#E8593C] transition-colors">+1 (555) 123-4567</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <MapPin class="w-4 h-4 shrink-0 mt-0.5 text-[#E8593C]" />
+            <span>Tech Park Sector 17, Chandigarh 160017, India</span>
+          </li>
         </ul>
-      </div>
 
-      <!-- Discover us on social -->
-      <div>
-        <h3 class="font-heading font-bold mb-6 text-lg tracking-wide text-white">Discover us on social</h3>
-        <div class="flex space-x-3">
-          <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] transition-all">
-            <span class="sr-only">Twitter</span>
+        <p class="text-xs text-gray-400 mt-6 mb-3">Follow us</p>
+        <div class="flex flex-wrap gap-2">
+          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="Twitter">
             <Twitter class="w-4 h-4" />
           </a>
-          <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] transition-all">
-            <span class="sr-only">Facebook</span>
+          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="Facebook">
             <Facebook class="w-4 h-4" />
           </a>
-          <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] transition-all">
-            <span class="sr-only">LinkedIn</span>
+          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="LinkedIn">
             <Linkedin class="w-4 h-4" />
           </a>
-          <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] transition-all">
-            <span class="sr-only">YouTube</span>
+          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="YouTube">
             <Youtube class="w-4 h-4" />
           </a>
-          <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] transition-all">
-            <span class="sr-only">Instagram</span>
+          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="Instagram">
             <Instagram class="w-4 h-4" />
           </a>
         </div>
-        
-        <div class="mt-8">
-          <a href="/WebsitePOT/" class="flex items-center gap-2 group">
-            <div class="w-8 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#111827]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            </div>
-            <span class="font-heading font-bold text-xl tracking-tight text-white">Pacific Ocean Tech</span>
-          </a>
-        </div>
-      </div>
 
+        <a href={path('/')} class="inline-block mt-8">
+          <Logo size="md" theme="dark" />
+        </a>
+      </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-sm text-gray-500">
+    <div class="pt-8 border-t border-[rgba(244,239,230,0.15)] flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="body-sm text-[rgba(244,239,230,0.5)]">
         &copy; {currentYear} Pacific Ocean Tech. All rights reserved.
       </p>
+      <p class="mono-label text-[rgba(244,239,230,0.45)]">Established 2015 · 500+ professionals placed · 12+ countries served</p>
     </div>
   </div>
 </footer>

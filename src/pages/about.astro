@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { Code, Globe, Star, Eye, Zap, Users, Lightbulb, ShieldCheck } from 'lucide-astro';
+import { Star, Eye, Zap, Users, Lightbulb, ShieldCheck } from 'lucide-astro';
 
 const timeline = [
   { year: "2016", title: "Founded in Chandigarh", desc: "Started as a small web development agency with a team of 5 engineers." },
@@ -28,12 +28,13 @@ const values = [
 >
   <Header />
   
-  <main>
+  <main id="main-content">
     <!-- Hero -->
-    <section class="relative pt-32 pb-24 bg-[var(--bg-surface)]">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-6 text-[var(--text-primary)]">Democratizing Access to Elite Engineering</h1>
-        <p class="text-xl text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">
+    <section class="pot-section pt-32 bg-[var(--bg-surface)]">
+      <div class="pot-container text-center">
+        <p class="eyebrow mb-3">About us</p>
+        <h1 class="h-section text-[var(--text-primary)] mb-4">Democratizing Access to Elite Engineering</h1>
+        <p class="lede max-w-3xl mx-auto">
           We believe that a company's potential should not be limited by their zip code. Our mission is to bridge the gap between global innovators and India's top 1% tech talent.
         </p>
       </div>
@@ -65,15 +66,21 @@ const values = [
             </div>
           </div>
           <div class="grid grid-cols-2 gap-6">
-            <div class="aspect-square rounded-3xl overflow-hidden bg-[var(--bg-surface)]">
-               <div class="w-full h-full bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg-primary)] border border-black/5 dark:border-white/5 flex items-center justify-center">
-                 <Code size={48} class="text-[var(--text-muted)]/10" />
-               </div>
+            <div class="aspect-square rounded-lg overflow-hidden bg-[var(--bg-surface)]">
+              <img
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80"
+                alt="Pacific Ocean Tech team collaborating"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
-            <div class="aspect-square rounded-3xl overflow-hidden bg-[var(--bg-surface)] mt-8">
-               <div class="w-full h-full bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--bg-primary)] border border-[var(--color-accent)]/20 flex items-center justify-center">
-                 <Globe size={48} class="text-[var(--color-accent)]/20" />
-               </div>
+            <div class="aspect-square rounded-lg overflow-hidden bg-[var(--bg-surface)] mt-8">
+              <img
+                src="https://images.unsplash.com/photo-1486406146928-9aefddbe7529?w=800&q=80"
+                alt="Global offices and remote collaboration"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
@@ -106,7 +113,7 @@ const values = [
           {timeline.map((item, index) => (
             <div class="relative pl-8 sm:pl-32 py-6 group">
               <!-- Timeline line -->
-              <div class="absolute left-4 sm:left-[7.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-gray-200 via-[var(--color-accent)]/30 to-gray-200 dark:from-gray-800 dark:to-gray-800 group-first:top-10 group-last:bottom-10"></div>
+              <div class="absolute left-4 sm:left-[7.5rem] top-0 bottom-0 w-px bg-gray-200 dark:bg-gray-700 group-first:top-10 group-last:bottom-10"></div>
               
               <!-- Timeline dot -->
               <div class="absolute left-[calc(1rem-4px)] sm:left-[calc(7.5rem-4px)] top-8 w-3 h-3 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--bg-primary)]"></div>

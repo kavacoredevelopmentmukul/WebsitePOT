@@ -1,32 +1,29 @@
 ---
+import { path } from '../utils/paths';
 ---
 
-<section class="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden bg-[#111827]">
-  <!-- Full bleed background image -->
-  <div class="absolute inset-0 -z-10">
-    <img
-      src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=2000&q=80"
-      alt="Modern office team collaborating"
-      class="w-full h-full object-cover"
-    />
-    <div class="absolute inset-0 bg-black/65"></div>
-  </div>
+<section
+  class="relative min-h-[min(88vh,720px)] flex flex-col justify-end overflow-hidden bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80')]"
+  aria-label="Hero"
+>
+  <div class="absolute inset-0 bg-black/65" aria-hidden="true"></div>
 
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-start justify-center flex-grow py-20">
-    <div class="max-w-4xl">
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-[var(--font-body)] font-semibold tracking-tight mb-6 text-white leading-[1.15]">
+  <div class="pot-container relative z-10 w-full pb-[clamp(3rem,8vw,5rem)] pt-32">
+    <div class="max-w-3xl">
+      <p class="eyebrow eyebrow-cream mb-6">Pacific Ocean Tech — Est. 2015</p>
+      <h1 class="display-lg text-[var(--cream)] mb-6 max-w-[14ch]">
         Hire dedicated remote professionals across the Pacific region
       </h1>
-      
-      <p class="text-lg md:text-2xl text-[#F3F4F6] mb-10 leading-relaxed max-w-3xl font-[var(--font-body)] font-normal">
+
+      <p class="lede text-[rgba(244,239,230,0.85)] mb-10 max-w-xl">
         Pre-vetted talent in IT, marketing, finance, design, and 50+ domains. At up to 70% less cost.
       </p>
-      
-      <div class="flex flex-col sm:flex-row gap-5">
-        <a href="/WebsitePOT/contact" class="px-7 py-4 rounded-[6px] bg-[#E8593C] text-white font-[var(--font-body)] font-semibold text-lg hover:bg-[#cf4b31] transition-colors inline-flex items-center justify-center">
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href={path('contact')} class="btn btn-primary">
           Get Started — Free Consultation
         </a>
-        <a href="/WebsitePOT/services" class="px-7 py-4 rounded-[6px] border border-[#F9FAFB] text-[#F9FAFB] font-[var(--font-body)] font-semibold text-lg hover:bg-[#F9FAFB] hover:text-[#1B3A5C] transition-colors inline-flex items-center justify-center">
+        <a href={path('services')} class="btn btn-ghost-cream">
           View Our Services
         </a>
       </div>

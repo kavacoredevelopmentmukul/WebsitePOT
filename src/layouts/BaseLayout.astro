@@ -1,98 +1,81 @@
 ---
 import '../styles/global.css';
+import FloatingContact from '../components/FloatingContact.astro';
+import { organizationSchema } from '../utils/seo';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  /** Additional JSON-LD objects (Service, FAQPage, BreadcrumbList, WebPage, etc.) */
+  schemas?: Record<string, unknown>[];
 }
 
-const { 
-  title, 
-  description = "Help global companies build remote tech teams without geographic limits.",
-  image = "/og-image.png"
+const {
+  title,
+  description = 'Hire dedicated remote professionals across the Pacific region. Pre-vetted talent in IT, marketing, finance, design, and 50+ domains.',
+  image = '/og-image.png',
+  schemas = [],
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url);
+const allSchemas = [organizationSchema(), ...schemas];
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/WebsitePOT/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
-    
-    <!-- Primary Meta Tags -->
+    <link rel="canonical" href={canonicalURL} />
+
     <title>{title} | Pacific Ocean Tech</title>
     <meta name="title" content={`${title} | Pacific Ocean Tech`} />
     <meta name="description" content={description} />
-    
-    <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={`${title} | Pacific Ocean Tech`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:site_name" content="Pacific Ocean Tech" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={`${title} | Pacific Ocean Tech`} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={`${title} | Pacific Ocean Tech`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
 
-    <link rel="sitemap" href="/WebsitePOT/sitemap-index.xml" />
+    <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />
 
-    <!-- JSON-LD: Organization Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Pacific Ocean Tech",
-      "url": "https://pacificoceantech.com",
-      "logo": "https://pacificoceantech.com/favicon.svg",
-      "description": "Premium remote staffing — helping global businesses hire dedicated AI engineers, developers, IT specialists, and creative talent from India.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Chandigarh",
-        "addressCountry": "IN"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+15551234567",
-        "contactType": "sales",
-        "email": "hello@pacificoceantech.com"
-      },
-      "sameAs": [
-        "https://linkedin.com/company/pacificoceantech",
-        "https://twitter.com/pacificoceantech"
-      ]
-    })} />
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
     <script is:inline>
       const theme = (() => {
-        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-          return localStorage.getItem("theme");
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
         }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
+        return 'light';
       })();
-      if (theme === "light") {
-        document.documentElement.classList.remove("dark");
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
       } else {
-        document.documentElement.classList.add("dark");
+        document.documentElement.classList.add('dark');
       }
-      window.localStorage.setItem("theme", theme || "dark");
+      window.localStorage.setItem('theme', theme || 'light');
     </script>
   </head>
-  <body class="antialiased min-h-screen flex flex-col relative bg-[var(--bg-primary)] text-[var(--text-primary)]">
-    <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-      <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[var(--color-accent-glow)]/20 blur-[120px] rounded-full mix-blend-screen dark:opacity-30 opacity-10"></div>
-      <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[var(--color-elevated)]/40 blur-[120px] rounded-full mix-blend-screen dark:opacity-50 opacity-20"></div>
-    </div>
+  <body class="antialiased min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
+    <FloatingContact />
   </body>
 </html>

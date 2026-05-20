@@ -21,15 +21,16 @@ const faqs = [
 >
   <Header />
   
-  <main class="pt-24 pb-16">
+  <main id="main-content" class="pt-24 pb-16">
     <!-- Hero & Form Section -->
-    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-24 relative">
+    <section class="pot-container mb-24 relative">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
-        
+
         <!-- Contact Info -->
         <div class="lg:col-span-2 flex flex-col justify-center">
-          <h1 class="text-4xl md:text-5xl font-heading font-extrabold mb-6 text-[var(--text-primary)]">Let's build your dream team.</h1>
-          <p class="text-lg text-[var(--text-muted)] mb-10">
+          <p class="eyebrow mb-3">Contact us</p>
+          <h1 class="h-section text-[var(--text-primary)] mb-4">Let's build your dream team.</h1>
+          <p class="lede mb-10">
             Whether you need a single AI specialist or a full engineering pod, we are ready to help you scale rapidly.
           </p>
           
@@ -95,7 +96,12 @@ const faqs = [
     <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-24">
       <div class="w-full h-96 ve-card overflow-hidden relative">
         <div class="absolute inset-0 bg-[var(--bg-surface)]">
-          <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+          <img
+            src="https://images.unsplash.com/photo-1486406146928-9aefddbe7529?w=800&q=80"
+            alt="Pacific Ocean Tech office location"
+            class="w-full h-full object-cover opacity-40"
+            loading="lazy"
+          />
         </div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <Map size={48} class="text-[var(--text-muted)]/30 mb-4" />
