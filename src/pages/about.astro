@@ -7,9 +7,9 @@ import { path } from '../utils/paths';
 import { Star, Eye, Zap, Users, Lightbulb, ShieldCheck, Gauge, Award, BadgeDollarSign, ShieldHalf, Search, FileCheck, UserCheck, Video, Handshake } from 'lucide-astro';
 
 const timeline = [
-  { year: String(companyStats.establishedYear), title: "Founded in Chandigarh", desc: "Started as a small web development agency with a dedicated team of engineers." },
+  { year: String(companyStats.establishedYear), title: "Founded in the Pacific Region", desc: "Started as a small web development agency with a dedicated team of engineers." },
   { year: "2018", title: "Global Expansion", desc: "Opened our first international sales office in San Francisco to better serve US clients." },
-  { year: "2020", title: "The Remote Shift", desc: "Transitioned to a fully remote model for our talent, expanding our sourcing pan-India." },
+  { year: "2020", title: "The Remote Shift", desc: "Transitioned to a fully remote model for our talent, expanding our sourcing across the Asia-Pacific region." },
   { year: "2023", title: "AI Division Launch", desc: "Established a dedicated AI/ML engineering hub to meet the surging demand for GenAI." },
   { year: "2025", title: `${companyStats.professionalsPlaced} Professionals Placed`, desc: `Crossed the milestone of ${companyStats.professionalsPlaced} professionals placed with clients across ${companyStats.countriesServed} countries.` },
 ];
@@ -26,12 +26,12 @@ const values = [
 const differentiators = [
   { Icon: Gauge, title: "Speed", headline: "48-Hour Candidate Delivery", desc: "While traditional agencies take 4–6 weeks to present candidates, our pre-vetted bench means you interview qualified engineers within 48 hours. We run parallel pipelines, so you evaluate three to five candidates simultaneously instead of waiting for a single shortlist." },
   { Icon: Award, title: "Quality", headline: "Top 1% Technical Bar", desc: "Only 3 out of every 100 applicants make it through our five-stage vetting process. We test live coding, system design, communication, and cultural fit. The result is engineers who don't just write code — they own outcomes and think like product builders." },
-  { Icon: BadgeDollarSign, title: "Cost", headline: companyStats.costSavings + " Savings", desc: "Our India-based talent model delivers senior engineers at a fraction of US market rates — without compromising quality. You get transparent pricing with no markup surprises: just the engineer's compensation, our management fee, and infrastructure costs, all line-itemized." },
+  { Icon: BadgeDollarSign, title: "Cost", headline: companyStats.costSavings + " Savings", desc: "Our Asia-Pacific talent model delivers senior engineers at a fraction of US market rates — without compromising quality. You get transparent pricing with no markup surprises: just the engineer’s compensation, our management fee, and infrastructure costs, all line-itemized." },
   { Icon: ShieldHalf, title: "Compliance", headline: "Enterprise-Grade Security", desc: "Every engagement includes signed NDAs, IP assignment agreements, GDPR-compliant data handling, and SOC 2-aligned operational controls. We enforce endpoint security, VPN-only access to client repositories, and quarterly security audits. Your code and data stay protected." },
 ];
 
 const hiringSteps = [
-  { step: 1, Icon: Search, title: "Sourcing & Screening", desc: "We source candidates from India's top engineering institutions, developer communities, and our referral network. Every applicant completes an automated screening that evaluates years of experience, tech-stack alignment, and English communication. Only the top 20% advance." },
+  { step: 1, Icon: Search, title: "Sourcing & Screening", desc: "We source candidates from top engineering institutions, developer communities, and our referral network across the Asia-Pacific region. Every applicant completes an automated screening that evaluates years of experience, tech-stack alignment, and English communication. Only the top 20% advance." },
   { step: 2, Icon: FileCheck, title: "Technical Assessment", desc: "Candidates complete a timed coding challenge designed by our principal engineers. We evaluate algorithmic thinking, code quality, edge-case handling, and test coverage. Assessments are language-specific and calibrated to real-world scenarios, not LeetCode puzzles." },
   { step: 3, Icon: UserCheck, title: "System Design & Architecture", desc: "Senior candidates face a live system-design interview where they architect a distributed system end-to-end. We evaluate trade-off reasoning, scalability thinking, and the ability to communicate decisions clearly — the skills that separate a coder from an engineer." },
   { step: 4, Icon: Video, title: "Communication & Culture Fit", desc: "A 45-minute behavioral interview assesses collaboration style, timezone flexibility, and alignment with remote-first work culture. We simulate real client interactions — standup updates, code-review discussions, and async Slack communication — to ensure a seamless fit." },
@@ -48,7 +48,7 @@ const aboutStats = [
 
 <BaseLayout
   title="About Us"
-  description="Learn about Pacific Ocean Tech's mission to connect global companies with elite Indian engineering talent."
+  description="Learn about Pacific Ocean Tech's mission to connect global companies with elite engineering talent from the Asia-Pacific region."
 >
   <Header />
 
@@ -59,7 +59,7 @@ const aboutStats = [
         <p class="eyebrow mb-3">About us</p>
         <h1 class="h-section text-[var(--text-primary)] mb-4">Democratizing Access to Elite Engineering</h1>
         <p class="lede max-w-3xl mx-auto">
-          We believe that a company's potential should not be limited by their zip code. Our mission is to bridge the gap between global innovators and India's top 1% tech talent.
+          We believe that a company's potential should not be limited by their zip code. Our mission is to bridge the gap between global innovators and the top 1% tech talent across the Asia-Pacific region.
         </p>
       </div>
     </section>
@@ -86,16 +86,16 @@ const aboutStats = [
             <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6 text-[var(--text-primary)]">Our Story</h2>
             <div class="space-y-4 text-[var(--text-muted)] leading-relaxed text-lg">
               <p>
-                In {companyStats.establishedYear}, our founders noticed a glaring inefficiency in the global tech market. Tech hubs in the US, Europe, and the Asia-Pacific were starved for engineering talent, driving salaries to unsustainable levels and timelines to breaking point. Meanwhile, India was producing over 1.5 million engineering graduates every year — brilliant, ambitious professionals who lacked access to challenging, global-scale product work. The mismatch was staggering, and the existing solutions were making it worse.
+                In {companyStats.establishedYear}, our founders noticed a glaring inefficiency in the global tech market. Tech hubs in the US, Europe, and the Asia-Pacific were starved for engineering talent, driving salaries to unsustainable levels and timelines to breaking point. Meanwhile, the Asia-Pacific region was producing millions of engineering graduates every year — brilliant, ambitious professionals who lacked access to challenging, global-scale product work. The mismatch was staggering, and the existing solutions were making it worse.
               </p>
               <p>
                 The traditional outsourcing model was fundamentally broken. It treated engineers as disposable resources on short-term, fixed-scope projects. The incentive structure rewarded headcount over outcomes: agencies marked up rates by 80–100%, rotated engineers between clients to maximize utilization, and invested nothing in retention or professional development. The result was predictable — poor code quality, constant context-switching, and turnover rates that made long-term product development nearly impossible.
               </p>
               <p>
-                Pacific Ocean Tech was built to flip this model entirely. Instead of project-based outsourcing, we pioneered a <strong class="text-[var(--text-primary)]">dedicated, full-time staff augmentation</strong> approach where every engineer is embedded into a single client's team for the long haul. They attend your standups, participate in your retros, and push code to your repositories. They are, in every meaningful sense, part of your team — the only difference is they happen to be sitting in Bangalore, Hyderabad, or Pune instead of your headquarters.
+                Pacific Ocean Tech was built to flip this model entirely. Instead of project-based outsourcing, we pioneered a <strong class="text-[var(--text-primary)]">dedicated, full-time staff augmentation</strong> approach where every engineer is embedded into a single client's team for the long haul. They attend your standups, participate in your retros, and push code to your repositories. They are, in every meaningful sense, part of your team — the only difference is they happen to be sitting across the Asia-Pacific region instead of your headquarters.
               </p>
               <p>
-                What started as a five-person agency in Chandigarh has grown into a trusted talent partner for {companyStats.clientsServed} companies across {companyStats.countriesServed} countries. We've placed {companyStats.professionalsPlaced} professionals, maintained a {companyStats.clientRetention} client retention rate, and built a reputation for the kind of engineering quality that makes CTOs sleep easier at night. Our growth has been entirely organic — fuelled by referrals, repeat business, and the simple fact that our model delivers results that the old way never could.
+                What started as a five-person remote agency has grown into a trusted talent partner for {companyStats.clientsServed} companies across {companyStats.countriesServed} countries. We've placed {companyStats.professionalsPlaced} professionals, maintained a {companyStats.clientRetention} client retention rate, and built a reputation for the kind of engineering quality that makes CTOs sleep easier at night. Our growth has been entirely organic — fuelled by referrals, repeat business, and the simple fact that our model delivers results that the old way never could.
               </p>
             </div>
 
@@ -109,26 +109,32 @@ const aboutStats = [
           <div class="grid grid-cols-2 gap-6">
             <div class="aspect-[3/4] rounded-lg overflow-hidden bg-[var(--bg-surface)] row-span-2">
               <img
-                src={path('images/about-story-1.jpg')}
+                src={path('images/about-story-1.webp')}
                 alt="Pacific Ocean Tech team collaborating in a meeting"
                 class="w-full h-full object-cover"
                 loading="lazy"
+                width="400"
+                height="533"
               />
             </div>
             <div class="aspect-square rounded-lg overflow-hidden bg-[var(--bg-surface)]">
               <img
-                src={path('images/about-story-2.jpg')}
+                src={path('images/about-story-2.webp')}
                 alt="Remote professional working on a laptop"
                 class="w-full h-full object-cover"
                 loading="lazy"
+                width="400"
+                height="400"
               />
             </div>
             <div class="aspect-square rounded-lg overflow-hidden bg-[var(--bg-surface)]">
               <img
-                src={path('images/about-story-3.jpg')}
+                src={path('images/about-story-3.webp')}
                 alt="Modern corporate office building"
                 class="w-full h-full object-cover"
                 loading="lazy"
+                width="400"
+                height="400"
               />
             </div>
           </div>

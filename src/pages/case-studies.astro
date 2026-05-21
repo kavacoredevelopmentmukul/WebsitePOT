@@ -40,7 +40,7 @@ const schemas = [
           {caseStudies.map((study, index) => (
             <article class="ve-card overflow-hidden" id={study.id}>
               <div class="h-64 md:h-80 overflow-hidden bg-[var(--bg-surface)]">
-                <img src={study.image} alt={`${study.client} case study — ${study.industry}`} class="w-full h-full object-cover" loading={index === 0 ? 'eager' : 'lazy'} />
+                <img src={study.image} alt={`${study.client} case study — ${study.industry}`} class="w-full h-full object-cover" loading={index === 0 ? 'eager' : 'lazy'} width="1400" height="320" />
               </div>
               <div class="p-8 md:p-12">
                 <div class="flex flex-wrap gap-3 mb-4">

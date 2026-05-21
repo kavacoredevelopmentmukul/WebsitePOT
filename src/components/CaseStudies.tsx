@@ -36,6 +36,8 @@ export default function CaseStudies() {
                 alt={`${featured.client} case study — ${featured.industry}`}
                 className="w-full h-full object-cover min-h-[240px]"
                 loading="lazy"
+                width="672"
+                height="240"
               />
             </div>
             <div className="lg:w-[52%] p-8 md:p-10 flex flex-col justify-center">
@@ -69,6 +71,8 @@ export default function CaseStudies() {
                   alt={`${study.client} — ${study.industry}`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  width="450"
+                  height="176"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">

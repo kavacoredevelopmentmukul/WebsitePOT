@@ -41,7 +41,7 @@ function blogImage(img?: string): string | undefined {
         <a href={path(`blog/${featuredPost.id}`)} class="block ve-card group overflow-hidden">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
             <div class="aspect-video lg:aspect-auto bg-[var(--bg-surface)] relative overflow-hidden">
-              <img src={blogImage(featuredPost.data.image)} alt={featuredPost.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src={blogImage(featuredPost.data.image)} alt={featuredPost.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" width="700" height="394" />
             </div>
             <div class="p-8 md:p-12 flex flex-col justify-center">
               <div class="flex items-center gap-4 mb-6">
@@ -77,7 +77,7 @@ function blogImage(img?: string): string | undefined {
         {remainingPosts.map(post => (
           <a href={path(`blog/${post.id}`)} class="ve-card group flex flex-col h-full overflow-hidden">
             <div class="aspect-video bg-[var(--bg-surface)] relative overflow-hidden">
-              <img src={blogImage(post.data.image)} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={blogImage(post.data.image)} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="450" height="253" />
               <div class="absolute top-4 left-4 px-3 py-1 bg-[var(--navy)] rounded-md text-xs font-medium text-white">
                 {post.data.category}
               </div>

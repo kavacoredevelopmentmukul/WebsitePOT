@@ -78,9 +78,9 @@ const industries = [...new Set(allTestimonials.map(t => t.industry))];
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">Video Testimonials</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { thumb: path('images/video-testimonial-1.jpg'), title: "How We Scaled From 2 to 12 Engineers in 60 Days", person: "Sarah Lin", role: "CTO, NGX", context: "Sarah's e-commerce platform was crashing during peak traffic events and losing an estimated $1.8M per quarter. After embedding a dedicated POT engineering team, NGX achieved 2× revenue growth and 99.98% uptime over 18 consecutive months." },
-            { thumb: path('images/video-testimonial-2.jpg'), title: "Shipping Our AI Product Before the Board Deadline", person: "Michael Chen", role: "Head of Product, DataPulse AI", context: "DataPulse AI needed a production-ready RAG assistant in under 5 weeks for their annual customer conference. POT's AI engineering pod delivered it in 28 days — 7 days ahead of schedule — with 87% answer accuracy at launch." },
-            { thumb: path('images/video-testimonial-3.jpg'), title: "Cutting Claim Denials by 40% With a Dedicated Billing Pod", person: "Dr. Priya Nair", role: "CFO, HealthCorp Plus", context: "HealthCorp Plus was struggling with an 18% claim denial rate and a backlog of 14,000+ claims after acquiring three new clinics. A 15-person POT billing team integrated with Epic and reduced denials by 40% within 90 days, recovering $890K in previously denied claims." },
+            { thumb: path('images/video-testimonial-1.webp'), title: "How We Scaled From 2 to 12 Engineers in 60 Days", person: "Sarah Lin", role: "CTO, NGX", context: "Sarah's e-commerce platform was crashing during peak traffic events and losing an estimated $1.8M per quarter. After embedding a dedicated POT engineering team, NGX achieved 2× revenue growth and 99.98% uptime over 18 consecutive months." },
+            { thumb: path('images/video-testimonial-2.webp'), title: "Shipping Our AI Product Before the Board Deadline", person: "Michael Chen", role: "Head of Product, DataPulse AI", context: "DataPulse AI needed a production-ready RAG assistant in under 5 weeks for their annual customer conference. POT's AI engineering pod delivered it in 28 days — 7 days ahead of schedule — with 87% answer accuracy at launch." },
+            { thumb: path('images/video-testimonial-3.webp'), title: "Cutting Claim Denials by 40% With a Dedicated Billing Pod", person: "Dr. Priya Nair", role: "CFO, HealthCorp Plus", context: "HealthCorp Plus was struggling with an 18% claim denial rate and a backlog of 14,000+ claims after acquiring three new clinics. A 15-person POT billing team integrated with Epic and reduced denials by 40% within 90 days, recovering $890K in previously denied claims." },
           ].map((video) => (
             <div class="ve-card overflow-hidden">
               <div class="aspect-video relative group cursor-pointer overflow-hidden">
@@ -89,6 +89,8 @@ const industries = [...new Set(allTestimonials.map(t => t.industry))];
                   alt={`Video testimonial: ${video.title}`}
                   class="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
+                  width="450"
+                  height="253"
                 />
                 <div class="absolute inset-0 bg-black/50 group-hover:bg-black/35 transition-colors z-10"></div>
                 <div class="absolute inset-0 flex items-center justify-center z-20">

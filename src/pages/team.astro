@@ -28,7 +28,7 @@ import { path } from '../utils/paths';
         {team.map(member => (
           <div class="ve-card overflow-hidden group flex flex-col">
             <div class="aspect-[4/3] bg-[var(--bg-surface)] relative overflow-hidden">
-              <img src={member.image} alt={`${member.name}, ${member.role} at Pacific Ocean Tech`} class="w-full h-full object-cover" loading="lazy" />
+              <img src={member.image} alt={`${member.name}, ${member.role} at Pacific Ocean Tech`} class="w-full h-full object-cover" loading="lazy" width="450" height="338" />
               <div class="absolute top-4 right-4 px-3 py-1 bg-[var(--navy)] rounded-md text-xs font-medium text-white border border-white/20">
                 {member.department}
               </div>

@@ -43,30 +43,29 @@ export const companyStats = {
 
   /** HQ / delivery-centre address.  TODO:VERIFY-WITH-DEEPAK */
   address: {
-    street: 'Tech Park Sector 17',
-    city: 'Chandigarh',
-    postalCode: '160017',
-    country: 'India',
+    street: '',
+    city: '',
+    postalCode: '',
+    country: '',
     /** Formatted single-line version */
-    oneLiner: 'Tech Park Sector 17, Chandigarh 160017, India',
+    oneLiner: 'Remote-first · Pacific Region',
   },
 
   /**
    * ─── LEGAL ENTITY & JURISDICTION ───
    * TODO:VERIFY-WITH-DEEPAK — ALL fields below are PLACEHOLDERS and MUST be
-   * confirmed with a qualified lawyer before launch. The brand targets APAC
-   * (AU/NZ) clients while delivery is from the India centre above. Confirm the
-   * actual registered contracting entity, its jurisdiction of incorporation,
+   * confirmed with a qualified lawyer before launch. Confirm the actual
+   * registered contracting entity, its jurisdiction of incorporation,
    * registered office, and which body of law governs client contracts. Do NOT
    * ship invented entity names or governing-law clauses.
    */
   legal: {
     /** Registered contracting entity name (market-facing). */
-    entity: 'Pacific Ocean Tech Pty Ltd',
+    entity: 'Pacific Ocean Tech Ltd',
     /** Governing-law jurisdiction for the Terms of Service. */
-    governingLaw: 'New South Wales, Australia',
+    governingLaw: 'the jurisdiction agreed upon at contract',
     /** Courts with exclusive jurisdiction over disputes. */
-    forum: 'the courts of New South Wales, Australia',
+    forum: 'the courts of the jurisdiction agreed upon at contract',
     /** Registered office of the contracting entity. */
     registeredOffice: '[Registered office address — TODO:VERIFY-WITH-DEEPAK]',
   },

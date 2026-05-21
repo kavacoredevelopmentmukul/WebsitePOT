@@ -19,13 +19,6 @@ export function organizationSchema() {
     description:
       'Pacific Ocean Tech helps global companies hire dedicated remote professionals across the Pacific region.',
     foundingDate: String(companyStats.establishedYear),
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: companyStats.address.street,
-      addressLocality: companyStats.address.city,
-      postalCode: companyStats.address.postalCode,
-      addressCountry: 'IN',
-    },
     /**
      * TODO:VERIFY-WITH-DEEPAK — contactPoint uses placeholder phone number.
      * Replace with real business phone before launch, or remove entirely.
@@ -36,7 +29,7 @@ export function organizationSchema() {
       telephone: companyStats.phoneTel,
       contactType: 'sales',
       email: companyStats.email,
-      areaServed: ['US', 'AU', 'NZ', 'GB', 'IN'],
+      areaServed: ['US', 'AU', 'NZ', 'GB', 'SG'],
     },
   };
 }

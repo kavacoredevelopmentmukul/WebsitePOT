@@ -54,7 +54,7 @@ export const caseStudies: CaseStudy[] = [
     quote: "Pacific Ocean Tech didn’t just rebuild our site — they gave us a platform we can actually grow on. The engineers felt like part of our team from week one, and the results speak for themselves.",
     quoteAuthor: 'Sarah Lin',
     quoteRole: 'CTO, NGX',
-    image: `${base}/images/case-study-ecommerce.jpg`,
+    image: `${base}/images/case-study-ecommerce.webp`,
   },
   {
     id: 'fintech-midsize',
@@ -83,7 +83,7 @@ export const caseStudies: CaseStudy[] = [
     quote: "We were staring down a missed deadline that would have cost us our funding round. POT’s team didn’t just deliver on time — they delivered early, and the quality was better than what we’d seen from agencies charging three times the rate.",
     quoteAuthor: 'James Thornton',
     quoteRole: 'VP of Engineering, FinTech Solutions',
-    image: `${base}/images/case-study-fintech.jpg`,
+    image: `${base}/images/case-study-fintech.webp`,
   },
   {
     id: 'healthcorp-enterprise',
@@ -112,7 +112,7 @@ export const caseStudies: CaseStudy[] = [
     quote: "Hiring and training 15 certified coders internally would have taken us six months and cost twice as much. POT had a fully operational team running inside Epic within three weeks. The impact on our cash flow was immediate and significant.",
     quoteAuthor: 'Dr. Priya Nair',
     quoteRole: 'CFO, HealthCorp Plus',
-    image: `${base}/images/case-study-healthcare.jpg`,
+    image: `${base}/images/case-study-healthcare.webp`,
   },
   {
     id: 'saas-ai-scale',
@@ -141,7 +141,7 @@ export const caseStudies: CaseStudy[] = [
     quote: "We went from a hallucinating prototype to a production system our enterprise customers actually trust — in under a month. The POT engineers brought a level of RAG expertise that would have taken us a year to build internally.",
     quoteAuthor: 'Michael Chen',
     quoteRole: 'Head of Product, DataPulse AI',
-    image: `${base}/images/case-study-ai.jpg`,
+    image: `${base}/images/case-study-ai.webp`,
   },
   {
     id: 'agency-design',
@@ -170,7 +170,7 @@ export const caseStudies: CaseStudy[] = [
     quote: "Our clients can’t tell the difference between work from our Sydney team and work from the POT designers — and that’s the highest compliment I can give. They’ve tripled our capacity without any of the overhead of local hiring.",
     quoteAuthor: 'Emma Walsh',
     quoteRole: 'Creative Director, North & Co.',
-    image: `${base}/images/case-study-design.jpg`,
+    image: `${base}/images/case-study-design.webp`,
   },
   {
     id: 'logistics-va',
@@ -199,7 +199,7 @@ export const caseStudies: CaseStudy[] = [
     quote: "I used to spend half my week on emails and spreadsheets. Now I spend it on strategy and client relationships. The POT virtual assistants are not just handling tasks — they have fundamentally changed how our leadership team operates.",
     quoteAuthor: 'David Park',
     quoteRole: 'COO, Pacific Route Logistics',
-    image: `${base}/images/case-study-va.jpg`,
+    image: `${base}/images/case-study-va.webp`,
   },
 ];
 
