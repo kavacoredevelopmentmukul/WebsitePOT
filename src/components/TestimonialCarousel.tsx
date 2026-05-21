@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
-
 interface Testimonial {
   id: number;
   content: string;
@@ -11,12 +9,13 @@ interface Testimonial {
   role: string;
   company: string;
   rating: number;
-  image: string;
 }
 
 /**
  * TODO:VERIFY-WITH-DEEPAK — All carousel testimonials are PLACEHOLDERS.
  * Replace with real client quotes and approved headshots before launch.
+ * Photos intentionally use neutral initials avatars (NOT real faces) so no
+ * name is ever paired with someone else's photo.
  */
 const testimonials: Testimonial[] = [
   {
@@ -26,7 +25,6 @@ const testimonials: Testimonial[] = [
     role: "CTO",
     company: "InnovateAI",
     rating: 5,
-    image: `${BASE}/images/team/priya-sharma.jpg`,
   },
   {
     id: 2,
@@ -35,7 +33,6 @@ const testimonials: Testimonial[] = [
     role: "VP of Engineering",
     company: "CloudScale Systems",
     rating: 5,
-    image: `${BASE}/images/team/david-chen.jpg`,
   },
   {
     id: 3,
@@ -44,9 +41,18 @@ const testimonials: Testimonial[] = [
     role: "Founder",
     company: "FinTech Solutions",
     rating: 5,
-    image: `${BASE}/images/team/aisha-khan.jpg`,
   }
 ];
+
+/** Derive up-to-two-letter initials from a name for the placeholder avatar. */
+function initials(name: string): string {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('');
+}
 
 export default function TestimonialCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -91,11 +97,13 @@ export default function TestimonialCarousel() {
             </p>
 
             <div className="flex flex-col items-center gap-3">
-              <img
-                src={t.image}
-                alt={`${t.author}, ${t.role} at ${t.company}`}
-                className="w-14 h-14 rounded-full object-cover border-2 border-[var(--hairline)]"
-              />
+              <div
+                className="w-14 h-14 rounded-full flex items-center justify-center bg-[var(--navy)] text-[var(--cream)] font-semibold text-lg border-2 border-[var(--hairline)] select-none"
+                role="img"
+                aria-label={`${t.author} — placeholder avatar`}
+              >
+                {initials(t.author)}
+              </div>
               <div>
                 <h4 className="font-medium text-[var(--ink)] dark:text-[var(--text-primary)]">{t.author}</h4>
                 <p className="body-sm">
