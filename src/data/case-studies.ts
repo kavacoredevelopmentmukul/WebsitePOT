@@ -1,4 +1,4 @@
-import { serviceImages } from './service-images';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 export type CaseStudy = {
   id: string;
@@ -39,7 +39,7 @@ export const caseStudies: CaseStudy[] = [
       '99.98% uptime over 18 months',
       'Checkout completion up 34%',
     ],
-    image: serviceImages['web-development'],
+    image: `${base}/images/case-study-ecommerce.jpg`,
   },
   {
     id: 'fintech-midsize',
@@ -58,7 +58,7 @@ export const caseStudies: CaseStudy[] = [
       'App Store rating improved to 4.7★',
       '$1.2M saved vs. local mobile agency quote',
     ],
-    image: serviceImages['mobile-app-development'],
+    image: `${base}/images/case-study-fintech.jpg`,
   },
   {
     id: 'healthcorp-enterprise',
@@ -77,7 +77,7 @@ export const caseStudies: CaseStudy[] = [
       'Cleared 14,000+ backlog claims in 60 days',
       '$2.4M additional cash collected in Q1 post-launch',
     ],
-    image: serviceImages['medical-process-outsourcing'],
+    image: `${base}/images/case-study-healthcare.jpg`,
   },
   {
     id: 'saas-ai-scale',
@@ -96,7 +96,7 @@ export const caseStudies: CaseStudy[] = [
       'Support ticket volume down 22% in 90 days',
       'Inference cost 40% below initial OpenAI-only prototype',
     ],
-    image: serviceImages['artificial-intelligence'],
+    image: `${base}/images/case-study-ai.jpg`,
   },
   {
     id: 'agency-design',
@@ -115,7 +115,7 @@ export const caseStudies: CaseStudy[] = [
       'Client NPS up 18 points',
       'Saved $380k in avoided local salary costs annually',
     ],
-    image: serviceImages['graphic-web-design'],
+    image: `${base}/images/case-study-design.jpg`,
   },
   {
     id: 'logistics-va',
@@ -134,7 +134,7 @@ export const caseStudies: CaseStudy[] = [
       'Vendor response SLA met 96% of the time',
       'Onboarding completed in 5 business days',
     ],
-    image: serviceImages['virtual-assistant'],
+    image: `${base}/images/case-study-va.jpg`,
   },
 ];
 
