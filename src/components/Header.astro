@@ -15,7 +15,7 @@ const calendlyUrl = 'https://calendly.com/pacificoceantech/15min';
     <PacificClock client:load />
     <div class="flex items-center gap-4">
       <a href="tel:+15551234567" class="hover:text-[#E8593C] transition-colors" aria-label="Call us at +1 555 123 4567">+1 (555) 123-4567</a>
-      <a href="mailto:hello@pacificoceantech.com" class="hover:text-[#E8593C] transition-colors" aria-label="Email hello@pacificoceantech.com">hello@pacificoceantech.com</a>
+      <button type="button" class="copy-email hover:text-[#E8593C] transition-colors relative cursor-pointer bg-transparent border-none text-inherit text-xs p-0" aria-label="Copy email address hello@pacificoceantech.com">hello@pacificoceantech.com<span class="copied-tooltip absolute -top-7 left-1/2 -translate-x-1/2 bg-[var(--navy-deep)] text-white text-[10px] px-2 py-1 rounded opacity-0 pointer-events-none transition-opacity whitespace-nowrap">Copied!</span></button>
     </div>
   </div>
 </div>
@@ -115,5 +115,14 @@ const calendlyUrl = 'https://calendly.com/pacificoceantech/15min';
   btn?.addEventListener('click', () => {
     const open = menu?.classList.toggle('hidden') === false;
     btn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelector('.copy-email')?.addEventListener('click', () => {
+    navigator.clipboard.writeText('hello@pacificoceantech.com');
+    const tip = document.querySelector('.copied-tooltip');
+    if (tip) {
+      (tip as HTMLElement).style.opacity = '1';
+      setTimeout(() => { (tip as HTMLElement).style.opacity = '0'; }, 1500);
+    }
   });
 </script>

@@ -72,32 +72,37 @@ const industries = [...new Set(allTestimonials.map(t => t.industry))];
       </div>
     </section>
 
-    <!-- Video Testimonials Placeholder -->
+    <!-- Video Testimonials -->
     <section class="py-24 bg-[var(--bg-surface)]">
       <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">Video Testimonials</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            path('images/video-testimonial-1.jpg'),
-            path('images/video-testimonial-2.jpg'),
-            path('images/video-testimonial-3.jpg'),
-          ].map((thumb, i) => (
-            <div class="aspect-video ve-card relative group cursor-pointer overflow-hidden">
-              <img
-                src={thumb}
-                alt={`Client video testimonial ${i + 1}`}
-                class="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-black/50 group-hover:bg-black/35 transition-colors z-10"></div>
-              <div class="absolute inset-0 flex items-center justify-center z-20">
-                <div class="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white pl-1 transform group-hover:scale-110 transition-transform">
-                  <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            { thumb: path('images/video-testimonial-1.jpg'), title: "How We Scaled From 2 to 12 Engineers in 60 Days", person: "Sarah Lin", role: "CTO, NGX", context: "Sarah's e-commerce platform was crashing during peak traffic events and losing an estimated $1.8M per quarter. After embedding a dedicated POT engineering team, NGX achieved 2× revenue growth and 99.98% uptime over 18 consecutive months." },
+            { thumb: path('images/video-testimonial-2.jpg'), title: "Shipping Our AI Product Before the Board Deadline", person: "Michael Chen", role: "Head of Product, DataPulse AI", context: "DataPulse AI needed a production-ready RAG assistant in under 5 weeks for their annual customer conference. POT's AI engineering pod delivered it in 28 days — 7 days ahead of schedule — with 87% answer accuracy at launch." },
+            { thumb: path('images/video-testimonial-3.jpg'), title: "Cutting Claim Denials by 40% With a Dedicated Billing Pod", person: "Dr. Priya Nair", role: "CFO, HealthCorp Plus", context: "HealthCorp Plus was struggling with an 18% claim denial rate and a backlog of 14,000+ claims after acquiring three new clinics. A 15-person POT billing team integrated with Epic and reduced denials by 40% within 90 days, recovering $890K in previously denied claims." },
+          ].map((video) => (
+            <div class="ve-card overflow-hidden">
+              <div class="aspect-video relative group cursor-pointer overflow-hidden">
+                <img
+                  src={video.thumb}
+                  alt={`Video testimonial: ${video.title}`}
+                  class="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-black/50 group-hover:bg-black/35 transition-colors z-10"></div>
+                <div class="absolute inset-0 flex items-center justify-center z-20">
+                  <div class="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center text-white pl-1 transform group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+                <div class="absolute bottom-4 left-4 right-4 z-20">
+                  <h3 class="text-white font-bold mb-1 text-sm leading-snug">{video.title}</h3>
+                  <p class="text-white/70 text-xs">{video.person} — {video.role}</p>
                 </div>
               </div>
-              <div class="absolute bottom-4 left-4 right-4 z-20">
-                <h3 class="text-white font-bold mb-1">Scaling Engineering Output</h3>
-                <p class="text-white/70 text-sm">CTO, Acme Corp</p>
+              <div class="p-6">
+                <p class="text-sm text-[var(--text-muted)] leading-relaxed">{video.context}</p>
               </div>
             </div>
           ))}
