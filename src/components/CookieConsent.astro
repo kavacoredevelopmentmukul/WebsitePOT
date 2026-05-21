@@ -6,7 +6,7 @@
  *  - On every load, `window.potConsent` is initialised from localStorage
  *    (key: "pot-cookie-consent"). Shape:
  *      { necessary:true, functional:bool, analytics:bool, marketing:bool }
- *  - Non-essential scripts (Tawk.to live chat, future analytics) MUST check
+ *  - Non-essential scripts (future analytics, third-party chat) MUST check
  *    `window.potConsent` (or listen for the `pot:consent-updated` event)
  *    before setting any cookie. They are NOT loaded until the user accepts.
  *  - Strictly-necessary + the first-party theme preference always work.
@@ -59,7 +59,7 @@ import { path } from '../utils/paths';
 
     function apply(consent) {
       window.potConsent = consent;
-      // Broadcast so gated scripts (Tawk.to, analytics) can react immediately.
+      // Broadcast so gated scripts (analytics, third-party chat) can react immediately.
       window.dispatchEvent(new CustomEvent('pot:consent-updated', { detail: consent }));
     }
 

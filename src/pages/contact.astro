@@ -68,7 +68,7 @@ const faqs = [
                 <button
                   type="button"
                   class="text-[var(--navy)] dark:text-[var(--coral)] hover:underline font-medium cursor-pointer"
-                  onclick="if(typeof Tawk_API!=='undefined'&&Tawk_API.toggle){Tawk_API.toggle()}else{document.getElementById('pot-chat-fallback')?.querySelector('button')?.click()}"
+                  onclick="document.getElementById('pot-chat-toggle')?.click()"
                 >Start a live chat</button>
               </div>
             </div>

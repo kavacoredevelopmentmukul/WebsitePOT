@@ -1,73 +1,381 @@
 ---
-/**
- * Floating live-chat launcher via Tawk.to.
- * TODO:VERIFY-WITH-DEEPAK — Replace PROPERTY_ID and WIDGET_ID with real
- * Tawk.to credentials before launch. Sign up free at https://www.tawk.to
- */
-const TAWK_PROPERTY_ID = 'PROPERTY_ID';
-const TAWK_WIDGET_ID = 'default';
+// TODO: Replace this scripted chat widget with Crisp / LLM-proxy when ready.
+// This is a pure client-side, zero-dependency chat flow. No API keys needed.
+
+import { companyStats } from '../data/company-stats';
+
+const calendlyUrl = 'https://calendly.com/pacificoceantech/15min';
+const email = companyStats.email;
+
+// Canned answers pulled from the single source of truth so they stay accurate.
+const cannedAnswers = {
+  pricing: `We help you save <strong>${companyStats.costSavings}</strong> compared to local hires, with no hidden fees. Every engagement is scoped to your needs — whether you need one specialist or a full pod. <a href="${calendlyUrl}" target="_blank" rel="noopener noreferrer" class="pot-chat-link">Book a 15-min call</a> and we&rsquo;ll put together a custom quote.`,
+  howItWorks: `It&rsquo;s simple:<br>1&rpar; Tell us the role and stack.<br>2&rpar; We shortlist vetted candidates in <strong>${companyStats.placementSpeed}</strong>.<br>3&rpar; You interview and pick your team.<br>4&rpar; We handle payroll, ops, and retention.<br><br>With <strong>${companyStats.professionalsPlaced}</strong> professionals placed across <strong>${companyStats.countriesServed}</strong> countries, we know how to match fast. <a href="${calendlyUrl}" target="_blank" rel="noopener noreferrer" class="pot-chat-link">Let&rsquo;s talk</a>.`,
+  services: `We cover <strong>${companyStats.skillDomains}</strong> skill domains across engineering, AI/ML, DevOps, design, QA, business support, and digital marketing. Our <strong>${companyStats.clientRetention}</strong> client-retention rate speaks for itself. <a href="/WebsitePOT/services" class="pot-chat-link">Browse all services</a> or <a href="${calendlyUrl}" target="_blank" rel="noopener noreferrer" class="pot-chat-link">book a call</a> to discuss your needs.`,
+  bookCall: `Pick a time that works for you:<br><br><a href="${calendlyUrl}" target="_blank" rel="noopener noreferrer" class="pot-chat-cta">Book a 15-minute call</a><br><br>Or email us at <a href="mailto:${email}" class="pot-chat-link">${email}</a> — we reply within 24 hours.`,
+};
 ---
 
-<!-- Tawk.to Live Chat Widget — non-essential, consent-gated -->
-<script is:inline define:vars={{ TAWK_PROPERTY_ID, TAWK_WIDGET_ID }}>
-  (function () {
-    var loaded = false;
+<!-- Scripted Chat Widget — pure client-side, no external service -->
+<div id="pot-chat" class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3" aria-label="Chat widget">
+  <!-- Chat Panel (hidden by default) -->
+  <div
+    id="pot-chat-panel"
+    class="pot-chat-panel hidden"
+    role="dialog"
+    aria-label="Chat with POT assistant"
+  >
+    <!-- Header -->
+    <div class="pot-chat-header">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-[var(--coral)] flex items-center justify-center text-white text-sm font-bold shrink-0" aria-hidden="true">P</div>
+        <div>
+          <p class="text-sm font-bold text-white leading-tight">POT Assistant</p>
+          <p class="text-[11px] text-white/60 leading-tight">Typically replies instantly</p>
+        </div>
+      </div>
+      <button
+        type="button"
+        id="pot-chat-close"
+        class="text-white/60 hover:text-white transition-colors p-1 -mr-1"
+        aria-label="Close chat"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
 
-    function consentGiven() {
-      // Tawk.to is a non-essential (functional) cookie. Require explicit consent.
-      var c = window.potConsent;
-      return !!(c && (c.functional || c.marketing));
-    }
+    <!-- Messages area -->
+    <div id="pot-chat-messages" class="pot-chat-messages">
+      <!-- Populated by JS -->
+    </div>
 
-    function loadTawk() {
-      // Guard: only inject once, only with a real property ID, only after consent.
-      if (loaded) return;
-      if (TAWK_PROPERTY_ID === 'PROPERTY_ID') return; // placeholder — never loads
-      if (!consentGiven()) return;
-      loaded = true;
-      window.Tawk_API = window.Tawk_API || {};
-      window.Tawk_LoadStart = new Date();
-      var s1 = document.createElement('script');
-      var s0 = document.getElementsByTagName('script')[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/' + TAWK_PROPERTY_ID + '/' + TAWK_WIDGET_ID;
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    }
+    <!-- Quick replies (shown initially, hidden after first pick) -->
+    <div id="pot-chat-quick" class="pot-chat-quick">
+      <button type="button" class="pot-chat-qr" data-topic="pricing">Pricing</button>
+      <button type="button" class="pot-chat-qr" data-topic="howItWorks">How it works</button>
+      <button type="button" class="pot-chat-qr" data-topic="services">Services</button>
+      <button type="button" class="pot-chat-qr" data-topic="bookCall">Book a call</button>
+    </div>
 
-    // Try on load (covers returning visitors who already consented)…
-    loadTawk();
-    // …and react the moment consent is granted.
-    window.addEventListener('pot:consent-updated', loadTawk);
-  })();
-</script>
+    <!-- Free-text input -->
+    <div class="pot-chat-input-bar">
+      <input
+        id="pot-chat-input"
+        type="text"
+        placeholder="Type a message..."
+        class="pot-chat-input"
+        autocomplete="off"
+      />
+      <button type="button" id="pot-chat-send" class="pot-chat-send" aria-label="Send message">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
 
-<!-- Fallback floating chat button (shown while PROPERTY_ID is a placeholder) -->
-<div
-  id="pot-chat-fallback"
-  class="fixed bottom-6 right-6 z-40"
-  aria-label="Live chat"
->
+  <!-- Floating toggle button -->
   <button
     type="button"
-    class="flex items-center gap-2 px-4 py-3 rounded-md bg-[var(--navy)] text-white text-sm font-semibold shadow-lg hover:bg-[var(--navy-deep)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--coral)] focus:ring-offset-2 whitespace-nowrap"
-    aria-label="Open live chat"
-    onclick="if(typeof Tawk_API!=='undefined'&&Tawk_API.toggle){Tawk_API.toggle()}else{window.open('mailto:hello@pacificoceantech.com','_blank')}"
+    id="pot-chat-toggle"
+    class="pot-chat-fab"
+    aria-label="Open chat"
+    aria-expanded="false"
+    aria-controls="pot-chat-panel"
   >
-    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <!-- Chat icon (shown when closed) -->
+    <svg id="pot-chat-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
     </svg>
-    Live Chat
+    <!-- Close icon (shown when open) -->
+    <svg id="pot-chat-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
   </button>
 </div>
 
-<script is:inline>
-  // Hide fallback button once Tawk widget is ready
-  if (typeof Tawk_API !== 'undefined') {
-    Tawk_API.onLoad = function () {
-      var el = document.getElementById('pot-chat-fallback');
-      if (el) el.style.display = 'none';
-    };
+<style>
+  /* ── Panel ── */
+  .pot-chat-panel {
+    width: 370px;
+    max-width: calc(100vw - 2rem);
+    max-height: min(520px, calc(100vh - 120px));
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary, #ffffff);
+    box-shadow: 0 12px 40px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.08);
+    border: 1px solid var(--hairline, #e5e7eb);
+    animation: pot-chat-slide-up .25s ease-out;
   }
+  .pot-chat-panel.hidden { display: none; }
+
+  @keyframes pot-chat-slide-up {
+    from { opacity: 0; transform: translateY(12px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ── Header ── */
+  .pot-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--navy, #1B3A5C);
+  }
+
+  /* ── Messages ── */
+  .pot-chat-messages {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 180px;
+    max-height: 320px;
+  }
+
+  .pot-chat-bubble {
+    max-width: 88%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    word-break: break-word;
+  }
+  .pot-chat-bubble.bot {
+    align-self: flex-start;
+    background: var(--bg-surface, #f3f4f6);
+    color: var(--text-primary, #1a1a1a);
+    border-bottom-left-radius: 4px;
+  }
+  .pot-chat-bubble.user {
+    align-self: flex-end;
+    background: var(--coral, #E8593C);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+
+  /* ── Quick replies ── */
+  .pot-chat-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 16px 12px;
+  }
+  .pot-chat-qr {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s ease;
+    background: transparent;
+    border: 1.5px solid var(--coral, #E8593C);
+    color: var(--coral, #E8593C);
+  }
+  .pot-chat-qr:hover, .pot-chat-qr:focus-visible {
+    background: var(--coral, #E8593C);
+    color: #fff;
+  }
+
+  /* ── Input bar ── */
+  .pot-chat-input-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-top: 1px solid var(--hairline, #e5e7eb);
+    background: var(--bg-primary, #ffffff);
+  }
+  .pot-chat-input {
+    flex: 1;
+    border: 1px solid var(--hairline, #e5e7eb);
+    border-radius: 100px;
+    padding: 8px 14px;
+    font-size: 13px;
+    outline: none;
+    background: var(--bg-surface, #f3f4f6);
+    color: var(--text-primary, #1a1a1a);
+    transition: border-color .15s;
+  }
+  .pot-chat-input:focus {
+    border-color: var(--coral, #E8593C);
+  }
+  .pot-chat-input::placeholder {
+    color: var(--text-muted, #6b7280);
+  }
+  .pot-chat-send {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--coral, #E8593C);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background .15s;
+    flex-shrink: 0;
+  }
+  .pot-chat-send:hover { background: var(--coral-deep, #C9482D); }
+
+  /* ── FAB ── */
+  .pot-chat-fab {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy, #1B3A5C);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25);
+    transition: background .2s, transform .2s;
+  }
+  .pot-chat-fab:hover { background: var(--navy-deep, #122844); transform: scale(1.06); }
+  .pot-chat-fab:focus-visible { outline: 2px solid var(--coral, #E8593C); outline-offset: 2px; }
+
+  /* ── Links inside bubbles ── */
+  :global(.pot-chat-link) {
+    color: var(--coral, #E8593C);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  :global(.pot-chat-link:hover) { color: var(--coral-deep, #C9482D); }
+  :global(.pot-chat-cta) {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 100px;
+    background: var(--coral, #E8593C);
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background .15s;
+  }
+  :global(.pot-chat-cta:hover) { background: var(--coral-deep, #C9482D); }
+</style>
+
+<script is:inline define:vars={{ cannedAnswers, calendlyUrl, email }}>
+  // TODO: Replace this scripted chat widget with Crisp / LLM-proxy when ready.
+  (function () {
+    var panel     = document.getElementById('pot-chat-panel');
+    var toggle    = document.getElementById('pot-chat-toggle');
+    var closeBtn  = document.getElementById('pot-chat-close');
+    var messages  = document.getElementById('pot-chat-messages');
+    var quickArea = document.getElementById('pot-chat-quick');
+    var input     = document.getElementById('pot-chat-input');
+    var sendBtn   = document.getElementById('pot-chat-send');
+    var iconOpen  = document.getElementById('pot-chat-icon-open');
+    var iconClose = document.getElementById('pot-chat-icon-close');
+
+    var isOpen = false;
+    var greeted = false;
+
+    // ── Helpers ──
+
+    function addBubble(html, who) {
+      var div = document.createElement('div');
+      div.className = 'pot-chat-bubble ' + who;
+      div.innerHTML = html;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function showTyping() {
+      var dot = document.createElement('div');
+      dot.className = 'pot-chat-bubble bot';
+      dot.id = 'pot-typing';
+      dot.textContent = '...';
+      dot.style.opacity = '.5';
+      messages.appendChild(dot);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function removeTyping() {
+      var t = document.getElementById('pot-typing');
+      if (t) t.remove();
+    }
+
+    function botReply(html) {
+      showTyping();
+      setTimeout(function () {
+        removeTyping();
+        addBubble(html, 'bot');
+      }, 450);
+    }
+
+    // ── Open / Close ──
+
+    function openChat() {
+      isOpen = true;
+      panel.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      iconOpen.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+      if (!greeted) {
+        greeted = true;
+        addBubble("Hi! I'm the POT assistant. What can I help with?", 'bot');
+      }
+      input.focus();
+    }
+
+    function closeChat() {
+      isOpen = false;
+      panel.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+
+    toggle.addEventListener('click', function () { isOpen ? closeChat() : openChat(); });
+    closeBtn.addEventListener('click', closeChat);
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen) closeChat();
+    });
+
+    // ── Quick Replies ──
+
+    var qrButtons = quickArea.querySelectorAll('.pot-chat-qr');
+    qrButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var topic = btn.getAttribute('data-topic');
+        var label = btn.textContent.trim();
+        addBubble(label, 'user');
+        quickArea.style.display = 'none';
+
+        var answer = cannedAnswers[topic];
+        if (answer) {
+          botReply(answer);
+        }
+      });
+    });
+
+    // ── Free-text Input ──
+
+    var freeTextReply =
+      'Great question &mdash; the fastest way to get a tailored answer is a quick call:<br><br>' +
+      '<a href="' + calendlyUrl + '" target="_blank" rel="noopener noreferrer" class="pot-chat-cta">Book a 15-minute call</a>' +
+      '<br><br>Or email us at <a href="mailto:' + email + '" class="pot-chat-link">' + email + '</a> &mdash; we reply within 24&nbsp;hours.';
+
+    function handleSend() {
+      var text = input.value.trim();
+      if (!text) return;
+      addBubble(text.replace(/</g, '&lt;').replace(/>/g, '&gt;'), 'user');
+      input.value = '';
+      quickArea.style.display = 'none';
+      botReply(freeTextReply);
+    }
+
+    sendBtn.addEventListener('click', handleSend);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); handleSend(); }
+    });
+  })();
 </script>
