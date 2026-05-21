@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
 import FAQ from '../components/FAQ.tsx';
+import { path } from '../utils/paths';
 import { Mail, Phone, MessageCircle, MapPin, Map } from 'lucide-astro';
 
 const faqs = [
@@ -58,13 +59,17 @@ const faqs = [
             </div>
 
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-[#25D366]/10 flex items-center justify-center text-[#25D366] shrink-0">
+              <div class="w-12 h-12 rounded-2xl bg-[var(--navy)]/10 flex items-center justify-center text-[var(--navy)] dark:text-[var(--cream)] shrink-0">
                 <MessageCircle size={24} />
               </div>
               <div>
-                <h3 class="font-heading font-bold text-lg mb-1 text-[var(--text-primary)]">WhatsApp</h3>
-                <p class="text-[var(--text-muted)] text-sm mb-1">For quick chat and support:</p>
-                <a href="https://wa.me/15551234567" target="_blank" rel="noopener noreferrer" class="text-[#25D366] hover:underline font-medium">Message us on WhatsApp</a>
+                <h3 class="font-heading font-bold text-lg mb-1 text-[var(--text-primary)]">Live Chat</h3>
+                <p class="text-[var(--text-muted)] text-sm mb-1">Chat with our team in real time:</p>
+                <button
+                  type="button"
+                  class="text-[var(--navy)] dark:text-[var(--coral)] hover:underline font-medium cursor-pointer"
+                  onclick="if(typeof Tawk_API!=='undefined'&&Tawk_API.toggle){Tawk_API.toggle()}else{document.getElementById('pot-chat-fallback')?.querySelector('button')?.click()}"
+                >Start a live chat</button>
               </div>
             </div>
             
@@ -97,7 +102,7 @@ const faqs = [
       <div class="w-full h-96 ve-card overflow-hidden relative">
         <div class="absolute inset-0 bg-[var(--bg-surface)]">
           <img
-            src="https://images.unsplash.com/photo-1486406146928-9aefddbe7529?w=800&q=80"
+            src={path('images/about-global.jpg')}
             alt="Pacific Ocean Tech office location"
             class="w-full h-full object-cover opacity-40"
             loading="lazy"

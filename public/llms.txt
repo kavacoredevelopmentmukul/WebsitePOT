@@ -1,27 +1,43 @@
 # Pacific Ocean Tech - AI Crawler Information
 
 Title: Pacific Ocean Tech
-Description: Premium remote staffing and outsourcing company that helps global businesses hire dedicated AI engineers, developers, IT specialists, and creative talent from India.
+Description: Remote staffing company helping global businesses hire dedicated professionals across IT, marketing, finance, design, and 150+ skill domains from the Pacific region.
 Website: https://kavacoredevelopmentmukul.github.io/WebsitePOT/
 
 ## Services
-1. Artificial Intelligence: ML engineers, LLM/RAG specialists, AI agents, computer vision, MLOps.
-2. Frontend Development: React, Vue, Astro, Next.js, mobile-responsive UI.
-3. Backend Development: Node.js, Python, Go, microservices, APIs, databases.
-4. IT Support & Managed Services: DevOps, cloud (AWS/GCP/Azure), 24/7 monitoring, infrastructure.
-5. Digital Marketing: SEO, performance ads, content strategy, analytics.
-6. Dedicated Developers: Full-time remote staff augmentation, dedicated team members.
-7. Graphics & Web Design: UI/UX design, brand identity, illustration, motion graphics.
+1. Software Development: Full-stack engineers, backend, frontend, QA, DevOps.
+2. Artificial Intelligence: ML engineers, LLM/RAG specialists, AI agents, computer vision, MLOps.
+3. Web Development: React, Vue, Astro, Next.js, mobile-responsive UI.
+4. Mobile App Development: iOS, Android, Flutter, React Native.
+5. Engineering & Architecture: Systems architecture, cloud infrastructure, platform engineering.
+6. Embedded Development: IoT firmware, RTOS, hardware integration.
+7. IT Support & Managed Services: DevOps, cloud (AWS/GCP/Azure), monitoring, infrastructure.
+8. Virtual Assistants: Executive support, admin, scheduling, CRM management.
+9. Finance & Accounting: Bookkeeping, payroll, tax, FP&A, audit support.
+10. Legal Process Outsourcing: Contract review, compliance, paralegal services.
+11. Medical Process Outsourcing: Medical coding, billing, RCM, claims processing.
+12. Digital Marketing: SEO, performance ads, content strategy, analytics.
+13. Graphic & Web Design: UI/UX design, brand identity, illustration, motion graphics.
+14. Content Writing: Copywriting, technical writing, content marketing.
 
 ## Key Stats
-- 5,000+ Vetted Tech Talent
-- 15+ Countries Served
-- 10+ Years Experience
-- 94% Client Retention
-- 60% Average Cost Savings
-- 48h Average Placement
+All statistics below are pending verification (TODO:VERIFY-WITH-DEEPAK).
+- Established: 2015
+- 500+ professionals placed
+- 12+ countries served
+- 96% client retention
+- 150+ skill domains
+- Up to 70% cost savings vs. local hire
+- 48-hour average candidate shortlist
+- 200+ global clients
+
+## Engagement Model
+- Dedicated full-time or part-time remote professionals
+- Flat monthly retainer, no hidden fees
+- 30-day replacement guarantee
+- POT handles HR, IT, payroll, compliance
 
 ## Contact Information
 Email: hello@pacificoceantech.com
-Phone: +1 (555) 123-4567
-Headquarters: Chandigarh, India
+Phone: +1 (555) 123-4567 (TODO:VERIFY-WITH-DEEPAK — placeholder number)
+Headquarters: Tech Park Sector 17, Chandigarh 160017, India

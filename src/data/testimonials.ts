@@ -1,3 +1,9 @@
+/**
+ * TODO:VERIFY-WITH-DEEPAK — All testimonials below are PLACEHOLDERS.
+ * Every quote, author name, role, and company must be verified with real
+ * client permissions before launch. Publishing fabricated testimonials
+ * violates FTC endorsement guidelines and undermines E-E-A-T.
+ */
 export interface Testimonial {
   id: number;
   content: string;

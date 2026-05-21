@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 interface Testimonial {
   id: number;
   content: string;
@@ -12,6 +14,10 @@ interface Testimonial {
   image: string;
 }
 
+/**
+ * TODO:VERIFY-WITH-DEEPAK — All carousel testimonials are PLACEHOLDERS.
+ * Replace with real client quotes and approved headshots before launch.
+ */
 const testimonials: Testimonial[] = [
   {
     id: 1,
@@ -20,7 +26,7 @@ const testimonials: Testimonial[] = [
     role: "CTO",
     company: "InnovateAI",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
+    image: `${BASE}/images/team/priya-sharma.jpg`,
   },
   {
     id: 2,
@@ -29,7 +35,7 @@ const testimonials: Testimonial[] = [
     role: "VP of Engineering",
     company: "CloudScale Systems",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+    image: `${BASE}/images/team/david-chen.jpg`,
   },
   {
     id: 3,
@@ -38,7 +44,7 @@ const testimonials: Testimonial[] = [
     role: "Founder",
     company: "FinTech Solutions",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+    image: `${BASE}/images/team/aisha-khan.jpg`,
   }
 ];
 

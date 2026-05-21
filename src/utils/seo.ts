@@ -1,3 +1,5 @@
+import { companyStats } from '../data/company-stats';
+
 export type BreadcrumbItem = { name: string; path: string };
 
 const SITE = 'https://kavacoredevelopmentmukul.github.io/WebsitePOT';
@@ -16,16 +18,24 @@ export function organizationSchema() {
     logo: absoluteUrl('/favicon.svg'),
     description:
       'Pacific Ocean Tech helps global companies hire dedicated remote professionals across the Pacific region.',
+    foundingDate: String(companyStats.establishedYear),
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Chandigarh',
+      streetAddress: companyStats.address.street,
+      addressLocality: companyStats.address.city,
+      postalCode: companyStats.address.postalCode,
       addressCountry: 'IN',
     },
+    /**
+     * TODO:VERIFY-WITH-DEEPAK — contactPoint uses placeholder phone number.
+     * Replace with real business phone before launch, or remove entirely.
+     * Shipping fake NAP data in structured data is a Google E-E-A-T risk.
+     */
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-555-123-4567',
+      telephone: companyStats.phoneTel,
       contactType: 'sales',
-      email: 'hello@pacificoceantech.com',
+      email: companyStats.email,
       areaServed: ['US', 'AU', 'NZ', 'GB', 'IN'],
     },
   };

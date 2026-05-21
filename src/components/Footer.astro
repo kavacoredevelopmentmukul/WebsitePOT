@@ -3,6 +3,7 @@ import Logo from './Logo.astro';
 import { Twitter, Facebook, Linkedin, Youtube, Instagram, Mail, Phone, MapPin } from 'lucide-astro';
 import { allServices } from '../data/services';
 import { path } from '../utils/paths';
+import { companyStats } from '../data/company-stats';
 
 const currentYear = new Date().getFullYear();
 
@@ -70,15 +71,15 @@ const resourceLinks = [
         <ul class="space-y-4 body-sm text-[rgba(244,239,230,0.7)]">
           <li class="flex items-start gap-3">
             <Mail class="w-4 h-4 shrink-0 mt-0.5 text-[#E8593C]" />
-            <a href="mailto:hello@pacificoceantech.com" class="hover:text-[#E8593C] transition-colors">hello@pacificoceantech.com</a>
+            <a href={`mailto:${companyStats.email}`} class="hover:text-[#E8593C] transition-colors">{companyStats.email}</a>
           </li>
           <li class="flex items-start gap-3">
             <Phone class="w-4 h-4 shrink-0 mt-0.5 text-[#E8593C]" />
-            <a href="tel:+15551234567" class="hover:text-[#E8593C] transition-colors">+1 (555) 123-4567</a>
+            <a href={`tel:${companyStats.phoneTel}`} class="hover:text-[#E8593C] transition-colors">{companyStats.phone}</a>
           </li>
           <li class="flex items-start gap-3">
             <MapPin class="w-4 h-4 shrink-0 mt-0.5 text-[#E8593C]" />
-            <span>Tech Park Sector 17, Chandigarh 160017, India</span>
+            <span>{companyStats.address.oneLiner}</span>
           </li>
         </ul>
 
@@ -111,7 +112,7 @@ const resourceLinks = [
       <p class="body-sm text-[rgba(244,239,230,0.5)]">
         &copy; {currentYear} Pacific Ocean Tech. All rights reserved.
       </p>
-      <p class="mono-label text-[rgba(244,239,230,0.45)]">Established 2015 · 500+ professionals placed · 12+ countries served</p>
+      <p class="mono-label text-[rgba(244,239,230,0.45)]">Established {companyStats.establishedYear} · {companyStats.professionalsPlaced} professionals placed · {companyStats.countriesServed} countries served</p>
     </div>
   </div>
 </footer>

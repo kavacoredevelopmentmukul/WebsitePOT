@@ -2,14 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { companyStats } from '../data/company-stats';
+import { path } from '../utils/paths';
 import { Star, Eye, Zap, Users, Lightbulb, ShieldCheck } from 'lucide-astro';
 
+/**
+ * TODO:VERIFY-WITH-DEEPAK — Every year and milestone below needs confirmation.
+ * The established year must match companyStats.establishedYear (currently 2015).
+ * The 2025 milestone previously claimed "5,000+ engineers" which conflicts with
+ * "500+ professionals placed" in the trust band. Using the conservative figure.
+ */
 const timeline = [
-  { year: "2016", title: "Founded in Chandigarh", desc: "Started as a small web development agency with a team of 5 engineers." },
+  { year: String(companyStats.establishedYear), title: "Founded in Chandigarh", desc: "Started as a small web development agency with a dedicated team of engineers." },
   { year: "2018", title: "Global Expansion", desc: "Opened our first international sales office in San Francisco to better serve US clients." },
   { year: "2020", title: "The Remote Shift", desc: "Transitioned to a fully remote model for our talent, expanding our sourcing pan-India." },
   { year: "2023", title: "AI Division Launch", desc: "Established a dedicated AI/ML engineering hub to meet the surging demand for GenAI." },
-  { year: "2025", title: "5,000+ Engineers", desc: "Crossed the milestone of 5,000 active deployed engineers worldwide." },
+  { year: "2025", title: `${companyStats.professionalsPlaced} Professionals Placed`, desc: `Crossed the milestone of ${companyStats.professionalsPlaced} professionals placed with clients across ${companyStats.countriesServed} countries.` },
 ];
 
 const values = [
@@ -54,7 +62,7 @@ const values = [
                 The traditional outsourcing model was broken. It treated engineers as disposable resources on short-term projects, resulting in poor code quality and high turnover.
               </p>
               <p>
-                Pacific Ocean Tech was built to flip this model. We created a system based on <strong class="text-[var(--text-primary)]">dedicated, full-time staff augmentation</strong>. We don't build projects; we build teams. Today, we are proud to be the trusted talent partner for over 200 companies globally.
+                Pacific Ocean Tech was built to flip this model. We created a system based on <strong class="text-[var(--text-primary)]">dedicated, full-time staff augmentation</strong>. We don't build projects; we build teams. Today, we are proud to be the trusted talent partner for {companyStats.clientsServed} companies globally. {/* TODO:VERIFY-WITH-DEEPAK */}
               </p>
             </div>
             
@@ -68,7 +76,7 @@ const values = [
           <div class="grid grid-cols-2 gap-6">
             <div class="aspect-square rounded-lg overflow-hidden bg-[var(--bg-surface)]">
               <img
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80"
+                src={path('images/hero-team.jpg')}
                 alt="Pacific Ocean Tech team collaborating"
                 class="w-full h-full object-cover"
                 loading="lazy"
@@ -76,7 +84,7 @@ const values = [
             </div>
             <div class="aspect-square rounded-lg overflow-hidden bg-[var(--bg-surface)] mt-8">
               <img
-                src="https://images.unsplash.com/photo-1486406146928-9aefddbe7529?w=800&q=80"
+                src={path('images/about-global.jpg')}
                 alt="Global offices and remote collaboration"
                 class="w-full h-full object-cover"
                 loading="lazy"

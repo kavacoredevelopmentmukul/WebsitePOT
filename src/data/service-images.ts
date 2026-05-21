@@ -1,19 +1,25 @@
-/** Unsplash hero/card images per service category (?w=800&q=80) */
+/**
+ * Self-hosted service category images.
+ * Source files live in /public/images/services/.
+ * Paths are resolved at build time via import.meta.env.BASE_URL.
+ */
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 export const serviceImages: Record<string, string> = {
-  'software-development': 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80',
-  'artificial-intelligence': 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80',
-  'web-development': 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80',
-  'mobile-app-development': 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80',
-  'engineering-architecture': 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80',
-  'embedded-development': 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
-  'it-support': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
-  'virtual-assistant': 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
-  'finance-accounting': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
-  'legal-process-outsourcing': 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80',
-  'medical-process-outsourcing': 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-  'digital-marketing': 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&q=80',
-  'graphic-web-design': 'https://images.unsplash.com/photo-1561070791-2526d30994b8?w=800&q=80',
-  'content-writing': 'https://images.unsplash.com/photo-1455390582260-044601ddfc0d?w=800&q=80',
+  'software-development': `${base}/images/services/software-development.jpg`,
+  'artificial-intelligence': `${base}/images/services/artificial-intelligence.jpg`,
+  'web-development': `${base}/images/services/web-development.jpg`,
+  'mobile-app-development': `${base}/images/services/mobile-app-development.jpg`,
+  'engineering-architecture': `${base}/images/services/engineering-architecture.jpg`,
+  'embedded-development': `${base}/images/services/embedded-development.jpg`,
+  'it-support': `${base}/images/services/it-support.jpg`,
+  'virtual-assistant': `${base}/images/services/virtual-assistant.jpg`,
+  'finance-accounting': `${base}/images/services/finance-accounting.jpg`,
+  'legal-process-outsourcing': `${base}/images/services/legal-process-outsourcing.jpg`,
+  'medical-process-outsourcing': `${base}/images/services/medical-process-outsourcing.jpg`,
+  'digital-marketing': `${base}/images/services/digital-marketing.jpg`,
+  'graphic-web-design': `${base}/images/services/graphic-web-design.jpg`,
+  'content-writing': `${base}/images/services/content-writing.jpg`,
 };
 
 export function getServiceImage(serviceId: string): string {

@@ -5,6 +5,8 @@ import PacificClock from './PacificClock.tsx';
 import { servicePillars } from '../data/services';
 import { path } from '../utils/paths';
 import { ChevronDown } from 'lucide-astro';
+
+const calendlyUrl = 'https://calendly.com/pacificoceantech/15min';
 ---
 
 <!-- Utility bar -->
@@ -61,6 +63,15 @@ import { ChevronDown } from 'lucide-astro';
 
         <div class="flex items-center gap-3 pl-4 border-l border-[var(--text-muted)]/20 ml-2 shrink-0">
           <ThemeToggle client:load />
+          <a
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-md border border-[var(--navy)] text-[var(--navy)] dark:border-[var(--cream)] dark:text-[var(--cream)] font-medium text-[13px] whitespace-nowrap hover:bg-[var(--navy)] hover:text-white dark:hover:bg-[var(--cream)] dark:hover:text-[var(--navy)] transition-colors"
+            aria-label="Book a 15-minute call on Calendly"
+          >
+            Book a Call
+          </a>
           <a href={path('contact')} class="px-4 py-2 rounded-md bg-[#E8593C] text-white font-medium text-[13px] whitespace-nowrap hover:bg-[#cf4b31] transition-colors">
             Get Started
           </a>
@@ -86,7 +97,14 @@ import { ChevronDown } from 'lucide-astro';
       <a href={path('case-studies')} class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)]">Case Studies</a>
       <a href={path('testimonials')} class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)]">Testimonials</a>
       <a href={path('contact')} class="block px-3 py-2 rounded-md text-base font-medium text-[var(--text-primary)]">Contact Us</a>
-      <a href={path('contact')} class="block w-full text-center px-5 py-3 rounded-md bg-[#E8593C] text-white font-medium mt-4">Get Started</a>
+      <a
+        href={calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block w-full text-center px-5 py-3 rounded-md border border-[var(--navy)] text-[var(--navy)] dark:border-[var(--cream)] dark:text-[var(--cream)] font-medium mt-4 hover:bg-[var(--navy)] hover:text-white transition-colors"
+        aria-label="Book a 15-minute call on Calendly"
+      >Book a 15-min Call</a>
+      <a href={path('contact')} class="block w-full text-center px-5 py-3 rounded-md bg-[#E8593C] text-white font-medium mt-2">Get Started</a>
     </div>
   </div>
 </header>

@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { allTestimonials } from '../data/testimonials';
+import { path } from '../utils/paths';
 import { Star } from 'lucide-astro';
 
 const industries = [...new Set(allTestimonials.map(t => t.industry))];
@@ -77,9 +78,9 @@ const industries = [...new Set(allTestimonials.map(t => t.industry))];
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-[var(--text-primary)]">Video Testimonials</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
-            'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80',
-            'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&q=80',
+            path('images/services/virtual-assistant.jpg'),
+            path('images/services/software-development.jpg'),
+            path('images/services/digital-marketing.jpg'),
           ].map((thumb, i) => (
             <div class="aspect-video ve-card relative group cursor-pointer overflow-hidden">
               <img

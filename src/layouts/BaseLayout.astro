@@ -15,12 +15,18 @@ interface Props {
 const {
   title,
   description = 'Hire dedicated remote professionals across the Pacific region. Pre-vetted talent in IT, marketing, finance, design, and 50+ domains.',
-  image = '/og-image.png',
+  image: rawImage = '/og-image.png',
   schemas = [],
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url);
 const allSchemas = [organizationSchema(), ...schemas];
+
+/** Resolve image path: external URLs pass through, local paths get the base prefix */
+const image = rawImage.startsWith('http')
+  ? rawImage
+  : path(rawImage.replace(/^\//, ''));
+
 ---
 
 <!DOCTYPE html>

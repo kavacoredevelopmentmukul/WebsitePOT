@@ -3,12 +3,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
+import { path } from '../../utils/paths';
 
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const featuredPost = sortedPosts[0];
 const remainingPosts = sortedPosts.slice(1);
+
+/** Resolve blog image: external URLs pass through, local paths get the base prefix */
+function blogImage(img?: string): string | undefined {
+  if (!img) return undefined;
+  if (img.startsWith('http')) return img;
+  return path(img.replace(/^\//, ''));
+}
 ---
 
 <BaseLayout 
@@ -30,10 +38,10 @@ const remainingPosts = sortedPosts.slice(1);
     <!-- Featured Post -->
     {featuredPost && (
       <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <a href={`/blog/${featuredPost.id}`} class="block ve-card group overflow-hidden">
+        <a href={path(`blog/${featuredPost.id}`)} class="block ve-card group overflow-hidden">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
             <div class="aspect-video lg:aspect-auto bg-[var(--bg-surface)] relative overflow-hidden">
-              <img src={featuredPost.data.image} alt={featuredPost.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src={blogImage(featuredPost.data.image)} alt={featuredPost.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div class="p-8 md:p-12 flex flex-col justify-center">
               <div class="flex items-center gap-4 mb-6">
@@ -67,9 +75,9 @@ const remainingPosts = sortedPosts.slice(1);
       <h3 class="text-2xl font-heading font-bold mb-8 text-[var(--text-primary)]">Latest Articles</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {remainingPosts.map(post => (
-          <a href={`/blog/${post.id}`} class="ve-card group flex flex-col h-full overflow-hidden">
+          <a href={path(`blog/${post.id}`)} class="ve-card group flex flex-col h-full overflow-hidden">
             <div class="aspect-video bg-[var(--bg-surface)] relative overflow-hidden">
-              <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={blogImage(post.data.image)} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-4 left-4 px-3 py-1 bg-[var(--navy)] rounded-md text-xs font-medium text-white">
                 {post.data.category}
               </div>

@@ -1,20 +1,14 @@
 ---
-const stats = [
-  'Established 2015',
-  '500+ professionals placed',
-  '12+ countries served',
-  '96% client retention',
-  '150+ skill domains',
-];
+import { trustBandStats } from '../data/company-stats';
 ---
 
 <section class="pot-trust-band" aria-label="Trust indicators">
   <div class="pot-container">
     <div class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap items-center justify-center gap-y-3 gap-x-2 sm:gap-x-4">
-      {stats.map((stat, index) => (
+      {trustBandStats.map((stat, index) => (
         <>
           <p class="pot-trust-stat text-center whitespace-nowrap">{stat}</p>
-          {index < stats.length - 1 && (
+          {index < trustBandStats.length - 1 && (
             <span class="hidden sm:inline text-[rgba(244,239,230,0.35)]" aria-hidden="true">|</span>
           )}
         </>

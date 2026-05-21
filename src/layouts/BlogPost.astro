@@ -18,9 +18,14 @@ const { title, description, date, author, category, image } = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
   month: 'long', day: 'numeric', year: 'numeric'
 });
+
+/** Resolve blog image: external URLs pass through, local paths get the base prefix */
+const resolvedImage = image && !image.startsWith('http')
+  ? path(image.replace(/^\//, ''))
+  : image;
 ---
 
-<BaseLayout title={title} description={description} image={image}>
+<BaseLayout title={title} description={description} image={resolvedImage}>
   <Header />
 
   <!-- Article breadcrumb -->

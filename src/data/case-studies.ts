@@ -15,6 +15,12 @@ export type CaseStudy = {
   category: 'Start-Up' | 'Mid-Size' | 'Enterprise';
 };
 
+/**
+ * TODO:VERIFY-WITH-DEEPAK — All case studies are ILLUSTRATIVE EXAMPLES.
+ * Client names, metrics, and outcomes must be verified with real data and
+ * client permission before launch. Shipping fabricated case studies is
+ * a legal liability.
+ */
 export const caseStudies: CaseStudy[] = [
   {
     id: 'ngx-startup',
