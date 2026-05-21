@@ -8,13 +8,25 @@ const TAWK_PROPERTY_ID = 'PROPERTY_ID';
 const TAWK_WIDGET_ID = 'default';
 ---
 
-<!-- Tawk.to Live Chat Widget -->
+<!-- Tawk.to Live Chat Widget — non-essential, consent-gated -->
 <script is:inline define:vars={{ TAWK_PROPERTY_ID, TAWK_WIDGET_ID }}>
-  // Only load Tawk.to if a real property ID has been set
-  if (TAWK_PROPERTY_ID !== 'PROPERTY_ID') {
-    var Tawk_API = Tawk_API || {};
-    var Tawk_LoadStart = new Date();
-    (function () {
+  (function () {
+    var loaded = false;
+
+    function consentGiven() {
+      // Tawk.to is a non-essential (functional) cookie. Require explicit consent.
+      var c = window.potConsent;
+      return !!(c && (c.functional || c.marketing));
+    }
+
+    function loadTawk() {
+      // Guard: only inject once, only with a real property ID, only after consent.
+      if (loaded) return;
+      if (TAWK_PROPERTY_ID === 'PROPERTY_ID') return; // placeholder — never loads
+      if (!consentGiven()) return;
+      loaded = true;
+      window.Tawk_API = window.Tawk_API || {};
+      window.Tawk_LoadStart = new Date();
       var s1 = document.createElement('script');
       var s0 = document.getElementsByTagName('script')[0];
       s1.async = true;
@@ -22,8 +34,13 @@ const TAWK_WIDGET_ID = 'default';
       s1.charset = 'UTF-8';
       s1.setAttribute('crossorigin', '*');
       s0.parentNode.insertBefore(s1, s0);
-    })();
-  }
+    }
+
+    // Try on load (covers returning visitors who already consented)…
+    loadTawk();
+    // …and react the moment consent is granted.
+    window.addEventListener('pot:consent-updated', loadTawk);
+  })();
 </script>
 
 <!-- Fallback floating chat button (shown while PROPERTY_ID is a placeholder) -->

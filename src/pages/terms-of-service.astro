@@ -1,5 +1,7 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import { companyStats } from '../data/company-stats';
+const { entity, governingLaw, forum, registeredOffice } = companyStats.legal;
 ---
 
 <LegalLayout
@@ -8,7 +10,7 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   slug="terms-of-service"
 >
   <h1>Terms of Service</h1>
-  <p>These Terms of Service ("Terms") govern your access to the Pacific Ocean Tech website and use of our remote staffing, talent placement, and related professional services. By using our site or engaging our services, you agree to these Terms.</p>
+  <p>These Terms of Service ("Terms") are between you and {entity} (trading as "Pacific Ocean Tech," "POT," "we," "us"), the contracting entity that operates this website and provides remote staffing, talent placement, and related professional services. Service delivery is performed from our team centre at {companyStats.address.oneLiner}. By using our site or engaging our services, you agree to these Terms.</p>
 
   <h2>Services</h2>
   <p>POT connects clients with dedicated remote professionals. We provide sourcing, vetting, onboarding support, and ongoing account management. Unless expressly stated in a Master Services Agreement (MSA) or Statement of Work (SOW), POT does not perform client work product directly—professionals are dedicated to the client under agreed terms.</p>
@@ -43,9 +45,12 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   <h2>Termination</h2>
   <p>Either party may terminate per the notice period in the SOW. Either party may terminate for material breach not cured within 15 days of written notice. Accrued fees and confidentiality survive termination.</p>
 
+  <h2>Consumer law</h2>
+  <p>Nothing in these Terms excludes, restricts, or modifies any consumer guarantee, right, or remedy you may have under the Australian Consumer Law (Schedule 2 of the <em>Competition and Consumer Act 2010</em> (Cth)), the New Zealand Consumer Guarantees Act 1993, or other mandatory law that cannot lawfully be excluded. Where our liability cannot be excluded but can be limited, it is limited to the extent permitted by that law.</p>
+
   <h2>Governing law</h2>
-  <p>These Terms are governed by the laws of India, without regard to conflict-of-law rules, unless a signed MSA specifies otherwise. Disputes shall be resolved in courts located in Chandigarh, India, subject to mandatory consumer protections where applicable.</p>
+  <p>These Terms are governed by the laws of {governingLaw}, without regard to conflict-of-law rules, unless a signed MSA specifies otherwise. The parties submit to the exclusive jurisdiction of {forum}, subject to mandatory consumer protections in your country of residence.</p>
 
   <h2>Contact</h2>
-  <p>legal@pacificoceantech.com</p>
+  <p>{entity}<br />Registered office: {registeredOffice}<br />Email: legal@pacificoceantech.com</p>
 </LegalLayout>

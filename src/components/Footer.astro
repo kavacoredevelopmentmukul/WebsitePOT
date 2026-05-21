@@ -110,9 +110,16 @@ const resourceLinks = [
 
     <div class="pt-8 border-t border-[rgba(244,239,230,0.15)] flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="body-sm text-[rgba(244,239,230,0.5)]">
-        &copy; {currentYear} Pacific Ocean Tech. All rights reserved.
+        &copy; {currentYear} {companyStats.legal.entity}, trading as Pacific Ocean Tech. All rights reserved.
       </p>
-      <p class="mono-label text-[rgba(244,239,230,0.45)]">Established {companyStats.establishedYear} · {companyStats.professionalsPlaced} professionals placed · {companyStats.countriesServed} countries served</p>
+      <div class="flex items-center gap-4">
+        <button
+          type="button"
+          class="body-sm text-[rgba(244,239,230,0.6)] hover:text-[#E8593C] transition-colors underline-offset-2 hover:underline"
+          onclick="if(window.potOpenCookieSettings)window.potOpenCookieSettings()"
+        >Cookie settings</button>
+        <p class="mono-label text-[rgba(244,239,230,0.45)]">Established {companyStats.establishedYear} · {companyStats.professionalsPlaced} placed · {companyStats.countriesServed} countries</p>
+      </div>
     </div>
   </div>
 </footer>

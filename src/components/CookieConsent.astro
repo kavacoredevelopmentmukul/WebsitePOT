@@ -1,0 +1,112 @@
+---
+/**
+ * Cookie consent banner that GATES non-essential cookies/scripts.
+ *
+ * Mechanism:
+ *  - On every load, `window.potConsent` is initialised from localStorage
+ *    (key: "pot-cookie-consent"). Shape:
+ *      { necessary:true, functional:bool, analytics:bool, marketing:bool }
+ *  - Non-essential scripts (Tawk.to live chat, future analytics) MUST check
+ *    `window.potConsent` (or listen for the `pot:consent-updated` event)
+ *    before setting any cookie. They are NOT loaded until the user accepts.
+ *  - Strictly-necessary + the first-party theme preference always work.
+ *
+ * Re-open the chooser anywhere via `window.potOpenCookieSettings()`
+ * (wired to the "Cookie settings" link in the footer).
+ */
+import { path } from '../utils/paths';
+---
+
+<div
+  id="pot-cookie-banner"
+  class="fixed inset-x-0 bottom-0 z-[60] hidden"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Cookie consent"
+  aria-describedby="pot-cookie-text"
+>
+  <div class="mx-auto max-w-5xl m-4 rounded-lg border border-[var(--hairline-strong)] bg-[var(--white)] dark:bg-[var(--bg-surface)] shadow-2xl p-5 md:p-6">
+    <div class="flex flex-col md:flex-row md:items-center gap-5">
+      <p id="pot-cookie-text" class="body-sm text-[var(--text-primary)] flex-1">
+        We use strictly necessary cookies to make this site work. With your consent we
+        also use functional, analytics, and marketing cookies to improve your experience.
+        You can accept all or limit us to necessary only. See our
+        <a href={path('cookie-policy')} class="underline hover:text-[var(--coral)]">Cookie Policy</a>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+        <button
+          type="button"
+          id="pot-cookie-necessary"
+          class="px-5 py-2.5 rounded-md border border-[var(--hairline-strong)] text-[var(--text-primary)] font-medium text-sm hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors"
+        >
+          Necessary only
+        </button>
+        <button
+          type="button"
+          id="pot-cookie-accept"
+          class="px-5 py-2.5 rounded-md bg-[#E8593C] text-white font-semibold text-sm hover:bg-[#cf4b31] transition-colors"
+        >
+          Accept all
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = 'pot-cookie-consent';
+
+    function apply(consent) {
+      window.potConsent = consent;
+      // Broadcast so gated scripts (Tawk.to, analytics) can react immediately.
+      window.dispatchEvent(new CustomEvent('pot:consent-updated', { detail: consent }));
+    }
+
+    function save(level) {
+      var consent =
+        level === 'all'
+          ? { necessary: true, functional: true, analytics: true, marketing: true }
+          : { necessary: true, functional: false, analytics: false, marketing: false };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ level: level, consent: consent, ts: Date.now() }));
+      } catch (e) {}
+      apply(consent);
+      hide();
+    }
+
+    function hide() {
+      var b = document.getElementById('pot-cookie-banner');
+      if (b) b.classList.add('hidden');
+    }
+
+    function show() {
+      var b = document.getElementById('pot-cookie-banner');
+      if (b) b.classList.remove('hidden');
+    }
+
+    // Initialise consent state on every load.
+    var stored = null;
+    try {
+      stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    } catch (e) {}
+
+    if (stored && stored.consent) {
+      // Returning visitor with a saved choice — apply it, no banner.
+      apply(stored.consent);
+    } else {
+      // No choice yet: default to necessary-only until the user decides, show banner.
+      apply({ necessary: true, functional: false, analytics: false, marketing: false });
+      show();
+    }
+
+    // Wire buttons.
+    var acceptBtn = document.getElementById('pot-cookie-accept');
+    var necessaryBtn = document.getElementById('pot-cookie-necessary');
+    if (acceptBtn) acceptBtn.addEventListener('click', function () { save('all'); });
+    if (necessaryBtn) necessaryBtn.addEventListener('click', function () { save('necessary'); });
+
+    // Allow re-opening the chooser (e.g. from the footer "Cookie settings" link).
+    window.potOpenCookieSettings = function () { show(); };
+  })();
+</script>

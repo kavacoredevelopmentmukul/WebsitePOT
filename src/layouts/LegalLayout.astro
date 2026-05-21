@@ -1,4 +1,11 @@
 ---
+/**
+ * TODO:VERIFY-WITH-DEEPAK — EVERY page using this layout (privacy-policy,
+ * terms-of-service, cookie-policy, refund, security) is a DRAFT and REQUIRES
+ * REVIEW BY A QUALIFIED LAWYER before launch. Entity name, governing law,
+ * jurisdiction, and APAC/GDPR compliance clauses are placeholders sourced from
+ * company-stats.ts and must be confirmed against the real registered entity.
+ */
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -23,6 +30,7 @@ const schemas = [
 
 <BaseLayout title={title} description={description} schemas={schemas}>
   <Header />
+  <Fragment set:html="<!-- TODO:VERIFY-WITH-DEEPAK — This legal page is a DRAFT and REQUIRES REVIEW BY A QUALIFIED LAWYER before launch. Entity name, governing law, and APAC/GDPR clauses are placeholders. -->" />
   <main id="main-content" class="pot-section pt-28 pb-20">
     <article class="pot-container max-w-3xl prose prose-neutral dark:prose-invert">
       <p class="text-sm text-[var(--text-muted)] not-prose mb-8">Last updated: {lastUpdated}</p>

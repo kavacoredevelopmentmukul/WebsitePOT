@@ -1,5 +1,7 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import { companyStats } from '../data/company-stats';
+const { entity, registeredOffice } = companyStats.legal;
 ---
 
 <LegalLayout
@@ -8,7 +10,7 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   slug="privacy-policy"
 >
   <h1>Privacy Policy</h1>
-  <p>Pacific Ocean Tech ("POT," "we," "us") provides remote staffing and talent placement services to business clients worldwide. This Privacy Policy explains how we handle personal information when you visit our website, request a consultation, or engage our services.</p>
+  <p>{entity} (trading as "Pacific Ocean Tech," "POT," "we," "us") provides remote staffing and talent placement services to business clients worldwide, with service delivery from our team centre at {companyStats.address.oneLiner}. This Privacy Policy explains how we handle personal information when you visit our website, request a consultation, or engage our services.</p>
 
   <h2>Information we collect</h2>
   <p>We may collect: contact details (name, email, phone, company); hiring requirements and job descriptions; billing and contract information; website usage data (cookies, IP address, pages viewed); and communications you send us (email, forms, live chat).</p>
@@ -40,6 +42,15 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   <h2>Your rights</h2>
   <p>Depending on your location, you may have rights to access, correct, delete, restrict, or port your data, and to object to certain processing. Contact <a href="mailto:privacy@pacificoceantech.com">privacy@pacificoceantech.com</a> to exercise rights. You may lodge a complaint with your local data protection authority.</p>
 
+  <h2>Australia — Privacy Act 1988 &amp; Australian Privacy Principles</h2>
+  <p>For individuals in Australia, we handle personal information in accordance with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles (APPs). You may request access to and correction of your personal information, and may complain about a suspected breach of the APPs. We will respond within a reasonable period; if a complaint is not resolved to your satisfaction, you may contact the Office of the Australian Information Commissioner (OAIC) at <a href="https://www.oaic.gov.au">oaic.gov.au</a>. We will notify affected individuals and the OAIC of eligible data breaches as required by the Notifiable Data Breaches scheme.</p>
+
+  <h2>New Zealand — Privacy Act 2020</h2>
+  <p>For individuals in New Zealand, we comply with the Privacy Act 2020 and its Information Privacy Principles. You may request access to and correction of your information and complain to the Office of the Privacy Commissioner at <a href="https://www.privacy.org.nz">privacy.org.nz</a>. We will notify the Commissioner and affected individuals of privacy breaches that are likely to cause serious harm.</p>
+
+  <h2>European Economic Area &amp; United Kingdom — GDPR</h2>
+  <p>If you are located in the EEA or UK, the EU/UK General Data Protection Regulation applies. Our legal bases are described above. You have the rights of access, rectification, erasure, restriction, portability, and objection, and the right to withdraw consent at any time without affecting prior processing. You may lodge a complaint with your local supervisory authority. Where we transfer personal data outside the EEA/UK (including to our India team centre), we rely on appropriate safeguards such as Standard Contractual Clauses. To exercise GDPR rights, contact <a href="mailto:privacy@pacificoceantech.com">privacy@pacificoceantech.com</a>.</p>
+
   <h2>Children</h2>
   <p>Our services are directed to businesses. We do not knowingly collect information from children under 16.</p>
 
@@ -47,5 +58,5 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   <p>We may update this policy periodically. Material changes will be posted on this page with an updated date.</p>
 
   <h2>Contact</h2>
-  <p>Pacific Ocean Tech — Privacy Office<br />Email: privacy@pacificoceantech.com<br />Address: Tech Park Sector 17, Chandigarh 160017, India</p>
+  <p>{entity} — Privacy Office<br />Email: privacy@pacificoceantech.com<br />Registered office: {registeredOffice}<br />Delivery centre: {companyStats.address.oneLiner}</p>
 </LegalLayout>

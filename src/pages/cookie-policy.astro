@@ -1,5 +1,7 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import { companyStats } from '../data/company-stats';
+const { entity } = companyStats.legal;
 ---
 
 <LegalLayout
@@ -8,7 +10,7 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   slug="cookie-policy"
 >
   <h1>Cookie Policy</h1>
-  <p>This Cookie Policy explains how Pacific Ocean Tech uses cookies and similar technologies on our website.</p>
+  <p>This Cookie Policy explains how {entity} (trading as "Pacific Ocean Tech") uses cookies and similar technologies on our website.</p>
 
   <h2>What are cookies?</h2>
   <p>Cookies are small text files stored on your device when you visit a website. They help sites function, remember preferences, and understand usage.</p>
@@ -22,14 +24,14 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   </ul>
 
   <h2>Third-party cookies</h2>
-  <p>Embedded tools such as Calendly scheduling, video players, or social widgets may set their own cookies governed by those providers' policies.</p>
+  <p>Embedded tools such as Calendly scheduling and the Tawk.to live-chat widget may set their own cookies governed by those providers' policies. These are treated as non-essential and are loaded only after you accept them via our cookie banner (or where consent is not legally required).</p>
 
   <h2>Your choices</h2>
-  <p>You can control cookies through browser settings—blocking cookies may affect site functionality. Where required by law, we will request consent before non-essential cookies load.</p>
+  <p>When you first visit our site, a cookie banner lets you accept all cookies or limit us to strictly necessary cookies only. Non-essential cookies (functional, analytics, and marketing) do not load until you consent. You can change your choice at any time by selecting "Cookie settings" in the banner footer, and you can also control cookies through your browser settings—blocking cookies may affect site functionality.</p>
 
   <h2>Updates</h2>
   <p>We may revise this policy as our site evolves. Check this page for the latest version.</p>
 
   <h2>Contact</h2>
-  <p>privacy@pacificoceantech.com</p>
+  <p>{entity}<br />Email: privacy@pacificoceantech.com</p>
 </LegalLayout>

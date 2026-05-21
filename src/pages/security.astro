@@ -1,5 +1,7 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import { companyStats } from '../data/company-stats';
+const { entity } = companyStats.legal;
 ---
 
 <LegalLayout
@@ -8,7 +10,7 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   slug="security"
 >
   <h1>Data Security</h1>
-  <p>Pacific Ocean Tech takes the security of your data and intellectual property seriously. This page outlines the measures we have in place to protect our clients.</p>
+  <p>{entity} (trading as "Pacific Ocean Tech") takes the security of your data and intellectual property seriously. This page outlines the measures we have in place to protect our clients.</p>
 
   <h2>Infrastructure security</h2>
   <p>All engineering operations are conducted on secure, monitored networks. We enforce encrypted connections (TLS 1.2+), endpoint protection, and centralized access management across all environments.</p>

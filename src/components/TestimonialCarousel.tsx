@@ -93,7 +93,7 @@ export default function TestimonialCarousel() {
             <div className="flex flex-col items-center gap-3">
               <img
                 src={t.image}
-                alt={t.author}
+                alt={`${t.author}, ${t.role} at ${t.company}`}
                 className="w-14 h-14 rounded-full object-cover border-2 border-[var(--hairline)]"
               />
               <div>
