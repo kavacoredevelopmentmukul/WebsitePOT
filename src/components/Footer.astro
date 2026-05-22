@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { Twitter, Facebook, Linkedin, Youtube, Instagram, Mail, Phone, MapPin } from 'lucide-astro';
+import { Mail, MapPin } from 'lucide-astro';
 import { allServices } from '../data/services';
 import { path } from '../utils/paths';
 import { companyStats } from '../data/company-stats';
@@ -22,8 +22,8 @@ const resourceLinks = [
   { label: 'Privacy Policy', href: path('privacy-policy') },
   { label: 'Terms of Service', href: path('terms-of-service') },
   { label: 'Cookie Policy', href: path('cookie-policy') },
-  { label: 'Refund Policy', href: path('refund') },
-  { label: 'Data Security', href: path('security') },
+  { label: 'Refund Policy', href: path('refund-policy') },
+  { label: 'Data Security', href: path('data-security') },
   { label: 'LLMs.txt', href: path('llms.txt') },
 ];
 ---
@@ -74,35 +74,12 @@ const resourceLinks = [
             <a href={`mailto:${companyStats.email}`} class="hover:text-[#E8593C] transition-colors">{companyStats.email}</a>
           </li>
           <li class="flex items-start gap-3">
-            <Phone class="w-4 h-4 shrink-0 mt-0.5 text-[#E8593C]" />
-            <a href={`tel:${companyStats.phoneTel}`} class="hover:text-[#E8593C] transition-colors">{companyStats.phone}</a>
-          </li>
-          <li class="flex items-start gap-3">
             <MapPin class="w-4 h-4 shrink-0 mt-0.5 text-[#E8593C]" />
             <span>{companyStats.address.oneLiner}</span>
           </li>
         </ul>
 
-        <p class="text-xs text-gray-400 mt-6 mb-3">Follow us</p>
-        <div class="flex flex-wrap gap-2">
-          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="Twitter">
-            <Twitter class="w-4 h-4" />
-          </a>
-          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="Facebook">
-            <Facebook class="w-4 h-4" />
-          </a>
-          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="LinkedIn">
-            <Linkedin class="w-4 h-4" />
-          </a>
-          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="YouTube">
-            <Youtube class="w-4 h-4" />
-          </a>
-          <a href="#" class="w-10 h-10 rounded-md border border-gray-500 flex items-center justify-center text-gray-300 hover:text-white hover:border-[#E8593C] hover:bg-[#E8593C] transition-all" aria-label="Instagram">
-            <Instagram class="w-4 h-4" />
-          </a>
-        </div>
-
-        <a href={path('/')} class="inline-block mt-8">
+        <a href={path('/')} class="inline-block mt-6">
           <Logo size="md" theme="dark" />
         </a>
       </div>

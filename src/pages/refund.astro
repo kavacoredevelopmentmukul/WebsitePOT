@@ -1,29 +1,16 @@
 ---
-import LegalLayout from '../layouts/LegalLayout.astro';
-import { companyStats } from '../data/company-stats';
-const { entity } = companyStats.legal;
+import { path } from '../utils/paths';
+const target = path('refund-policy');
 ---
 
-<LegalLayout
-  title="Refund Policy"
-  description="Pacific Ocean Tech's refund and replacement guarantee policy."
-  slug="refund"
->
-  <h1>Refund Policy</h1>
-  <p>{entity} (trading as "Pacific Ocean Tech," "POT," "we," "us") is committed to client satisfaction. This policy outlines our approach to refunds, replacements, and service guarantees.</p>
-
-  <h2>30-day replacement guarantee</h2>
-  <p>If a dedicated professional placed through our service does not meet your expectations within the first 30 days, we will provide a replacement at no additional cost.</p>
-
-  <h2>Service credits</h2>
-  <p>If we are unable to provide a suitable replacement within a reasonable timeframe, we will issue a pro-rated service credit for the unused portion of your monthly retainer.</p>
-
-  <h2>Exclusions</h2>
-  <p>Refunds do not apply to completed project milestones, setup or onboarding fees (where applicable), or situations where the client has materially changed the scope of the engagement.</p>
-
-  <h2>Your statutory rights</h2>
-  <p>This policy operates in addition to, and does not limit, any non-excludable rights you may have under the Australian Consumer Law, the New Zealand Consumer Guarantees Act 1993, or other mandatory law in your country of residence. Where a service fails to meet a consumer guarantee that cannot be excluded, you may be entitled to a remedy under that law.</p>
-
-  <h2>How to request a refund</h2>
-  <p>Contact your account manager or email <a href="mailto:billing@pacificoceantech.com">billing@pacificoceantech.com</a> with details of your request. We aim to resolve all refund inquiries within five business days.</p>
-</LegalLayout>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>Refund Policy</a>…</p>
+  </body>
+</html>

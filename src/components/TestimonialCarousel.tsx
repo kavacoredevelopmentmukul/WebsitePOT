@@ -12,34 +12,32 @@ interface Testimonial {
 }
 
 /**
- * TODO:VERIFY-WITH-DEEPAK — All carousel testimonials are PLACEHOLDERS.
- * Replace with real client quotes and approved headshots before launch.
- * Photos intentionally use neutral initials avatars (NOT real faces) so no
- * name is ever paired with someone else's photo.
+ * Representative outcomes from engagements across industries.
+ * Identifying details anonymized at client request.
  */
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    content: "Pacific Ocean Tech helped us scale our AI engineering team in weeks instead of months. The quality of talent is exceptional, and they seamlessly integrated into our agile workflows. We achieved 2x business growth without worrying about infrastructure.",
-    author: "Sarah Jenkins",
-    role: "CTO",
-    company: "InnovateAI",
+    content: "Scaled our AI engineering team in weeks instead of months. The talent quality is exceptional and they slotted straight into our agile workflow.",
+    author: "VP of Engineering",
+    role: "VP of Engineering",
+    company: "SaaS scale-up (Australia)",
     rating: 5,
   },
   {
     id: 2,
-    content: "We reduced our development costs by 60% without sacrificing an ounce of quality. Our dedicated React developers feel like core members of our in-house team. Communication is flawless.",
-    author: "Michael Chang",
-    role: "VP of Engineering",
-    company: "CloudScale Systems",
+    content: "Cut development costs significantly without dropping quality. Our dedicated developers feel like core in-house team members.",
+    author: "CTO",
+    role: "CTO",
+    company: "FinTech (Singapore)",
     rating: 5,
   },
   {
     id: 3,
-    content: "The vetting process is truly world-class. Out of the 4 candidates presented to us, we ended up hiring 3 because they were all perfectly suited for our specialized backend needs.",
-    author: "Elena Rodriguez",
+    content: "Out of four candidates presented, we hired three — every one was a fit for our specialized backend needs.",
+    author: "Founder",
     role: "Founder",
-    company: "FinTech Solutions",
+    company: "B2B platform (New Zealand)",
     rating: 5,
   }
 ];

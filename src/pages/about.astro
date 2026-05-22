@@ -7,15 +7,15 @@ import { path } from '../utils/paths';
 import { Star, Eye, Zap, Users, Lightbulb, ShieldCheck, Gauge, Award, BadgeDollarSign, ShieldHalf, Search, FileCheck, UserCheck, Video, Handshake } from 'lucide-astro';
 
 const timeline = [
-  { year: String(companyStats.establishedYear), title: "Founded in the Pacific Region", desc: "Started as a small web development agency with a dedicated team of engineers." },
-  { year: "2018", title: "Global Expansion", desc: "Opened our first international sales office in San Francisco to better serve US clients." },
-  { year: "2020", title: "The Remote Shift", desc: "Transitioned to a fully remote model for our talent, expanding our sourcing across the Asia-Pacific region." },
-  { year: "2023", title: "AI Division Launch", desc: "Established a dedicated AI/ML engineering hub to meet the surging demand for GenAI." },
-  { year: "2025", title: `${companyStats.professionalsPlaced} Professionals Placed`, desc: `Crossed the milestone of ${companyStats.professionalsPlaced} professionals placed with clients across ${companyStats.countriesServed} countries.` },
+  { year: String(companyStats.establishedYear), title: "Founded, remote-first", desc: "Started as a small distributed engineering team." },
+  { year: "2018", title: "Global client base", desc: "Expanded to serve clients across multiple continents." },
+  { year: "2020", title: "Fully remote model", desc: "Formalized distributed delivery and global sourcing." },
+  { year: "2023", title: "AI practice launched", desc: "Dedicated AI/ML pod for GenAI demand." },
+  { year: "2025", title: `${companyStats.professionalsPlaced} placed`, desc: `Crossed ${companyStats.professionalsPlaced} professionals placed across ${companyStats.countriesServed} countries.` },
 ];
 
 const values = [
-  { Icon: Star, title: "Excellence", desc: "We hire only the top 1% of talent and enforce rigorous engineering standards. Every engineer in our network has passed a multi-stage technical screening that evaluates not just coding ability, but architectural thinking and communication skills. We conduct quarterly code-quality audits and pair lower-performing team members with senior mentors to keep output consistently high. For our clients, this means fewer defects, faster onboarding, and production-ready code from day one." },
+  { Icon: Star, title: "Excellence", desc: "We hire only the top 3% of applicants and enforce rigorous engineering standards. Every engineer in our network has passed a multi-stage technical screening that evaluates not just coding ability, but architectural thinking and communication skills. We conduct quarterly code-quality audits and pair lower-performing team members with senior mentors to keep output consistently high. For our clients, this means fewer defects, faster onboarding, and production-ready code from day one." },
   { Icon: Eye, title: "Transparency", desc: "No hidden fees, no black-box processes. Complete visibility into your team. We provide real-time dashboards showing hours logged, sprint velocity, and pull-request throughput so you always know exactly where your investment is going. Our pricing is published and line-itemized — you see the engineer's compensation, our management fee, and nothing else. When problems arise, we surface them early rather than burying them in status reports." },
   { Icon: Zap, title: "Speed", desc: "Time is the ultimate competitive advantage. We move fast without breaking things. Our pre-vetted talent bench means we can present qualified candidates within 48 hours, not weeks. We run parallel interview loops so you can evaluate multiple engineers simultaneously, and our onboarding playbook gets new hires contributing to your codebase within their first week. When a role needs to be backfilled, we activate a replacement within 72 hours to minimize disruption." },
   { Icon: Users, title: "Partnership", desc: "We don't want to be a vendor. We want to be an extension of your company. Every client is assigned a dedicated Client Success Manager who understands your tech stack, your sprint cadence, and your long-term roadmap. We participate in your standups, retros, and planning sessions — not as observers, but as contributors. Our retention rate of " + companyStats.clientRetention + " proves this model works: clients stay because we become indispensable, not because of lock-in." },
@@ -25,13 +25,13 @@ const values = [
 
 const differentiators = [
   { Icon: Gauge, title: "Speed", headline: "48-Hour Candidate Delivery", desc: "While traditional agencies take 4–6 weeks to present candidates, our pre-vetted bench means you interview qualified engineers within 48 hours. We run parallel pipelines, so you evaluate three to five candidates simultaneously instead of waiting for a single shortlist." },
-  { Icon: Award, title: "Quality", headline: "Top 1% Technical Bar", desc: "Only 3 out of every 100 applicants make it through our five-stage vetting process. We test live coding, system design, communication, and cultural fit. The result is engineers who don't just write code — they own outcomes and think like product builders." },
-  { Icon: BadgeDollarSign, title: "Cost", headline: companyStats.costSavings + " Savings", desc: "Our Asia-Pacific talent model delivers senior engineers at a fraction of US market rates — without compromising quality. You get transparent pricing with no markup surprises: just the engineer’s compensation, our management fee, and infrastructure costs, all line-itemized." },
+  { Icon: Award, title: "Quality", headline: "~3% Vetting Pass Rate", desc: "Only 3 out of every 100 applicants make it through our five-stage vetting process. We test live coding, system design, communication, and cultural fit. The result is engineers who don't just write code — they own outcomes and think like product builders." },
+  { Icon: BadgeDollarSign, title: "Cost", headline: companyStats.costSavings + " Savings", desc: "Transparent, line-itemized pricing with up to 70% savings versus local hiring — without compromising quality. You see the engineer’s compensation, our management fee, and nothing else." },
   { Icon: ShieldHalf, title: "Compliance", headline: "Enterprise-Grade Security", desc: "Every engagement includes signed NDAs, IP assignment agreements, GDPR-compliant data handling, and SOC 2-aligned operational controls. We enforce endpoint security, VPN-only access to client repositories, and quarterly security audits. Your code and data stay protected." },
 ];
 
 const hiringSteps = [
-  { step: 1, Icon: Search, title: "Sourcing & Screening", desc: "We source candidates from top engineering institutions, developer communities, and our referral network across the Asia-Pacific region. Every applicant completes an automated screening that evaluates years of experience, tech-stack alignment, and English communication. Only the top 20% advance." },
+  { step: 1, Icon: Search, title: "Sourcing & Screening", desc: "We source candidates from top engineering institutions, developer communities, and our referral network across our global network. Every applicant completes an automated screening that evaluates years of experience, tech-stack alignment, and English communication. Only the top 20% advance." },
   { step: 2, Icon: FileCheck, title: "Technical Assessment", desc: "Candidates complete a timed coding challenge designed by our principal engineers. We evaluate algorithmic thinking, code quality, edge-case handling, and test coverage. Assessments are language-specific and calibrated to real-world scenarios, not LeetCode puzzles." },
   { step: 3, Icon: UserCheck, title: "System Design & Architecture", desc: "Senior candidates face a live system-design interview where they architect a distributed system end-to-end. We evaluate trade-off reasoning, scalability thinking, and the ability to communicate decisions clearly — the skills that separate a coder from an engineer." },
   { step: 4, Icon: Video, title: "Communication & Culture Fit", desc: "A 45-minute behavioral interview assesses collaboration style, timezone flexibility, and alignment with remote-first work culture. We simulate real client interactions — standup updates, code-review discussions, and async Slack communication — to ensure a seamless fit." },
@@ -48,7 +48,7 @@ const aboutStats = [
 
 <BaseLayout
   title="About Us"
-  description="Learn about Pacific Ocean Tech's mission to connect global companies with elite engineering talent from the Asia-Pacific region."
+  description="Learn about Pacific Ocean Tech's mission to connect ambitious teams with top-tier remote professionals across the Pacific region and beyond."
 >
   <Header />
 
@@ -59,7 +59,7 @@ const aboutStats = [
         <p class="eyebrow mb-3">About us</p>
         <h1 class="h-section text-[var(--text-primary)] mb-4">Democratizing Access to Elite Engineering</h1>
         <p class="lede max-w-3xl mx-auto">
-          We believe that a company's potential should not be limited by their zip code. Our mission is to bridge the gap between global innovators and the top 1% tech talent across the Asia-Pacific region.
+          We believe a company's potential shouldn't be limited by its zip code. We connect ambitious teams with top-tier remote professionals across the Pacific region and beyond.
         </p>
       </div>
     </section>
@@ -86,24 +86,24 @@ const aboutStats = [
             <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6 text-[var(--text-primary)]">Our Story</h2>
             <div class="space-y-4 text-[var(--text-muted)] leading-relaxed text-lg">
               <p>
-                In {companyStats.establishedYear}, our founders noticed a glaring inefficiency in the global tech market. Tech hubs in the US, Europe, and the Asia-Pacific were starved for engineering talent, driving salaries to unsustainable levels and timelines to breaking point. Meanwhile, the Asia-Pacific region was producing millions of engineering graduates every year — brilliant, ambitious professionals who lacked access to challenging, global-scale product work. The mismatch was staggering, and the existing solutions were making it worse.
+                Pacific Ocean Tech started in {companyStats.establishedYear} with a simple observation: the best companies were being throttled not by ambition or budget, but by access to talent. Hiring senior engineers in major hubs had become slow, expensive, and brutally competitive — while exceptional professionals across the wider Pacific region and global remote workforce were ready to do world-class work, if only someone would connect the two sides properly.
               </p>
               <p>
-                The traditional outsourcing model was fundamentally broken. It treated engineers as disposable resources on short-term, fixed-scope projects. The incentive structure rewarded headcount over outcomes: agencies marked up rates by 80–100%, rotated engineers between clients to maximize utilization, and invested nothing in retention or professional development. The result was predictable — poor code quality, constant context-switching, and turnover rates that made long-term product development nearly impossible.
+                The traditional outsourcing model wasn't the answer. It treated people as interchangeable, billed by headcount instead of outcomes, and rotated talent between clients — producing inconsistent quality and constant context-switching. We built Pacific Ocean Tech to do the opposite: place dedicated, full-time professionals who embed into a single client's team for the long term.
               </p>
               <p>
-                Pacific Ocean Tech was built to flip this model entirely. Instead of project-based outsourcing, we pioneered a <strong class="text-[var(--text-primary)]">dedicated, full-time staff augmentation</strong> approach where every engineer is embedded into a single client's team for the long haul. They attend your standups, participate in your retros, and push code to your repositories. They are, in every meaningful sense, part of your team — the only difference is they happen to be sitting across the Asia-Pacific region instead of your headquarters.
+                They attend your standups, join your retros, and ship to your repositories. The only difference from an in-house hire is geography.
               </p>
               <p>
-                What started as a five-person remote agency has grown into a trusted talent partner for {companyStats.clientsServed} companies across {companyStats.countriesServed} countries. We've placed {companyStats.professionalsPlaced} professionals, maintained a {companyStats.clientRetention} client retention rate, and built a reputation for the kind of engineering quality that makes CTOs sleep easier at night. Our growth has been entirely organic — fuelled by referrals, repeat business, and the simple fact that our model delivers results that the old way never could.
+                What began as a small distributed team is now a trusted partner for {companyStats.clientsServed} companies across {companyStats.countriesServed} countries, with a {companyStats.clientRetention} retention rate. Growth has been almost entirely word-of-mouth — because the model delivers what the old way couldn't.
               </p>
             </div>
 
             <div class="mt-10 p-8 ve-card border-l-4 border-l-[var(--color-accent)]">
               <p class="text-lg italic text-[var(--text-primary)] font-heading mb-4">
-                "Our vision is a world where building a world-class engineering team takes days, not months, regardless of where your headquarters is located."
+                "Our goal is a world where building a world-class team takes days, not months — wherever your headquarters happens to be."
               </p>
-              <p class="text-sm font-bold text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)]">— Arjun Mehta, CEO</p>
+              <p class="text-sm font-bold text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)]">— Daniel Hayes, Founder &amp; CEO</p>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-6">

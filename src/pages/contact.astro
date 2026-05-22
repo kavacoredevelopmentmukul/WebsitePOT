@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
 import FAQ from '../components/FAQ.tsx';
 import { path } from '../utils/paths';
-import { Mail, Phone, MessageCircle, MapPin, Map } from 'lucide-astro';
+import { Mail, MessageCircle, MapPin } from 'lucide-astro';
 
 const faqs = [
   { question: "How long does it take to start a project?", answer: "Once you sign the agreement, we typically have your shortlisted candidates ready for interviews within 48 hours. Most teams can begin onboarding within 1 week." },
@@ -48,17 +48,6 @@ const faqs = [
             </div>
             
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] shrink-0">
-                <Phone size={24} />
-              </div>
-              <div>
-                <h3 class="font-heading font-bold text-lg mb-1 text-[var(--text-primary)]">Call Us</h3>
-                <p class="text-[var(--text-muted)] text-sm mb-1">Mon-Fri from 9am to 6pm PST:</p>
-                <a href="tel:+15551234567" class="text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] hover:underline font-medium">+1 (555) 123-4567</a>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
               <div class="w-12 h-12 rounded-2xl bg-[var(--navy)]/10 flex items-center justify-center text-[var(--navy)] dark:text-[var(--cream)] shrink-0">
                 <MessageCircle size={24} />
               </div>
@@ -92,29 +81,6 @@ const faqs = [
           <ContactForm />
         </div>
         
-      </div>
-    </section>
-
-    <!-- Map Placeholder -->
-    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-      <div class="w-full h-96 ve-card overflow-hidden relative">
-        <div class="absolute inset-0 bg-[var(--bg-surface)]">
-          <img
-            src={path('images/contact-map.webp')}
-            alt="Pacific Ocean Tech global presence"
-            class="w-full h-full object-cover opacity-40"
-            loading="lazy"
-            width="1400"
-            height="384"
-          />
-        </div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center">
-          <Map size={48} class="text-[var(--text-muted)]/30 mb-4" />
-          <p class="text-[var(--text-muted)] font-mono text-sm">Google Maps Integration Placeholder</p>
-          <a href="#" class="mt-4 px-6 py-2 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent-secondary)] dark:text-[var(--color-accent)] border border-[var(--color-accent)]/20 hover:bg-[var(--color-accent)]/20 transition-colors text-sm font-medium">
-            View on Map
-          </a>
-        </div>
       </div>
     </section>
 

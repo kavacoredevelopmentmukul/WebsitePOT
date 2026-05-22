@@ -260,7 +260,7 @@ export const serviceDetails: Record<ServiceSlug, ServiceDetailContent> = {
       fullTime: { label: 'Full-time', price: '$10–14/hr', subtitle: '40 hrs/week', features: ['Full-time executive support', 'Multi-stakeholder coordination', 'Weekend coverage add-on', 'Team lead escalation path'] },
     },
     faqs: [
-      { question: 'Are VAs fluent in English?', answer: 'Yes. All candidates pass written and spoken English assessments. Bilingual VAs are available for APAC and LATAM markets.' },
+      { question: 'Are VAs fluent in English?', answer: 'Yes. All candidates pass written and spoken English assessments. Bilingual VAs are available for Pacific and LATAM markets.' },
       { question: 'Can they use our software accounts?', answer: 'VAs work inside your CRM, email, and project tools with SSO and least-privilege access you control.' },
       { question: 'How do you ensure data confidentiality?', answer: 'Background checks, NDAs, and optional dedicated VPN/VDI environments for sensitive industries.' },
       { question: 'Can I hire multiple VAs for different functions?', answer: 'Common setup: executive VA + sales support VA + customer support VA, each with clear RACI charts.' },

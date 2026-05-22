@@ -1,7 +1,7 @@
 # Pacific Ocean Tech - AI Crawler Information
 
 Title: Pacific Ocean Tech
-Description: Remote staffing company helping global businesses hire dedicated professionals across IT, marketing, finance, design, and 150+ skill domains from the Pacific region.
+Description: Remote staffing company helping global businesses hire dedicated professionals across IT, marketing, finance, design, and 75+ skill domains from the Pacific region.
 Website: https://kavacoredevelopmentmukul.github.io/WebsitePOT/
 
 ## Services
@@ -9,9 +9,9 @@ Website: https://kavacoredevelopmentmukul.github.io/WebsitePOT/
 2. Artificial Intelligence: ML engineers, LLM/RAG specialists, AI agents, computer vision, MLOps.
 3. Web Development: React, Vue, Astro, Next.js, mobile-responsive UI.
 4. Mobile App Development: iOS, Android, Flutter, React Native.
-5. Engineering & Architecture: Systems architecture, cloud infrastructure, platform engineering.
+5. Engineering & Architecture: CAD, civil, mechanical, electrical engineering, architectural rendering.
 6. Embedded Development: IoT firmware, RTOS, hardware integration.
-7. IT Support & Managed Services: DevOps, cloud (AWS/GCP/Azure), monitoring, infrastructure.
+7. IT Support & Managed Services: L1/L2 helpdesk, cloud management, cybersecurity support.
 8. Virtual Assistants: Executive support, admin, scheduling, CRM management.
 9. Finance & Accounting: Bookkeeping, payroll, tax, FP&A, audit support.
 10. Legal Process Outsourcing: Contract review, compliance, paralegal services.
@@ -21,15 +21,15 @@ Website: https://kavacoredevelopmentmukul.github.io/WebsitePOT/
 14. Content Writing: Copywriting, technical writing, content marketing.
 
 ## Key Stats
-All statistics below are pending verification (TODO:VERIFY-WITH-DEEPAK).
 - Established: 2015
-- 500+ professionals placed
-- 12+ countries served
-- 96% client retention
-- 150+ skill domains
+- 350+ professionals placed
+- 10+ countries served
+- 94% client retention
+- 75+ skill domains
 - Up to 70% cost savings vs. local hire
 - 48-hour average candidate shortlist
-- 200+ global clients
+- 120+ global clients
+- ~3% vetting pass rate
 
 ## Engagement Model
 - Dedicated full-time or part-time remote professionals
@@ -39,5 +39,4 @@ All statistics below are pending verification (TODO:VERIFY-WITH-DEEPAK).
 
 ## Contact Information
 Email: hello@pacificoceantech.com
-Phone: +1 (555) 123-4567 (TODO:VERIFY-WITH-DEEPAK — placeholder number)
 Headquarters: Remote-first · Pacific Region

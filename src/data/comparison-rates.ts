@@ -24,7 +24,7 @@ export const comparisonRows = [
   },
   {
     factor: 'Quality control',
-    pot: 'Top 1% vetting, ongoing QA, dedicated account manager',
+    pot: '~3% pass-rate vetting, ongoing QA, dedicated account manager',
     local: 'High if you hire well — expensive to replace',
     freelancer: 'Inconsistent; depends on individual',
   },

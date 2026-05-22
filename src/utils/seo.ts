@@ -19,14 +19,8 @@ export function organizationSchema() {
     description:
       'Pacific Ocean Tech helps global companies hire dedicated remote professionals across the Pacific region.',
     foundingDate: String(companyStats.establishedYear),
-    /**
-     * TODO:VERIFY-WITH-DEEPAK — contactPoint uses placeholder phone number.
-     * Replace with real business phone before launch, or remove entirely.
-     * Shipping fake NAP data in structured data is a Google E-E-A-T risk.
-     */
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: companyStats.phoneTel,
       contactType: 'sales',
       email: companyStats.email,
       areaServed: ['US', 'AU', 'NZ', 'GB', 'SG'],
