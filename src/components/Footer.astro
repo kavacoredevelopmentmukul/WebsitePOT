@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { Mail, MapPin } from 'lucide-astro';
+import { Mail, MapPin, Linkedin, Twitter, Youtube } from 'lucide-astro';
 import { allServices } from '../data/services';
 import { path } from '../utils/paths';
 import { companyStats } from '../data/company-stats';
@@ -79,6 +79,18 @@ const resourceLinks = [
           </li>
         </ul>
 
+        <div class="flex items-center gap-4 mt-5">
+          <a href="https://linkedin.com/company/pacific-ocean-tech" target="_blank" rel="noopener noreferrer" class="text-[rgba(244,239,230,0.5)] hover:text-[var(--cream)] transition-colors" aria-label="LinkedIn">
+            <Linkedin class="w-5 h-5" />
+          </a>
+          <a href="https://twitter.com/pacificoceantech" target="_blank" rel="noopener noreferrer" class="text-[rgba(244,239,230,0.5)] hover:text-[var(--cream)] transition-colors" aria-label="Twitter">
+            <Twitter class="w-5 h-5" />
+          </a>
+          <a href="https://youtube.com/@pacificoceantech" target="_blank" rel="noopener noreferrer" class="text-[rgba(244,239,230,0.5)] hover:text-[var(--cream)] transition-colors" aria-label="YouTube">
+            <Youtube class="w-5 h-5" />
+          </a>
+        </div>
+
         <a href={path('/')} class="inline-block mt-6">
           <Logo size="md" theme="dark" />
         </a>
@@ -92,7 +104,7 @@ const resourceLinks = [
       <div class="flex items-center gap-4">
         <button
           type="button"
-          class="body-sm text-[rgba(244,239,230,0.6)] hover:text-[#E8593C] transition-colors underline-offset-2 hover:underline"
+          class="body-sm text-[rgba(244,239,230,0.6)] hover:text-[#E8593C] transition-colors underline-offset-2 hover:underline cursor-pointer"
           onclick="if(window.potOpenCookieSettings)window.potOpenCookieSettings()"
         >Cookie settings</button>
         <p class="mono-label text-[rgba(244,239,230,0.45)]">Established {companyStats.establishedYear} · {companyStats.professionalsPlaced} placed · {companyStats.countriesServed} countries</p>

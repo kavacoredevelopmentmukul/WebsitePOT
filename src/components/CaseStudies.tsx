@@ -3,8 +3,6 @@ import { ArrowRight, Check } from 'lucide-react';
 
 // Ensure BASE always has a trailing slash regardless of Astro version/mode.
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
-const featured = caseStudies.find((c) => c.featured) ?? caseStudies[0];
-const secondaries = caseStudies.filter((c) => c.id !== featured.id).slice(0, 3);
 
 export default function CaseStudies() {
   return (
@@ -16,7 +14,7 @@ export default function CaseStudies() {
             <h2 id="case-studies-heading" className="h-section text-[var(--ink)] dark:text-[var(--text-primary)] mb-3">
               Growth our clients measure
             </h2>
-            <p className="lede">Featured outcome plus recent wins across e-commerce, fintech, and healthcare.</p>
+            <p className="lede">Real outcomes across e-commerce, AI, and operations.</p>
           </div>
           <a
             href={`${BASE}case-studies`}
@@ -27,43 +25,9 @@ export default function CaseStudies() {
           </a>
         </div>
 
-        {/* Featured — horizontal editorial card */}
-        {featured && (
-          <article className="card overflow-hidden flex flex-col lg:flex-row mb-8">
-            <div className="lg:w-[48%] min-h-[240px] bg-[var(--cream)]">
-              <img
-                src={featured.image}
-                alt={`${featured.client} case study — ${featured.industry}`}
-                className="w-full h-full object-cover min-h-[240px]"
-                loading="lazy"
-                width="672"
-                height="240"
-              />
-            </div>
-            <div className="lg:w-[52%] p-8 md:p-10 flex flex-col justify-center">
-              <p className="eyebrow text-[var(--coral)] mb-2">{featured.industry}</p>
-              <h3 className="h-section text-[1.5rem] text-[var(--ink)] dark:text-[var(--text-primary)] mb-4 leading-snug">
-                {featured.title}
-              </h3>
-              <p className="body-md mb-6">{featured.challenge}</p>
-              <ul className="space-y-2 mb-6">
-                {featured.results.slice(0, 3).map((r) => (
-                  <li key={r} className="flex items-start gap-2 body-sm">
-                    <Check className="w-4 h-4 shrink-0 text-[var(--coral)] mt-0.5" aria-hidden="true" />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-              <a href={`${BASE}case-studies`} className="mono-label text-[var(--navy)] hover:text-[var(--coral)]">
-                Read full story →
-              </a>
-            </div>
-          </article>
-        )}
-
-        {/* Three secondaries */}
+        {/* Equal 3-card grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {secondaries.map((study) => (
+          {caseStudies.slice(0, 3).map((study) => (
             <article key={study.id} className="card overflow-hidden flex flex-col h-full">
               <div className="h-44 bg-[var(--cream)]">
                 <img
@@ -81,7 +45,7 @@ export default function CaseStudies() {
                   {study.title}
                 </h3>
                 <ul className="space-y-2 flex-grow mb-4">
-                  {study.results.slice(0, 2).map((r) => (
+                  {study.results.slice(0, 3).map((r) => (
                     <li key={r} className="flex items-start gap-2 body-sm">
                       <Check className="w-4 h-4 shrink-0 text-[var(--coral)] mt-0.5" aria-hidden="true" />
                       {r}
@@ -89,7 +53,7 @@ export default function CaseStudies() {
                   ))}
                 </ul>
                 <a href={`${BASE}case-studies`} className="mono-label text-[var(--navy)] hover:text-[var(--coral)]">
-                  Details →
+                  Read full story →
                 </a>
               </div>
             </article>

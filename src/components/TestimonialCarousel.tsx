@@ -1,46 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { allTestimonials } from '../data/testimonials';
 
-interface Testimonial {
-  id: number;
-  content: string;
-  author: string;
-  role: string;
-  company: string;
-  rating: number;
-}
-
-/**
- * Representative outcomes from engagements across industries.
- * Identifying details anonymized at client request.
- */
-const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    content: "Scaled our AI engineering team in weeks instead of months. The talent quality is exceptional and they slotted straight into our agile workflow.",
-    author: "VP of Engineering",
-    role: "VP of Engineering",
-    company: "SaaS scale-up (Australia)",
-    rating: 5,
-  },
-  {
-    id: 2,
-    content: "Cut development costs significantly without dropping quality. Our dedicated developers feel like core in-house team members.",
-    author: "CTO",
-    role: "CTO",
-    company: "FinTech (Singapore)",
-    rating: 5,
-  },
-  {
-    id: 3,
-    content: "Out of four candidates presented, we hired three — every one was a fit for our specialized backend needs.",
-    author: "Founder",
-    role: "Founder",
-    company: "B2B platform (New Zealand)",
-    rating: 5,
-  }
-];
+const testimonials = allTestimonials;
 
 /** Derive up-to-two-letter initials from a name for the placeholder avatar. */
 function initials(name: string): string {
@@ -105,7 +68,11 @@ export default function TestimonialCarousel() {
               <div>
                 <h4 className="font-medium text-[var(--ink)] dark:text-[var(--text-primary)]">{t.author}</h4>
                 <p className="body-sm">
-                  {t.role}, <span className="text-[var(--navy)] dark:text-[var(--coral)]">{t.company}</span>
+                  {t.role}{t.company && (
+                    <>
+                      , <span className="text-[var(--navy)] dark:text-[var(--coral)]">{t.company}</span>
+                    </>
+                  )}
                 </p>
               </div>
             </div>
@@ -117,7 +84,7 @@ export default function TestimonialCarousel() {
         <button
           type="button"
           onClick={prevSlide}
-          className="w-11 h-11 rounded-full border border-[var(--hairline-strong)] bg-[var(--white)] dark:bg-[var(--bg-surface)] flex items-center justify-center hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors"
+          className="w-11 h-11 rounded-full border border-[var(--hairline-strong)] bg-[var(--white)] dark:bg-[var(--bg-surface)] flex items-center justify-center hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors cursor-pointer"
           aria-label="Previous testimonial"
         >
           <ChevronLeft className="w-5 h-5" aria-hidden="true" />
@@ -125,7 +92,7 @@ export default function TestimonialCarousel() {
         <button
           type="button"
           onClick={nextSlide}
-          className="w-11 h-11 rounded-full border border-[var(--hairline-strong)] bg-[var(--white)] dark:bg-[var(--bg-surface)] flex items-center justify-center hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors"
+          className="w-11 h-11 rounded-full border border-[var(--hairline-strong)] bg-[var(--white)] dark:bg-[var(--bg-surface)] flex items-center justify-center hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors cursor-pointer"
           aria-label="Next testimonial"
         >
           <ChevronRight className="w-5 h-5" aria-hidden="true" />
